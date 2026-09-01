@@ -1,0 +1,203 @@
+{
+  "name": "W-BACKUP-N8N",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## W-BACKUP-N8N — nightly workflow export to Google Drive\n\n**Wiring / setup steps**\n1. One-time: in Drive folder `Filing Cabinet/Misc` (1AhdmXeuRINPeu7KWhEfvGt7C6wnaOLCl) create a folder `n8n-backups` and paste its folder ID into the **Create Dated Folder** node (replace `N8N_BACKUPS_FOLDER_ID`).\n2. Set env var `N8N_BASE_URL` (e.g. http://localhost:5678) on the n8n host.\n3. Create an n8n API key (Settings > n8n API) and either (a) attach an HTTP Header Auth credential named **n8n API** to the *Fetch All Workflows* node, or (b) set env `N8N_API_KEY` (the node header uses it by default).\n4. Attach Google Drive OAuth2 credential **Google Drive** to both Drive nodes.\n5. Attach Telegram credential **Telegram Hermes** to the *Alert Failure* node and set `TELEGRAM_CHAT_ID` env (or hardcode your chat id).\n6. Schedule fires daily 03:00; workflow timezone is Asia/Manila (see Settings).\n7. Errors also flow to the existing W-ERR v2 error workflow — set it as this workflow's Error Workflow in Settings after import.\n\n**Flow**: Schedule 03:00 -> GET /api/v1/workflows -> Code (pretty-print + aggregate) -> Create dated folder n8n-backups/YYYY-MM-DD -> upload `n8n-workflows-YYYY-MM-DD.json`. HTTP failure branch -> Telegram alert.",
+        "height": 560,
+        "width": 480
+      },
+      "id": "a1b2c3d4-0001-4000-8000-000000000001",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-780, -200]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 3,
+              "triggerAtMinute": 0
+            }
+          ]
+        }
+      },
+      "id": "a1b2c3d4-0002-4000-8000-000000000002",
+      "name": "Daily 03:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-240, 0]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.N8N_BASE_URL }}/api/v1/workflows",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-N8N-API-KEY",
+              "value": "={{ $env.N8N_API_KEY }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0003-4000-8000-000000000003",
+      "name": "Fetch All Workflows",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-20, 0],
+      "onError": "continueErrorOutput",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "",
+          "name": "n8n API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pretty-print every workflow returned by the n8n API and aggregate into one file.\n// API returns { data: [ ...workflows ] }\nconst payload = $input.first().json;\nconst workflows = payload.data || payload;\nconst date = new Date().toISOString().slice(0, 10);\nconst pretty = JSON.stringify(workflows, null, 2);\nreturn [{\n  json: {\n    date,\n    count: Array.isArray(workflows) ? workflows.length : 0,\n    fileName: `n8n-workflows-${date}.json`\n  },\n  binary: {\n    data: {\n      data: Buffer.from(pretty, 'utf-8').toString('base64'),\n      mimeType: 'application/json',\n      fileName: `n8n-workflows-${date}.json`\n    }\n  }\n}];"
+      },
+      "id": "a1b2c3d4-0004-4000-8000-000000000004",
+      "name": "Pretty-Print + Aggregate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [200, -100]
+    },
+    {
+      "parameters": {
+        "resource": "folder",
+        "operation": "create",
+        "name": "={{ $json.date }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "N8N_BACKUPS_FOLDER_ID"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0005-4000-8000-000000000005",
+      "name": "Create Dated Folder",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [420, -100],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "",
+          "name": "Google Drive"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "data",
+        "name": "={{ $('Pretty-Print + Aggregate').first().json.fileName }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.id }}"
+        },
+        "options": {}
+      },
+      "id": "a1b2c3d4-0006-4000-8000-000000000006",
+      "name": "Upload Backup File",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [640, -100],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "",
+          "name": "Google Drive"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "=⚠️ W-BACKUP-N8N failed at {{ $now.toISO() }}.\nCould not fetch workflows from the n8n API.\nError: {{ $json.error ? JSON.stringify($json.error).slice(0,300) : 'see execution log' }}",
+        "additionalFields": {}
+      },
+      "id": "a1b2c3d4-0007-4000-8000-000000000007",
+      "name": "Alert Failure",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [200, 140],
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "Telegram Hermes"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Daily 03:00": {
+      "main": [
+        [
+          {
+            "node": "Fetch All Workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch All Workflows": {
+      "main": [
+        [
+          {
+            "node": "Pretty-Print + Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alert Failure",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pretty-Print + Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Create Dated Folder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Dated Folder": {
+      "main": [
+        [
+          {
+            "node": "Upload Backup File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Manila"
+  }
+}
