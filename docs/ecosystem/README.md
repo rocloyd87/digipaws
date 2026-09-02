@@ -57,7 +57,10 @@ Full evidence in `sessions/2026-09-02-session-45.md`; one-tap list in `TASKLIST.
 - GAS `be67932` + `ad00d50` (worktree `hermes-wave-1-trust-94a9fb`): `^tg-\d+$` key rule, 90-day /
   future receipt-date guard (`confirm_date` override), canonical `approve_staged`, `list_staged`,
   savings nudges N1–N5, `get_kpis.monthPace` / `recurringDue30d`, DashSync prefers tarsi over a
-  PARTIAL computed walk. `check:gas` 93/93. **Push + deploy v28 pending Lloyd.**
+  PARTIAL computed walk. `check:gas` 93/93. **v28 deployed by Lloyd 2026-09-03 04:20 PHT (@28)**;
+  list_staged / reject_staged / date guard / key rule verified live; four stale staging rows
+  rejected. **v29 pending** (approve/reject skip rejected rows; KPI cache fingerprint bump so
+  `get_kpis` stops serving the pre-v28 cached shape).
 - n8n live: WF-RAG-SEARCH empty query → empty result (no W-ERR); W-HERMES deterministic staging
   route, `/sub`, `/remind`, `list_staged` tool, tightened tool descriptions + prompt rule 6,
   Grounding Guard v2; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at 12:30 + 19:30.

@@ -13,26 +13,33 @@ have the data for that capture"; `approve_staged` then correctly said NOT FOUND.
 defects are fixed in code (GAS, push pending) and live (n8n); the Grounding Guard v2 now also closes
 the claimed-write gap for real.
 
-1. **Push + deploy GAS v28** (agent is classifier-blocked). Fresh pull already made this session with
-   six files copied over it (93, 95, 96, 98, 127, 142 — byte-equal to `hermes-wave-1-trust-94a9fb`
-   HEAD `c91fdc6`). Run each block as its own command:
+1. ~~Push + deploy GAS v28~~ **DONE 2026-09-03 04:20 PHT (@28).** Verified live over `/exec`:
+   `list_staged` works, the date guard refuses a 2024 date without writing, the key rule refuses
+   `tg-photo-999`, and `reject_staged` discarded `tg-307-SOCOTECO`, `tg-287-receipt`,
+   `tg-00000284`, `tg-00000285` (the last two were 2026-09-01 test captures dated 2023/2024).
+   Pending now: only `tg-jollibee-20260822`. **Decide:** `tg-jollibee-150` (Cash −150, 2026-08-22,
+   the Aug-26 self-test) is APPROVED and will append to Alex on the next `hermesStagingApply` —
+   reply `reject tg-jollibee-150`... no: that key is not a tg-number, so use the curl in step 3 with
+   `"tool":"reject_staged"` and `"idempotency_key":"tg-jollibee-150"` if it was never a real meal.
 
-   ```bash
-   cd "C:/Users/Lloyd/AppData/Local/Temp/claude/C--Users-Lloyd-Claude-Projects-CoPilot--claude-worktrees-hermes-ecosystem-s45-34431f/00af9446-d1e8-46d6-82c7-fd1c9ecaff25/scratchpad/gas-pull" && clasp push -f
+1b. **Push + deploy v29** (two follow-ups found while verifying @28; same pull dir, `96` and `93`
+   already copied over it):
+   - `1435aed` — approve/reject skip rejected rows, so the discarded `tg-307-SOCOTECO` can never
+     shadow the approved `tg-00000307` when you say `approve tg-307`.
+   - KPI cache fingerprint bumped so `get_kpis` stops serving the pre-v28 cached shape (it still
+     lacks `monthPace` / `recurringDue30d` on @28 — the savings nudges are inert until this ships).
+
+   ```powershell
+   cd "C:/Users/Lloyd/AppData/Local/Temp/claude/C--Users-Lloyd-Claude-Projects-CoPilot--claude-worktrees-hermes-ecosystem-s45-34431f/00af9446-d1e8-46d6-82c7-fd1c9ecaff25/scratchpad/gas-pull"; clasp push -f
    ```
 
-   ```bash
-   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v28 session-45: tg-key rule, date guard, canonical approve, list_staged, savings nudges, tarsi-over-partial, watchlist tab"
+   ```powershell
+   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v29 session-45b: approve/reject skip rejected rows; KPI cache fingerprint v4"
    ```
 
-   If that folder is gone: `clasp pull` into any empty folder with `.clasp.json` =
-   `{"scriptId":"1kGk9s94z2R1EbyoLpPuVEqQG3Nqjtx4FivZk7hlOidlr7KPP6mWT4L4F"}`, copy
-   `scripts/alex/93_Metrics.js 95_HermesApi.js 96_HermesStaging.js 98_HermesNudges.js 127_DashSync.js 142_HermesWatchlist.js`
-   from the worktree over it, then the same two commands. (The repo now carries live's
-   90_RefAccounts + modules 128–141 too, synced in `c91fdc6`; still push from a pull, not the repo.)
 2. **Telegram, after the deploy** (each one is a deterministic route, no LLM):
-   - `/pending` → 📋 PENDING card listing `tg-287` and `tg-307` (stale rows).
-   - `reject tg-307` and `reject tg-287` → 🗑 DISCARDED each; `/pending` → NOTHING PENDING.
+   - `/pending` → 📋 PENDING card (only `tg-jollibee-20260822` left; the stale rows were discarded
+     from the desktop).
    - `/sub` → 🔁 SUBSCRIPTIONS card from the ledger detector.
    - `/remind test ping in 5m` → ⏰ REMINDER SET + event on rocloyd87@gmail.com (delete it after).
    - **One fresh receipt photo** → card must quote `tg-<that message id>`; then `approve tg-<id>`

@@ -38,11 +38,11 @@ ORIENT FIRST, in this order:
 3. Supabase fbtqqrpeiwhbxxkpyzdt: public.alfred_build_log rows 65+ (session 45). Log as session 46.
 
 STATE (2026-09-02 night, verified on the machine):
-- GAS v28 (tg-key rule, receipt-date guard, canonical approve, list_staged, savings nudges N1–N5,
-  DashSync tarsi-over-partial, 142_HermesWatchlist) is committed (be67932, ad00d50, c91fdc6) and
-  copied into a fresh clasp pull (93/95/96/98/127/142);
-  PUSH + DEPLOY IS MINE — check `clasp deployments` shows @28 before assuming anything below works.
-  Until then reject_staged / list_staged answer NOT DEPLOYED and the nudges/GCash fix are inert.
+- GAS v28 is LIVE (@28, 2026-09-03 04:20 PHT): list_staged, date guard, key rule, reject_staged
+  verified over /exec; stale rows 307-SOCOTECO/287/284/285 rejected; only tg-jollibee-20260822
+  pending, tg-jollibee-150 still APPROVED (test row — decide). v29 PENDING MINE (1435aed approve/
+  reject skip rejected rows + KPI cache fingerprint v4): until it ships get_kpis serves the cached
+  pre-v28 shape without monthPace/recurringDue30d, so the savings nudges are inert.
 - n8n LIVE: W-HERMES 91 nodes — deterministic approve|reject tg-N / bare tg-N / /pending route,
   /sub, /remind, list_staged tool, prompt rule 6 + Grounding Guard v2 (claimed-write check);
   WF-RAG-SEARCH empty query → empty result; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at
@@ -54,7 +54,6 @@ STATE (2026-09-02 night, verified on the machine):
   credential + one hermesWatchlistEnsure() run, then activation.
 - Repo drift closed (c91fdc6): 90_RefAccounts (29 accounts) + modules 128–141 now in the repo.
   Still never push from the repo folder — always a fresh pull with changed files copied over.
-- Stale pending rows tg-287 / tg-307 in HERMES_STAGING until I run `reject tg-…` after v28.
 - Miniflux feed URLs verified (all live). MoneyMatter detect_subscription_candidates ran
   (authorized): 0 candidates — subscriptions must be created by hand if wanted.
 
@@ -63,8 +62,9 @@ A. Verify what I completed from TASKLIST §A (deploy @28? Telegram tests? exec i
    W-HERMES executions for my tests: the first fresh receipt must show stage_expense called once
    with tg-<msgid> and the card quoting that key; approve tg-<id> must show the deterministic
    route (no Hermes Agent node). Fix anything that misfired.
-B. If v28 is live: confirm /pending, the two rejects, and that the 02:00 W-DASH-SYNC report no
-   longer carries the −641k GCash drift line (exec after 02:00 2026-09-03). Confirm the 07:00
+B. Confirm v29 (@29) shipped; then get_kpis must carry monthPace + recurringDue30d, the 12:30/
+   19:30 nudge runs must not error, and the 02:00 W-DASH-SYNC report (first after @28 = 2026-09-03)
+   must no longer carry the −641k GCash drift line. Confirm the 07:00
    brief shows the YESTERDAY line. Confirm no W-ERR from WF-RAG-SEARCH.
 C. Data quality: check whether I ran the category accept-all (§A 4); if yes, re-read the
    uncategorised share (get_kpis.monthPace.mtdUncategorized) and plan the second pass on the G2
