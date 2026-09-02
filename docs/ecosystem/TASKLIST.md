@@ -29,8 +29,17 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 3. **Test Hermes:** ~~/note~~ **DONE** (📥 FILED card, note in `00 Inbox`, exec 20779);
    ~~safe to spend?~~ **DONE 2026-09-02 10:39** — second deploy live (`v3` fingerprint,
    `floorReserve` 863,600.88): reply "🔴 NOT SAFE · reserve ₱863,601 unfunded by ₱462,380 ·
-   liquid ₱401,220 · 1.87 months · G2 basis 12 × ₱71,967", 20 s, exec 20780. **Still to do:**
-   send one receipt photo (expect a one-line parsed row + a 📥 FILED card, no loop).
+   liquid ₱401,220 · 1.87 months · G2 basis 12 × ₱71,967", 20 s, exec 20780.
+   ~~receipt photo~~ **DONE 2026-09-02 11:14** — binary reached the model (104 kB jpg), parsed
+   "−₱2,702 | SOCOTECO II | 2026-08-28 | U1 Utilities" and staged in 25 s (exec 20789, was
+   80 s + max-iterations); inbox lane filed "Electric Utility Bill Paid" (exec 20790, 5.7 s);
+   "ok. paid via bpi main" → APPROVED (exec 20793). All three Hermes paths verified live.
+   **Found in the trace:** HERMES_STAGING got TWO rows for the one receipt (keys
+   `tg-307-SOCOTECO` / Cash and `tg-00000307` / BPI Main) — the agent invented idempotency
+   keys and re-staged on the correction instead of approving. Prompt rule 6 tightened live
+   (exact key, approve-don't-restage). Lloyd: delete the stale `tg-307-SOCOTECO` row (Cash)
+   in HERMES_STAGING before the next `hermesStagingApply`. Consider a server-side guard in
+   `96_HermesStaging.js`: reject keys that don't match `^tg-\d+$`.
 4. ~~Approve the BPI USD adjustment~~ **DONE 2026-09-02 10:48** — adjusted 3.00 → 0.31
    (txn `01a06004-2647-713d-91ce-c92b9da4f2b0`). GCash DONE (380.10). All 29 MoneyMatter
    accounts now match BALANCE_CONTROL truth on every evidenced leg.
