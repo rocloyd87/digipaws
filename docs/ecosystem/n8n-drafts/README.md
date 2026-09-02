@@ -7,3 +7,6 @@
 | `W-DAILY-BRIEF-skeleton.json` | **Reference only** | Real build should call the existing `get_kpis` sub-workflow and `W-HERMES-NUDGE`/`W-HERMES-DIGEST` helpers rather than raw MoneyMatter HTTP; TickTick/Calendar nodes need the credentials already present in n8n (check `n8n_manage_credentials`). |
 
 Credential placeholders only — no secrets are committed here.
+
+Newer mobile drafts (session 44, 2026-09-02) live in `../drafts/` — see `../drafts/README.md`.
+`W-DAILY-BRIEF-skeleton.json` here is fully superseded by `../drafts/W-DAILY-BRIEF-v2.json`.

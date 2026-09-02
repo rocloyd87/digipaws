@@ -10,6 +10,42 @@ commands as step 1 with description `v28 session-43c: reject_staged + key canoni
 Then in Telegram tell Hermis "discard the SOCOTECO capture tg-307-SOCOTECO" to clear the stale
 pending row (or approve it again — canonical keys now dedupe both rows to `tg-307`).
 
+**FINDING (2026-09-02 evening, mobile s44, live receipt #2 — Chowking Gaisano Davao ₱564):**
+- Inbox lane OK (📥 FILED card, photo in `00 Inbox`).
+- Receipt lane parsed `₱-564, Chowking (Gaisano Mall), 2024-09-02, D2 Dining` — **year wrong**
+  (receipt says 09/02/2026). Add a date sanity guard: parsed date older than 90 days or in the
+  future → ask before staging.
+- Staging refused with *"ID tg-312 … must be at least 8 characters long"* and Hermes asked for
+  `tg-00000312`. So the `stage_expense` idempotency key has a **minLength 8** validator (n8n tool
+  schema or `96_HermesStaging.js`) that contradicts prompt rule 6 (exact `tg-<message_id>`) — this
+  is why the agent padded to `tg-00000307` in the SOCOTECO trace. Desktop: replace the length
+  check with pattern `^tg-\d+$` (or canonicalise before validating) in both places; keep rule 6.
+  Until then, approving with the padded key is safe: the session-43 canonicaliser maps
+  `tg-00000312` → `tg-312` once pushed. Build-log row 61.
+- **Follow-up:** Lloyd re-sent with the padded key + corrected date/card → Hermes "staged
+  tg-00000312, awaiting approval". **Approval then failed:** Hermes answered *"I don't have the
+  data for that capture"* — that is exec 20847 below: instead of `approve_staged(tg-00000312)`
+  the agent tried `rag_search` with an empty query and gave up. The row is still pending in
+  HERMES_STAGING (harmless; Apply skips pending). Desktop: confirm ONE row for this receipt and
+  approve it; then tighten prompt/tool descriptions so any "approve|reject tg-<key>" message goes
+  straight to `approve_staged`/`reject_staged` with that exact key (no search) — or better, add a
+  deterministic pre-agent IF route for it, like the `/stats` card. Build-log row 62.
+- **🔴 GROUNDING FAILURE (row 63):** the retry `approve_staged tg-00000312` returned *NOT FOUND*,
+  and the Drive text export of the Alfred sheet confirms **no row for 312 exists anywhere** —
+  HERMES_STAGING holds only tg-00000284/285, tg-287-receipt (pending), tg-307-SOCOTECO (pending),
+  tg-00000307 (approved) and two Jollibee test keys. Hermes' "staged tg-00000312, awaiting
+  approval" was a claimed write that never landed (guardrail 5). Desktop, first thing after the
+  clasp push: open the W-HERMES execution for that turn (~13:30–14:00 PHT), see whether
+  `stage_expense` was called, errored, or the bridge returned ok without writing; then make the
+  Grounding Guard require the tool's returned key in any "staged" card. Stage the Chowking receipt
+  by hand if still wanted: −564 · Chowking (Gaisano Mall Bajada, Davao) · 2026-09-02 · D2 ·
+  Mastercard/Visa (Lloyd names the card). Also note `tg-287-receipt` is a second stale pending row.
+- **New alert (W-ERR, same evening):** `WF-RAG-SEARCH — Vector Retrieval` exec 20847, node
+  `Validate Input`, *"query is required line 3"* — almost certainly the agent calling `rag_search`
+  with an empty query during the correction turn. Alert noise only. Desktop: read exec 20847; make
+  `query` required in the `rag_search` tool schema and have `Validate Input` return an empty
+  result / tool-error string instead of throwing, so a bad agent argument never pages W-ERR.
+
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
    needed for the cache-fingerprint + essential-prefix follow-up (commit on the Hermes
@@ -102,17 +138,27 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
       `/spend` verified live 2026-09-02 11:04 (card in seconds, no LLM call).
 - [ ] Stats-card budget rows look implausible (B3 Household ₱74, E4 ₱82 "6-mo medians") —
       the `budgetOutlook` enrichment needs a look once categories are cleaned.
-- [ ] Brief v2: TickTick open tasks (needs a TickTick credential/token in n8n), MoneyMatter
-      subscriptions (needs the OAuth client W-DASH-SYNC uses), yesterday's spend, news top 5.
+- [ ] Brief v2: **DRAFTED (mobile s44, UNVERIFIED)** → `drafts/W-DAILY-BRIEF-v2.json`: TickTick
+      open tasks (credential setup steps in the sticky), MoneyMatter subscriptions ≤7 d (connector
+      read 2026-09-02: **0 subscriptions defined** — section self-hides until seeded), yesterday's
+      spend via `spend_series` vs 30-day average. Desktop: import, test, splice into
+      `Cu6opCPfQPHJMKRJ`. News top 5 waits for Miniflux.
 - [ ] Data-quality flag from the first brief: top burn driver is **"G2 Review / Uncategorized"
       ₱112k/mo** — the category worksheet backlog is now the biggest distortion in every KPI.
 - [ ] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade`
       (`/stats`, `/report` exist; route new ones in `Is Stats Command`-style IF nodes before the
-      agent, one tool call each).
+      agent, one tool call each). **`/remind /todo /cascade /sub` DRAFTED (mobile s44)** →
+      `drafts/COMMANDS.md` — IF + Code + tool + reply snippets, Code bodies tested locally.
 - [ ] Miniflux on the Pi (`miniflux-homelab.md`), then digest workflow (templates #6011/#7627).
+      Feed URLs still UNVERIFIED after two mobile attempts (egress blocked) — run
+      `drafts/W-FEED-PROBE.json` once from n8n and paste the verdicts into the doc.
 - [ ] Savings nudges: extend `W-HERMES-NUDGE` with MoneyMatter budget stats; paycheck-detection
-      snapshot pattern from hail2victors/n8n-Actual-Automation.
+      snapshot pattern from hail2victors/n8n-Actual-Automation. **DRAFTED (mobile s44)** →
+      `drafts/NUDGE-SAVINGS.md`: 5 rules, thresholds, messages, get_kpis gaps, GAS rule sketch.
 - [ ] FMP price/breakout alerts (watchlist tab in the Alfred sheet; template #7701 pattern).
+      **DRAFTED (mobile s44)** → `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
+      endpoints are Premium-gated on this plan and PSE tickers are not on FMP, so the draft is
+      end-of-day (FMP EOD light for US, GOOGLEFINANCE columns for PSE).
 - [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week.
 
 ## F — LATER

@@ -1,0 +1,178 @@
+{
+  "name": "W-FEED-PROBE — Miniflux OPML check (one-shot, draft)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## W-FEED-PROBE (mobile draft 2026-09-02)\n\nOne-shot checker for the six Miniflux feeds + the Google News pattern in `miniflux-homelab.md`. The mobile sandboxes could not reach any of the hosts (egress blocked, twice), so this runs where egress is open: import, press **Run once**, read the Telegram card (or the `Classify` output table), then paste the verdicts into the verification table in `miniflux-homelab.md`. Fallback URLs are probed alongside the primaries. Delete the workflow afterwards — it is not meant to stay active.",
+        "height": 300,
+        "width": 520
+      },
+      "id": "probe-0001",
+      "name": "Read Me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "probe-0002",
+      "name": "Run once",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// One item per URL: the primary feed and, when given, its fallback.\nconst FEEDS = [\n  [\n    \"BusinessWorld\",\n    \"https://www.bworldonline.com/feed/\",\n    \"https://www.bworldonline.com/rss/\"\n  ],\n  [\n    \"Inquirer Business\",\n    \"https://business.inquirer.net/feed\",\n    \"https://newsinfo.inquirer.net/feed\"\n  ],\n  [\n    \"Philstar Business\",\n    \"https://www.philstar.com/rss/business\",\n    \"https://www.philstar.com/rss/headlines\"\n  ],\n  [\n    \"gCaptain\",\n    \"https://gcaptain.com/feed/\",\n    \"https://gcaptain.com/feed/?post_type=post\"\n  ],\n  [\n    \"Splash247\",\n    \"https://splash247.com/feed/\",\n    \"https://splash247.com/rss\"\n  ],\n  [\n    \"Seatrade Maritime\",\n    \"https://www.seatrade-maritime.com/rss.xml\",\n    \"https://www.seatrade-maritime.com/rss\"\n  ],\n  [\n    \"Google News · PSEi\",\n    \"https://news.google.com/rss/search?q=PSEi%20OR%20%22Philippine%20Stock%20Exchange%22&hl=en-PH&gl=PH&ceid=PH:en\",\n    \"\"\n  ]\n];\nconst items = [];\nfor (const [name, url, fallback] of FEEDS) {\n  items.push({ json: { name, url, kind: 'primary' } });\n  if (fallback) items.push({ json: { name, url: fallback, kind: 'fallback' } });\n}\nreturn items;"
+      },
+      "id": "probe-0003",
+      "name": "Feed List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -540,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (compatible; Miniflux/2.2; +https://miniflux.app)"
+            },
+            {
+              "name": "Accept",
+              "value": "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true,
+              "maxRedirects": 5
+            }
+          },
+          "response": {
+            "response": {
+              "responseFormat": "text",
+              "outputPropertyName": "data"
+            }
+          }
+        }
+      },
+      "id": "probe-0004",
+      "name": "Fetch Feed",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        60
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pair each HTTP result with its feed row and decide: OK feed / not a feed / HTTP error.\nconst rows = $('Feed List').all().map(i => i.json);\nconst results = $input.all().map((it, idx) => {\n  const r = rows[idx] || {};\n  const j = it.json || {};\n  const body = typeof j.data === 'string' ? j.data : (typeof j === 'string' ? j : '');\n  const status = j.error ? (j.error.httpCode || j.error.status || 'ERR') : (j.statusCode || 200);\n  const head = body.slice(0, 4000);\n  const isRss = /<rss[\\s>]/i.test(head), isAtom = /<feed[\\s>]/i.test(head);\n  const items = (body.match(/<item[\\s>]/gi) || []).length + (body.match(/<entry[\\s>]/gi) || []).length;\n  const dateM = body.match(/<(?:pubDate|updated|dc:date)>([^<]+)</i);\n  const title = (head.match(/<title[^>]*>(?:<!\\[CDATA\\[)?([^<\\]]+)/i) || [])[1] || '';\n  const verdict = j.error ? 'HTTP ' + status + ' ' + String(j.error.message || '').slice(0, 60)\n    : (isRss || isAtom) ? (items ? 'OK ' + (isRss ? 'RSS' : 'Atom') + ' · ' + items + ' items' : 'feed but 0 items')\n    : /<html/i.test(head) ? 'HTML page, not a feed' : 'unknown body (' + body.length + ' bytes)';\n  return { json: { name: r.name, kind: r.kind, url: r.url, status, verdict, ok: !j.error && (isRss || isAtom) && items > 0, title: title.trim(), newest: dateM ? dateM[1].trim() : '' } };\n});\nconst esc = s => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\nconst lines = results.map(x => (x.ok ? '✅' : '❌') + ' <b>' + esc(x.name) + '</b>' + (x.kind === 'fallback' ? ' (fallback)' : '') + ' — ' + esc(x.verdict) + (x.newest ? ' · newest ' + esc(x.newest) : '') + '\\n<i>' + esc(x.url) + '</i>');\nconst text = '<b>📡 Feed probe</b> · ' + new Date().toISOString().slice(0, 16).replace('T', ' ') + ' UTC\\n\\n' + lines.join('\\n\\n');\nreturn [{ json: { text, results } }];"
+      },
+      "id": "probe-0005",
+      "name": "Classify",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_OWNER_CHAT_ID",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "appendAttribution": false,
+          "disable_web_page_preview": true
+        }
+      },
+      "id": "probe-0006",
+      "name": "Send Verdicts",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        120,
+        60
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "Telegram Hermes"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Run once": {
+      "main": [
+        [
+          {
+            "node": "Feed List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Feed List": {
+      "main": [
+        [
+          {
+            "node": "Fetch Feed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Feed": {
+      "main": [
+        [
+          {
+            "node": "Classify",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify": {
+      "main": [
+        [
+          {
+            "node": "Send Verdicts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Manila"
+  },
+  "meta": {
+    "draft": "mobile session 44, 2026-09-02",
+    "status": "UNVERIFIED — not imported to n8n"
+  }
+}

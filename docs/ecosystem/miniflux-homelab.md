@@ -66,7 +66,7 @@ Notes:
 
 ## feeds.opml
 
-> Import via Miniflux UI: Settings > Import. **None of these URLs could be network-verified from this drafting environment (egress blocked)** — they follow each site's standard WordPress/known feed convention. Verify each after import; Miniflux will flag dead ones immediately.
+> Import via Miniflux UI: Settings > Import. **None of these URLs could be network-verified from the drafting environments (egress blocked on 2026-09-01 and again on 2026-09-02 — see the table below)** — they follow each site's standard WordPress/known feed convention. Verify each after import; Miniflux will flag dead ones immediately.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -99,15 +99,34 @@ Google News RSS pattern for any ticker/company:
 
 ### Feed verification status
 
-| Feed | URL | Status |
+Two attempts, both blocked before reaching the sites:
+
+| Attempt | Where | Result |
 |---|---|---|
-| BusinessWorld | https://www.bworldonline.com/feed/ | UNVERIFIED (standard WordPress path) |
-| Inquirer Business | https://business.inquirer.net/feed | UNVERIFIED (standard WordPress path) |
-| Philstar Business | https://www.philstar.com/rss/business | UNVERIFIED (Philstar's published RSS pattern) |
-| gCaptain | https://gcaptain.com/feed/ | UNVERIFIED (standard WordPress path) |
-| Splash247 | https://splash247.com/feed/ | UNVERIFIED (standard WordPress path) |
-| Seatrade Maritime | https://www.seatrade-maritime.com/rss.xml | UNVERIFIED — least certain; if dead try https://www.seatrade-maritime.com/rss or check the site footer |
-| Google News RSS | news.google.com/rss/search?... | Pattern is stable/documented; UNVERIFIED from this environment |
+| 2026-09-01 (mobile, session 42) | claude.ai drafting sandbox | egress blocked — no URL fetched |
+| 2026-09-02 (mobile, session 44) | claude.ai Code sandbox | all 7 hosts refused by the egress proxy (`EGRESS_BLOCKED`, 403 at CONNECT) — no URL fetched |
+
+So every row below is still **UNVERIFIED**. Verify from a machine with open egress (the VPS or
+the Pi) with either:
+
+1. `drafts/W-FEED-PROBE.json` — import into n8n, press *Run once*: it fetches every URL below plus
+   its fallback, reports HTTP status, feed type, item count and newest publish date, and posts the
+   table to Telegram. Paste the verdicts into this table, then delete the workflow.
+2. Or on the Pi, one line per feed:
+   `curl -sSL -m 20 -A "Mozilla/5.0" -o /tmp/f -w "%{http_code} %{content_type}\n" "<url>"; grep -c "<item>" /tmp/f`
+
+| Feed | URL | Status | If dead, try |
+|---|---|---|---|
+| BusinessWorld | https://www.bworldonline.com/feed/ | UNVERIFIED (WordPress default path) | https://www.bworldonline.com/rss/ |
+| Inquirer Business | https://business.inquirer.net/feed | UNVERIFIED (WordPress default path) | https://newsinfo.inquirer.net/feed (whole site) |
+| Philstar Business | https://www.philstar.com/rss/business | UNVERIFIED (Philstar's published pattern) | https://www.philstar.com/rss/headlines |
+| gCaptain | https://gcaptain.com/feed/ | UNVERIFIED (WordPress default path) | https://gcaptain.com/feed/?post_type=post |
+| Splash247 | https://splash247.com/feed/ | UNVERIFIED (WordPress default path) | https://splash247.com/rss |
+| Seatrade Maritime | https://www.seatrade-maritime.com/rss.xml | UNVERIFIED — least certain | https://www.seatrade-maritime.com/rss, else the RSS link in the site footer |
+| Google News RSS | news.google.com/rss/search?… | pattern is documented and stable; UNVERIFIED here | — |
+
+Miniflux itself is the last resort: import the OPML and it flags unreachable feeds on its first
+refresh (Feeds → filter "with errors").
 
 ## Miniflux API — the 3 calls n8n will make
 
