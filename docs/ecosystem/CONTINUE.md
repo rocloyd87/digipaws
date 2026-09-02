@@ -14,10 +14,12 @@ ORIENT FIRST, in this order:
    02-DECISIONS (D-106..D-108 are the latest).
 3. Supabase fbtqqrpeiwhbxxkpyzdt: newest ~10 rows of public.alfred_build_log (session 43 is
    the latest). Log your own milestones as session 44 at close.
-4. Check what I completed from TASKLIST.md §A (clasp push + deploy repoint, HENRICH duplicate
-   deletion, Hermes photo + safe-to-spend re-test, answers to Q1–Q4). Verify on the machine:
-   clasp deployments (expect a version >24 on AKfycbw9t20…), MoneyMatter get_accounts (Cash
-   6,036), and the newest W-HERMES executions (no "max iterations").
+4. Check what I completed from TASKLIST.md §A (SECOND clasp push + deploy for the cache
+   fingerprint/essential-prefix commit, BPI USD approval, Hermes photo + /note + safe-to-spend
+   re-test, Q4). Verify on the machine: clasp deployments (expect a version >26 on
+   AKfycbw9t20…), get_kpis tier1 has floorReserve ≈ 863,600 and essentialMedian ≈ 71,967,
+   MoneyMatter get_accounts (Cash 6,036, GCash 380.10, BPI USD 0.31 once approved), newest
+   W-HERMES and W-INBOX-FILE executions (no "max iterations"; a FILED card).
 
 TOOLS YOU HAVE: n8n MCP (read + patch workflows; no agent-fired financial webhooks), MoneyMatter
 MCP (reads fine; writes/deletes need my explicit OK per call), Supabase MCP, Google Drive,
@@ -27,11 +29,11 @@ actions. Never push GAS from the repo folder — fresh throwaway pull only.
 DO NEXT (skip what is already done):
 A. Confirm overnight W-DASH-SYNC (02:00) minted 0 and the 03:40 verifier was quiet. If a mint
    happened, read BALANCE_CONTROL before touching anything.
-B. If Q1 is answered: build W-INBOX-FILE as a sub-workflow off W-HERMES's Capture Type Switch
-   (photo/document are already downloaded and evidence-uploaded upstream); notes go to the
-   vault I chose (LifeVault via livesync-bridge if bidirectional — verify on the VPS first).
-   Confirm/undo inline buttons handled in the Hermes callback branch. Activate, then trace one
-   real capture end to end.
+B. W-INBOX-FILE v1 is LIVE (EDfBh8vqrQjthY7C, wired into W-HERMES). Trace my first real
+   captures in its executions; fix what broke. Then extend: voice notes, inline OK/Undo
+   (Telegram Trigger must also listen to callback_query), undo = trash the Drive note, and
+   index Drive Obsidian Vault/00 Inbox into RAG (extend W-HERMES-DOCS or a second Drive
+   trigger). If I say LifeVault should be the target, verify livesync-bridge on the VPS first.
 C. Then build order E: W-DAILY-BRIEF 07:00 PHT reusing get_kpis + W-HERMES-DIGEST format;
    command routing (/brief /spend /log /note /remind /todo /sub /networth /goals /cascade)
    as pre-agent IF nodes; extend W-HERMES-NUDGE (do not rebuild). Miniflux only after the Pi

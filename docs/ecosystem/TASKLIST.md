@@ -4,6 +4,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈5 min total)
 
+0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
+   Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
+   needed for the cache-fingerprint + essential-prefix follow-up (commit on the Hermes
+   worktree after `3b60b12`); same commands, new description `v27 session-43b`.
 1. **Push the GAS fix and repoint the web app** (agent is classifier-blocked on both). From any
    terminal on the desktop:
 
@@ -22,11 +26,14 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 2. ~~Delete the duplicate HENRICH row~~ **DONE 2026-09-02** (Lloyd approved in chat; agent deleted
    `01a05bc6-d3e3-763a-a138-2467f9bf7126`; Cash verified 6,036 via `get_accounts`).
-3. **Test Hermes:** send one receipt photo (expect a one-line parsed row, no loop), then ask
-   "safe to spend?" (after step 1: expect `NOT SAFE`, floor unfunded by ≈₱62,907, quoting
-   `floorReserve` 464,127 — not −₱2.7M).
-4. Answer Q1–Q4 in `README.md` (vault choice, GCash app balance, BPI USD adjust, HSBC name).
-5. Optional: install Autosync for Google Drive (only if Q1 keeps the Drive vault).
+3. **Test Hermes:** send one receipt photo (expect a one-line parsed row + a 📥 FILED card, no
+   loop), send `/note test capture from Telegram` (expect a 📥 FILED card + a new note in Drive
+   `Obsidian Vault/00 Inbox`), then ask "safe to spend?" (after the second deploy: expect
+   `NOT SAFE`, floor unfunded by ≈₱462k, quoting `floorReserve` ≈ 863,600 — not −₱2.7M).
+4. **Approve the BPI USD adjustment** (say "approved BPI USD" — agent adjusts to $0.31; the fee
+   row already exists). GCash is DONE (380.10, both legs agreed).
+5. Q1 is resolved for v1 (Drive vault, D-109) — say so if you want LifeVault instead. Still
+   open: Q4 HSBC name. Install Autosync for Google Drive so captures reach the phone vault.
 
 ## B — Audit & fixes — DONE (session 43)
 
@@ -41,16 +48,21 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 - [x] Session-41 double-count risk closed by supersession (logged session 43).
 - [x] Variance forensics re-based on real MoneyMatter data (README C3–C5).
 
-## C — W-INBOX-FILE — BLOCKED (Lloyd: Q1)
+## C — W-INBOX-FILE — BUILT v1 (session 43), awaiting live test
 
-- [ ] Decide canonical vault for captures (LifeVault recommended).
-- [ ] Verify `livesync-bridge` folder is bidirectional (VPS `/opt/lifevault/files`) — if yes,
-      n8n writes notes there; if no, use CouchDB `_bulk_docs` via the LiveSync API.
-- [ ] Build `W-INBOX-FILE` as a sub-workflow called from `Capture Type Switch` (photo/document
-      already downloaded + evidence-uploaded upstream — do not re-download).
-- [ ] `/note <text>` and voice → transcript → note; confirm/undo inline buttons handled in the
-      Hermes callback branch.
-- [ ] Receipt captures continue to go through `stage_expense` (unchanged).
+- [x] Vault for captures: Drive "Obsidian Vault" for v1 (D-109); LifeVault stays the journal.
+- [x] `W-INBOX-FILE — Telegram Capture to Vault` (`EDfBh8vqrQjthY7C`): Execute-Workflow
+      trigger → classify (Gemini 3.5 flash, text/caption only) → note with frontmatter →
+      Drive `createFromText` into `00 Inbox` (journal → `Journal/2026`) → 📥 card; failure card.
+- [x] Wired in W-HERMES: `Is Inbox Note` (`/note …`) → `File Note to Inbox`; `Upload Photo
+      Evidence` → `File Photo to Inbox`; `Upload Document Evidence` → `File Document to Inbox`
+      (all `waitForSubWorkflow: false`, parallel to the receipt/PDF lanes).
+- [ ] Live test (Lloyd, §A step 3). Then: voice notes (transcribe via Gemini audio), inline
+      OK/Undo buttons (needs the Telegram Trigger to also listen to `callback_query`), undo =
+      trash the Drive note, and RAG indexing of `00 Inbox` (extend `W-HERMES-DOCS` folder
+      watch or add a second Drive trigger).
+- [ ] If LifeVault becomes the target: verify `livesync-bridge` bidirectionality on the VPS,
+      then re-point the folder map in `Build Note`.
 
 ## D — Memory & RAG — LIVE
 

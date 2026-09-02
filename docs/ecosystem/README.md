@@ -90,7 +90,18 @@ only — it does not touch the DigiPaws app code that shares this repository.
    re-attaches the `Download Photo` binary, tells the model the image is attached and to call at
    most one tool, and degrades to a one-line "type it" reply if the binary is missing.
    **Needs one live test: send Hermes a receipt photo.**
-2. **Safe-to-spend ₱−2.7M — FIXED in GAS (pushed? no — see Lloyd actions).** `metricsTier1_`
+   **UPDATE 2026-09-02 afternoon:** first push + deploy done by Lloyd (**@26**). The served
+   payload then stayed on the old shape because `metricsKpisCached` keys its 6 h cache on a
+   sheet fingerprint that ignores code — fixed (fingerprint `v3`). Second push + deploy needed
+   (TASKLIST §A). Also switched the essential month to the real `essential_prefixes` (A1–C2)
+   median: live ledger gives ₱71,967/month → reserve ₱863,600 → **safe-to-spend ≈ −₱462,380**
+   (the 0.9×total approximation would have said −₱1.85M now that total burn is ₱208k).
+   Q1 resolved for v1 (D-109): captures file to the Drive "Obsidian Vault" `00 Inbox` /
+   `Journal/2026`; LifeVault stays the journal. **W-INBOX-FILE built, validated, active**
+   (`EDfBh8vqrQjthY7C`) and wired into W-HERMES: `/note <text>`, plus every photo and document
+   capture in parallel with the receipt lane. GCash adjusted to 380.10 in MoneyMatter
+   (both legs agreed); BPI USD → 0.31 adjustment still classifier-blocked (needs Lloyd's tap).
+2. **Safe-to-spend ₱−2.7M — FIXED in GAS.** `metricsTier1_`
    priced the runway reserve as 12 months × the **3-month TOTAL burn median** (₱261,566 →
    ₱3.14M) while `_REF_Goals` G2 defines the same floor as 12 × median **essential** month
    (₱464,127). On the 2026-09-01 ledger: liquid 401,220 − 3,138,792 = **−2,737,571**. Now the
