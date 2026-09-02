@@ -30,6 +30,16 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
   approve it; then tighten prompt/tool descriptions so any "approve|reject tg-<key>" message goes
   straight to `approve_staged`/`reject_staged` with that exact key (no search) — or better, add a
   deterministic pre-agent IF route for it, like the `/stats` card. Build-log row 62.
+- **🔴 GROUNDING FAILURE (row 63):** the retry `approve_staged tg-00000312` returned *NOT FOUND*,
+  and the Drive text export of the Alfred sheet confirms **no row for 312 exists anywhere** —
+  HERMES_STAGING holds only tg-00000284/285, tg-287-receipt (pending), tg-307-SOCOTECO (pending),
+  tg-00000307 (approved) and two Jollibee test keys. Hermes' "staged tg-00000312, awaiting
+  approval" was a claimed write that never landed (guardrail 5). Desktop, first thing after the
+  clasp push: open the W-HERMES execution for that turn (~13:30–14:00 PHT), see whether
+  `stage_expense` was called, errored, or the bridge returned ok without writing; then make the
+  Grounding Guard require the tool's returned key in any "staged" card. Stage the Chowking receipt
+  by hand if still wanted: −564 · Chowking (Gaisano Mall Bajada, Davao) · 2026-09-02 · D2 ·
+  Mastercard/Visa (Lloyd names the card). Also note `tg-287-receipt` is a second stale pending row.
 - **New alert (W-ERR, same evening):** `WF-RAG-SEARCH — Vector Retrieval` exec 20847, node
   `Validate Input`, *"query is required line 3"* — almost certainly the agent calling `rag_search`
   with an empty query during the correction turn. Alert noise only. Desktop: read exec 20847; make
