@@ -1,5 +1,26 @@
 # Continuation prompt — paste into a new chat
 
+## Mobile / remote lane (away from the desktop)
+
+Work from claude.ai Code (web) or the Claude app with the GitHub integration, on a branch
+named `mobile/<date>-<topic>` off `kt-rewrite`, and open a PR — the desktop merges it on return.
+
+What the remote lane CAN do: read everything in `docs/ecosystem/`; query and write
+`alfred_build_log` (log as the next session number, branch "mobile"); read/write MoneyMatter
+via its claude.ai connector (writes still need Lloyd's OK); read Drive / TickTick / Calendar;
+draft n8n workflow JSON, GAS code, specs and task-list edits **as files under
+`docs/ecosystem/drafts/`**; test Hermes by chatting with it on Telegram.
+
+What it CANNOT do (leave for the desktop): push GAS (`clasp`), edit live n8n workflows (the
+n8n MCP is desktop-only), touch the Knowledge OS vault (`D:\ObsidianVault` is local), run the
+GAS test suites, or verify anything "on the machine" — mark such claims UNVERIFIED in the PR.
+
+On return, the desktop session: pulls `kt-rewrite`, reviews the PR against the machine,
+merges, applies drafts to n8n/GAS, and re-verifies. Session 42 (mobile) → 43 (desktop) is the
+worked example: 8 of its claims needed correction, so verify before building.
+
+## Desktop prompt
+
 ```
 Continue the Hermes Ecosystem project (Hermes/Alfred/Alex/Tarsi/MoneyMatter personal OS).
 I am Lloyd. Desktop session, Claude Code. Local clones: rocloyd87/digipaws at
