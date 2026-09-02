@@ -10,6 +10,19 @@ commands as step 1 with description `v28 session-43c: reject_staged + key canoni
 Then in Telegram tell Hermis "discard the SOCOTECO capture tg-307-SOCOTECO" to clear the stale
 pending row (or approve it again — canonical keys now dedupe both rows to `tg-307`).
 
+**FINDING (2026-09-02 evening, mobile s44, live receipt #2 — Chowking Gaisano Davao ₱564):**
+- Inbox lane OK (📥 FILED card, photo in `00 Inbox`).
+- Receipt lane parsed `₱-564, Chowking (Gaisano Mall), 2024-09-02, D2 Dining` — **year wrong**
+  (receipt says 09/02/2026). Add a date sanity guard: parsed date older than 90 days or in the
+  future → ask before staging.
+- Staging refused with *"ID tg-312 … must be at least 8 characters long"* and Hermes asked for
+  `tg-00000312`. So the `stage_expense` idempotency key has a **minLength 8** validator (n8n tool
+  schema or `96_HermesStaging.js`) that contradicts prompt rule 6 (exact `tg-<message_id>`) — this
+  is why the agent padded to `tg-00000307` in the SOCOTECO trace. Desktop: replace the length
+  check with pattern `^tg-\d+$` (or canonicalise before validating) in both places; keep rule 6.
+  Until then, approving with the padded key is safe: the session-43 canonicaliser maps
+  `tg-00000312` → `tg-312` once pushed. Build-log row 61.
+
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
    needed for the cache-fingerprint + essential-prefix follow-up (commit on the Hermes
