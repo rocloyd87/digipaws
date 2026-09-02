@@ -26,10 +26,11 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 2. ~~Delete the duplicate HENRICH row~~ **DONE 2026-09-02** (Lloyd approved in chat; agent deleted
    `01a05bc6-d3e3-763a-a138-2467f9bf7126`; Cash verified 6,036 via `get_accounts`).
-3. **Test Hermes:** send one receipt photo (expect a one-line parsed row + a 📥 FILED card, no
-   loop), send `/note test capture from Telegram` (expect a 📥 FILED card + a new note in Drive
-   `Obsidian Vault/00 Inbox`), then ask "safe to spend?" (after the second deploy: expect
-   `NOT SAFE`, floor unfunded by ≈₱462k, quoting `floorReserve` ≈ 863,600 — not −₱2.7M).
+3. **Test Hermes:** ~~/note~~ **DONE** (📥 FILED card, note in `00 Inbox`, exec 20779);
+   ~~safe to spend?~~ **DONE 2026-09-02 10:39** — second deploy live (`v3` fingerprint,
+   `floorReserve` 863,600.88): reply "🔴 NOT SAFE · reserve ₱863,601 unfunded by ₱462,380 ·
+   liquid ₱401,220 · 1.87 months · G2 basis 12 × ₱71,967", 20 s, exec 20780. **Still to do:**
+   send one receipt photo (expect a one-line parsed row + a 📥 FILED card, no loop).
 4. **Approve the BPI USD adjustment** (say "approved BPI USD" — agent adjusts to $0.31; the fee
    row already exists). GCash is DONE (380.10, both legs agreed).
 5. Q1 is resolved for v1 (Drive vault, D-109) — say so if you want LifeVault instead. Still
