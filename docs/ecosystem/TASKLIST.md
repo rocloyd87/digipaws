@@ -23,8 +23,13 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
   Until then, approving with the padded key is safe: the session-43 canonicaliser maps
   `tg-00000312` → `tg-312` once pushed. Build-log row 61.
 - **Follow-up:** Lloyd re-sent with the padded key + corrected date/card → Hermes "staged
-  tg-00000312, awaiting approval". Desktop: confirm ONE HERMES_STAGING row for this receipt, then
-  approve. Build-log row 62.
+  tg-00000312, awaiting approval". **Approval then failed:** Hermes answered *"I don't have the
+  data for that capture"* — that is exec 20847 below: instead of `approve_staged(tg-00000312)`
+  the agent tried `rag_search` with an empty query and gave up. The row is still pending in
+  HERMES_STAGING (harmless; Apply skips pending). Desktop: confirm ONE row for this receipt and
+  approve it; then tighten prompt/tool descriptions so any "approve|reject tg-<key>" message goes
+  straight to `approve_staged`/`reject_staged` with that exact key (no search) — or better, add a
+  deterministic pre-agent IF route for it, like the `/stats` card. Build-log row 62.
 - **New alert (W-ERR, same evening):** `WF-RAG-SEARCH — Vector Retrieval` exec 20847, node
   `Validate Input`, *"query is required line 3"* — almost certainly the agent calling `rag_search`
   with an empty query during the correction turn. Alert noise only. Desktop: read exec 20847; make
