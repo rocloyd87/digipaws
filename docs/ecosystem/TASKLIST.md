@@ -22,20 +22,10 @@ the claimed-write gap for real.
    reply `reject tg-jollibee-150`... no: that key is not a tg-number, so use the curl in step 3 with
    `"tool":"reject_staged"` and `"idempotency_key":"tg-jollibee-150"` if it was never a real meal.
 
-1b. **Push + deploy v29** (two follow-ups found while verifying @28; same pull dir, `96` and `93`
-   already copied over it):
-   - `1435aed` — approve/reject skip rejected rows, so the discarded `tg-307-SOCOTECO` can never
-     shadow the approved `tg-00000307` when you say `approve tg-307`.
-   - KPI cache fingerprint bumped so `get_kpis` stops serving the pre-v28 cached shape (it still
-     lacks `monthPace` / `recurringDue30d` on @28 — the savings nudges are inert until this ships).
-
-   ```powershell
-   cd "C:/Users/Lloyd/AppData/Local/Temp/claude/C--Users-Lloyd-Claude-Projects-CoPilot--claude-worktrees-hermes-ecosystem-s45-34431f/00af9446-d1e8-46d6-82c7-fd1c9ecaff25/scratchpad/gas-pull"; clasp push -f
-   ```
-
-   ```powershell
-   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v29 session-45b: approve/reject skip rejected rows; KPI cache fingerprint v4"
-   ```
+1b. ~~Push + deploy v29~~ **DONE 2026-09-03 04:30 PHT as @30.** (@29 was deployed without a
+   preceding `clasp push`, so it served the @28 code — always push, then deploy.) Verified over
+   `/exec`: `get_kpis.freshness.fingerprint` = `v4…`, `monthPace` and `recurringDue30d` present
+   (recurring due ≤30 d: ₱5,126.07 across 4 charges); approve/reject skip rejected rows.
 
 2. **Telegram, after the deploy** (each one is a deterministic route, no LLM):
    - `/pending` → 📋 PENDING card (only `tg-jollibee-20260822` left; the stale rows were discarded

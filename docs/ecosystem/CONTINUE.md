@@ -38,11 +38,11 @@ ORIENT FIRST, in this order:
 3. Supabase fbtqqrpeiwhbxxkpyzdt: public.alfred_build_log rows 65+ (session 45). Log as session 46.
 
 STATE (2026-09-02 night, verified on the machine):
-- GAS v28 is LIVE (@28, 2026-09-03 04:20 PHT): list_staged, date guard, key rule, reject_staged
-  verified over /exec; stale rows 307-SOCOTECO/287/284/285 rejected; only tg-jollibee-20260822
-  pending, tg-jollibee-150 still APPROVED (test row — decide). v29 PENDING MINE (1435aed approve/
-  reject skip rejected rows + KPI cache fingerprint v4): until it ships get_kpis serves the cached
-  pre-v28 shape without monthPace/recurringDue30d, so the savings nudges are inert.
+- GAS is LIVE at @30 (2026-09-03 04:30 PHT): v28 + v29 fixes all served — list_staged, date guard,
+  key rule, reject_staged, canonical approve skipping rejected rows, get_kpis.monthPace +
+  recurringDue30d (fingerprint v4). Stale staging rows 307-SOCOTECO/287/284/285 rejected; only
+  tg-jollibee-20260822 pending; tg-jollibee-150 still APPROVED (test row — decide). @29 was a
+  deploy without a push (served @28 code) — always push, then deploy.
 - n8n LIVE: W-HERMES 91 nodes — deterministic approve|reject tg-N / bare tg-N / /pending route,
   /sub, /remind, list_staged tool, prompt rule 6 + Grounding Guard v2 (claimed-write check);
   WF-RAG-SEARCH empty query → empty result; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at
@@ -62,9 +62,9 @@ A. Verify what I completed from TASKLIST §A (deploy @28? Telegram tests? exec i
    W-HERMES executions for my tests: the first fresh receipt must show stage_expense called once
    with tg-<msgid> and the card quoting that key; approve tg-<id> must show the deterministic
    route (no Hermes Agent node). Fix anything that misfired.
-B. Confirm v29 (@29) shipped; then get_kpis must carry monthPace + recurringDue30d, the 12:30/
-   19:30 nudge runs must not error, and the 02:00 W-DASH-SYNC report (first after @28 = 2026-09-03)
-   must no longer carry the −641k GCash drift line. Confirm the 07:00
+B. Confirm the 12:30 / 19:30 nudge runs on 2026-09-03 did not error (first run only seeds N4), the
+   02:00 W-DASH-SYNC report (first after @28) no longer carries the −641k GCash drift line, and the
+   07:00 brief shows the YESTERDAY line. Confirm the 07:00
    brief shows the YESTERDAY line. Confirm no W-ERR from WF-RAG-SEARCH.
 C. Data quality: check whether I ran the category accept-all (§A 4); if yes, re-read the
    uncategorised share (get_kpis.monthPace.mtdUncategorized) and plan the second pass on the G2
