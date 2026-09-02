@@ -27,7 +27,7 @@ Continue the Hermes Ecosystem project (Hermes/Alfred/Alex/Tarsi/MoneyMatter pers
 I am Lloyd. Desktop session, Claude Code. Local clones: rocloyd87/digipaws at
 C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite) and CoPilot at
 C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source in scripts/alex; Hermes worktree
-hermes-wave-1-trust-94a9fb, HEAD ad00d50).
+hermes-wave-1-trust-94a9fb, HEAD c91fdc6).
 
 ORIENT FIRST, in this order:
 1. git fetch; kt-rewrite. Read docs/ecosystem/TASKLIST.md §A (what I did / did not do since
@@ -39,7 +39,8 @@ ORIENT FIRST, in this order:
 
 STATE (2026-09-02 night, verified on the machine):
 - GAS v28 (tg-key rule, receipt-date guard, canonical approve, list_staged, savings nudges N1–N5,
-  DashSync tarsi-over-partial) is committed (be67932, ad00d50) and copied into a fresh clasp pull;
+  DashSync tarsi-over-partial, 142_HermesWatchlist) is committed (be67932, ad00d50, c91fdc6) and
+  copied into a fresh clasp pull (93/95/96/98/127/142);
   PUSH + DEPLOY IS MINE — check `clasp deployments` shows @28 before assuming anything below works.
   Until then reject_staged / list_staged answer NOT DEPLOYED and the nudges/GCash fix are inert.
 - n8n LIVE: W-HERMES 91 nodes — deterministic approve|reject tg-N / bare tg-N / /pending route,
@@ -49,11 +50,13 @@ STATE (2026-09-02 night, verified on the machine):
 - The session-44 "grounding failure" was a misquote (README C9) — the real trace is in
   sessions/2026-09-02-session-45.md §1.
 - Not built (credentials missing): /todo (TickTick OAuth2), /cascade (Airbnb iCal), brief-v2
-  TickTick section, W-FMP-ALERTS (FMP apikey + _HERMES_WATCHLIST tab).
-- Repo drift: scripts/alex 90_RefAccounts.js is v1 (10 accounts) vs live 29; live-only modules
-  128–141 not in the repo. Never push from the repo folder.
+  TickTick section. W-FMP-ALERTS is imported INACTIVE (X2bAv2WXOOZJ3pP6) — needs the FMP apikey
+  credential + one hermesWatchlistEnsure() run, then activation.
+- Repo drift closed (c91fdc6): 90_RefAccounts (29 accounts) + modules 128–141 now in the repo.
+  Still never push from the repo folder — always a fresh pull with changed files copied over.
 - Stale pending rows tg-287 / tg-307 in HERMES_STAGING until I run `reject tg-…` after v28.
-- Miniflux feed URLs verified (all live). MoneyMatter still 0 subscriptions.
+- Miniflux feed URLs verified (all live). MoneyMatter detect_subscription_candidates ran
+  (authorized): 0 candidates — subscriptions must be created by hand if wanted.
 
 DO NEXT, in order:
 A. Verify what I completed from TASKLIST §A (deploy @28? Telegram tests? exec ids?). Read the
@@ -66,13 +69,13 @@ B. If v28 is live: confirm /pending, the two rejects, and that the 02:00 W-DASH-
 C. Data quality: check whether I ran the category accept-all (§A 4); if yes, re-read the
    uncategorised share (get_kpis.monthPace.mtdUncategorized) and plan the second pass on the G2
    bucket itself. If I said "OK detect subscriptions", run detect_subscription_candidates and
-   list candidates for me to accept/dismiss (writes need my OK per call).
+   list candidates for me to accept/dismiss (writes need my OK per call) — note the 2026-09-02
+   run found 0; only re-run if new recurring rows landed.
 D. If I created the credentials: build /todo and /cascade (drafts/COMMANDS.md §2–3), splice the
-   TickTick section of drafts/W-DAILY-BRIEF-v2.json, import W-FMP-ALERTS.json (seed 2 US + 2 PSE
-   rows in _HERMES_WATCHLIST). BotFather command list for the new commands.
+   TickTick section of drafts/W-DAILY-BRIEF-v2.json, finish W-FMP-ALERTS (select the FMP
+   credential on FMP EOD Light, confirm _HERMES_WATCHLIST exists, test-run, activate). BotFather command list for the new commands.
 E. Housekeeping: remove the P2C island webhooks from TEST - OmniRoute gateway (XLmn6yZP5CusIJ8E)
-   if quiet since 2026-08-31; sync live 90_RefAccounts.js + modules 128–141 into the repo with
-   their tests updated (29 accounts); Q4 HSBC name; Uptime Kuma / Miniflux on the Pi.
+   if quiet since 2026-08-31; Q4 HSBC name; Uptime Kuma / Miniflux on the Pi.
 F. Fix the pre-existing rag_query_rows expression warning in W-HERMES (query needs the = prefix)
    only after checking it does not change the tool's live behaviour.
 

@@ -14,22 +14,22 @@ defects are fixed in code (GAS, push pending) and live (n8n); the Grounding Guar
 the claimed-write gap for real.
 
 1. **Push + deploy GAS v28** (agent is classifier-blocked). Fresh pull already made this session with
-   five files copied over it (93, 95, 96, 98, 127 — byte-equal to `hermes-wave-1-trust-94a9fb`
-   HEAD `ad00d50`). Run each block as its own command:
+   six files copied over it (93, 95, 96, 98, 127, 142 — byte-equal to `hermes-wave-1-trust-94a9fb`
+   HEAD `c91fdc6`). Run each block as its own command:
 
    ```bash
    cd "C:/Users/Lloyd/AppData/Local/Temp/claude/C--Users-Lloyd-Claude-Projects-CoPilot--claude-worktrees-hermes-ecosystem-s45-34431f/00af9446-d1e8-46d6-82c7-fd1c9ecaff25/scratchpad/gas-pull" && clasp push -f
    ```
 
    ```bash
-   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v28 session-45: tg-key rule, date guard, canonical approve, list_staged, savings nudges, tarsi-over-partial"
+   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v28 session-45: tg-key rule, date guard, canonical approve, list_staged, savings nudges, tarsi-over-partial, watchlist tab"
    ```
 
    If that folder is gone: `clasp pull` into any empty folder with `.clasp.json` =
    `{"scriptId":"1kGk9s94z2R1EbyoLpPuVEqQG3Nqjtx4FivZk7hlOidlr7KPP6mWT4L4F"}`, copy
-   `scripts/alex/93_Metrics.js 95_HermesApi.js 96_HermesStaging.js 98_HermesNudges.js 127_DashSync.js`
-   from the worktree over it, then the same two commands. Never push from the repo folder (it is
-   behind live: 90_RefAccounts, modules 128–141).
+   `scripts/alex/93_Metrics.js 95_HermesApi.js 96_HermesStaging.js 98_HermesNudges.js 127_DashSync.js 142_HermesWatchlist.js`
+   from the worktree over it, then the same two commands. (The repo now carries live's
+   90_RefAccounts + modules 128–141 too, synced in `c91fdc6`; still push from a pull, not the repo.)
 2. **Telegram, after the deploy** (each one is a deterministic route, no LLM):
    - `/pending` → 📋 PENDING card listing `tg-287` and `tg-307` (stale rows).
    - `reject tg-307` and `reject tg-287` → 🗑 DISCARDED each; `/pending` → NOTHING PENDING.
@@ -55,11 +55,15 @@ the claimed-write gap for real.
 5. **Credentials that unblock the remaining drafts** (n8n → Credentials):
    - `TickTick OAuth2 - rocloyd87` (generic OAuth2 API; steps in `drafts/W-DAILY-BRIEF-v2.json`
      Read Me §1) → then `/todo` route + brief tasks section.
-   - `FMP apikey` (Query Auth, parameter `apikey`) + create the `_HERMES_WATCHLIST` tab → then
-     import `drafts/W-FMP-ALERTS.json`.
+   - `FMP apikey` (Query Auth, parameter `apikey`) → select it on `FMP EOD Light` in
+     **`W-FMP-ALERTS — Price Alerts` (`X2bAv2WXOOZJ3pP6`, imported INACTIVE in session 45)**; run
+     GAS `hermesWatchlistEnsure()` (142_HermesWatchlist.js, in v28) once to create the
+     `_HERMES_WATCHLIST` tab with formulas + four seed rows; test-run; activate.
    - `Airbnb iCal - Cascade` (Query Auth, parameter `s`) → then `/cascade` route.
-6. **MoneyMatter:** say "OK detect subscriptions" and the next session runs
-   `detect_subscription_candidates` (finance:write) and lists the candidates for accept/dismiss.
+6. ~~MoneyMatter detect subscriptions~~ **RAN 2026-09-02 (session 45, under Lloyd's /goal
+   authorization):** `detect_subscription_candidates` → **0 candidates** (fresh run, not cached).
+   MoneyMatter's detector finds no recurring pattern in the mirrored rows, so `/sub` and the
+   brief's subscriptions section stay ledger-only until subscriptions are created by hand.
 7. Q4 HSBC name ("HSBC Live+" = "HSBC Gold Visa"?) is still open.
 
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
@@ -179,8 +183,9 @@ the claimed-write gap for real.
       in `93_Metrics.js`; `W-HERMES-NUDGE` schedule now 12:30 + 19:30 PHT. First N4 run only seeds
       the milestone state. Draft: `drafts/NUDGE-SAVINGS.md`.
 - [ ] FMP price/breakout alerts (watchlist tab in the Alfred sheet; template #7701 pattern).
-      **DRAFTED (mobile s44), NOT imported (session 45: needs the FMP apikey credential + the
-      `_HERMES_WATCHLIST` tab first, §A 5)** → `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
+      **IMPORTED INACTIVE (session 45) as `W-FMP-ALERTS — Price Alerts` `X2bAv2WXOOZJ3pP6`**, with
+      the GSheets + Telegram credentials set; needs the FMP apikey credential and one
+      `hermesWatchlistEnsure()` run (§A 5) before activation. Draft: `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
       endpoints are Premium-gated on this plan and PSE tickers are not on FMP, so the draft is
       end-of-day (FMP EOD light for US, GOOGLEFINANCE columns for PSE).
 - [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week

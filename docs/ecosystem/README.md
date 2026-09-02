@@ -62,10 +62,14 @@ Full evidence in `sessions/2026-09-02-session-45.md`; one-tap list in `TASKLIST.
   route, `/sub`, `/remind`, `list_staged` tool, tightened tool descriptions + prompt rule 6,
   Grounding Guard v2; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at 12:30 + 19:30.
 - Miniflux feed URLs verified from the desktop (all six + Google News live).
+- Under Lloyd's `/goal` authorization (late session): MoneyMatter `detect_subscription_candidates`
+  ran → 0 candidates; `W-FMP-ALERTS — Price Alerts` imported INACTIVE (`X2bAv2WXOOZJ3pP6`) with
+  `142_HermesWatchlist.js` (`hermesWatchlistEnsure()`) added to v28; live `90_RefAccounts.js` +
+  modules 128–141 synced into the repo (`c91fdc6`, registry test updated to 29 accounts).
 - PR #2 merged into `kt-rewrite` (`447fdf7`). Drafts status: `drafts/README.md`.
-- Repo drift found: worktree `scripts/alex` is behind live for `90_RefAccounts.js` (10 vs 29
-  accounts) and lacks live-only modules 128–141; `127_DashSync.js` was re-synced from live. Push
-  GAS only from a fresh pull with the changed files copied over it.
+- Repo drift found and closed: `90_RefAccounts.js` (10 → 29 accounts), live-only modules 128–141
+  and `127_DashSync.js` are now in the repo (`ad00d50`, `c91fdc6`). Still push GAS only from a
+  fresh pull with the changed files copied over it.
 
 ## Corrections to the 2026-09-01 mobile handoff (all verified on the machine)
 

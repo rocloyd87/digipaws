@@ -7,7 +7,7 @@
 | `W-DAILY-BRIEF-v2.json` | **Partially applied.** The `spend_series` "yesterday" source was spliced straight into the live brief (`Fetch Spend Series` → `Format Brief`, validated). TickTick tasks (no OAuth2 credential yet) and MoneyMatter subscriptions (0 defined) sections NOT applied. Not imported as a scratch workflow. |
 | `COMMANDS.md` | **`/sub` and `/remind` applied** live in W-HERMES (deterministic routes, validated, one Telegram test each still owed). `/todo` (TickTick credential) and `/cascade` (Airbnb iCal credential) NOT applied. |
 | `NUDGE-SAVINGS.md` | **Applied in GAS** (`hermesNudgeSavingsRules_`, `get_kpis.monthPace` / `recurringDue30d`, 12/12 tests, commit `ad00d50`) — live after the v28 push; `W-HERMES-NUDGE` schedule now 12:30 + 19:30. |
-| `W-FMP-ALERTS.json` | **Not imported** — needs the FMP `apikey` credential and the `_HERMES_WATCHLIST` tab first (TASKLIST §A 5). |
+| `W-FMP-ALERTS.json` | **Imported INACTIVE** as `W-FMP-ALERTS — Price Alerts` (`X2bAv2WXOOZJ3pP6`) with GSheets + Telegram credentials set and the owner chat id filled; GAS `hermesWatchlistEnsure()` (142, v28) creates the tab. Lloyd: FMP `apikey` credential → select on `FMP EOD Light` → test-run → activate. |
 | `W-FEED-PROBE.json` | **Superseded** — the probe was run from the desktop (open egress) instead; verdicts in `../miniflux-homelab.md`. Keep for a re-run from the Pi/VPS if ever needed. |
 
 Original mobile-lane notes follow.
