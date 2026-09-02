@@ -15,6 +15,10 @@ What it CANNOT do (leave for the desktop): push GAS (`clasp`), edit live n8n wor
 n8n MCP is desktop-only), touch the Knowledge OS vault (`D:\ObsidianVault` is local), run the
 GAS test suites, or verify anything "on the machine" — mark such claims UNVERIFIED in the PR.
 
+Session 44 (mobile, 2026-09-02) PR: branch `claude/mobile-prompt-docs-4nkoff` (name assigned by
+the claude.ai session — treat it as the `mobile/*` PR); drafts and their status in
+`docs/ecosystem/drafts/README.md`.
+
 On return, the desktop session: pulls `kt-rewrite`, reviews the PR against the machine,
 merges, applies drafts to n8n/GAS, and re-verifies. Session 42 (mobile) → 43 (desktop) is the
 worked example: 8 of its claims needed correction, so verify before building.

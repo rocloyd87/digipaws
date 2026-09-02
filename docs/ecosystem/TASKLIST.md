@@ -102,17 +102,27 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
       `/spend` verified live 2026-09-02 11:04 (card in seconds, no LLM call).
 - [ ] Stats-card budget rows look implausible (B3 Household ₱74, E4 ₱82 "6-mo medians") —
       the `budgetOutlook` enrichment needs a look once categories are cleaned.
-- [ ] Brief v2: TickTick open tasks (needs a TickTick credential/token in n8n), MoneyMatter
-      subscriptions (needs the OAuth client W-DASH-SYNC uses), yesterday's spend, news top 5.
+- [ ] Brief v2: **DRAFTED (mobile s44, UNVERIFIED)** → `drafts/W-DAILY-BRIEF-v2.json`: TickTick
+      open tasks (credential setup steps in the sticky), MoneyMatter subscriptions ≤7 d (connector
+      read 2026-09-02: **0 subscriptions defined** — section self-hides until seeded), yesterday's
+      spend via `spend_series` vs 30-day average. Desktop: import, test, splice into
+      `Cu6opCPfQPHJMKRJ`. News top 5 waits for Miniflux.
 - [ ] Data-quality flag from the first brief: top burn driver is **"G2 Review / Uncategorized"
       ₱112k/mo** — the category worksheet backlog is now the biggest distortion in every KPI.
 - [ ] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade`
       (`/stats`, `/report` exist; route new ones in `Is Stats Command`-style IF nodes before the
-      agent, one tool call each).
+      agent, one tool call each). **`/remind /todo /cascade /sub` DRAFTED (mobile s44)** →
+      `drafts/COMMANDS.md` — IF + Code + tool + reply snippets, Code bodies tested locally.
 - [ ] Miniflux on the Pi (`miniflux-homelab.md`), then digest workflow (templates #6011/#7627).
+      Feed URLs still UNVERIFIED after two mobile attempts (egress blocked) — run
+      `drafts/W-FEED-PROBE.json` once from n8n and paste the verdicts into the doc.
 - [ ] Savings nudges: extend `W-HERMES-NUDGE` with MoneyMatter budget stats; paycheck-detection
-      snapshot pattern from hail2victors/n8n-Actual-Automation.
+      snapshot pattern from hail2victors/n8n-Actual-Automation. **DRAFTED (mobile s44)** →
+      `drafts/NUDGE-SAVINGS.md`: 5 rules, thresholds, messages, get_kpis gaps, GAS rule sketch.
 - [ ] FMP price/breakout alerts (watchlist tab in the Alfred sheet; template #7701 pattern).
+      **DRAFTED (mobile s44)** → `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
+      endpoints are Premium-gated on this plan and PSE tickers are not on FMP, so the draft is
+      end-of-day (FMP EOD light for US, GOOGLEFINANCE columns for PSE).
 - [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week.
 
 ## F — LATER

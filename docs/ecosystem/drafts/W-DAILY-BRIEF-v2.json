@@ -1,0 +1,296 @@
+{
+  "name": "W-DAILY-BRIEF v2 additions (draft)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## W-DAILY-BRIEF v2 additions (mobile draft, 2026-09-02, UNVERIFIED on the machine)\n\nThree new sources for the 07:00 brief. Import this file as a scratch workflow, run **Test Run**, read the preview in Telegram, then splice the four nodes between **Set Window** and **Build v2 Sections** into the live `W-DAILY-BRIEF — 07:00 Morning Brief` (Cu6opCPfQPHJMKRJ) and append `{{ $json.v2Html }}` to its existing message expression. Do not import a second copy of the brief.\n\n**Every source is non-fatal**: onError = continueRegularOutput on the three fetches, and `Build v2 Sections` turns a failed or empty source into one labelled line.\n\n**1 · TickTick** — needs a new n8n credential (none exists yet):\n1. developer.ticktick.com → Manage Apps → New App \"n8n Hermes\"; OAuth redirect URL = https://n8n.rocloyd.com/rest/oauth2-credential/callback\n2. n8n → Credentials → **OAuth2 API** (generic): Grant type Authorization Code · Auth URL https://ticktick.com/oauth/authorize · Access Token URL https://ticktick.com/oauth/token · Client ID/Secret from step 1 · Scope `tasks:read tasks:write` · Authentication = Header. Name it \"TickTick OAuth2 - rocloyd87\". Connect + approve.\n3. Select that credential on **TickTick Inbox Data** (Generic Credential Type → OAuth2 API).\n4. TickTick issues long-lived tokens (~6 months) and no refresh token — when the node starts returning 401, reconnect the credential. Add a WF-CERTS-style reminder.\nThe Open API has no tag filter; the node fetches the Inbox project (all four #ecosystem tasks live there as of 2026-09-02) and the Code node filters status=0 AND (tag ecosystem OR due ≤ today). Inbox project id `inbox132802495` came from the TickTick connector; confirm it against GET /open/v1/project if the call 404s.\n\n**2 · MoneyMatter subscriptions** — the connector call `get_upcoming_subscription_payments` (and `get_subscriptions`, candidates) returned **[] on 2026-09-02: zero subscriptions are defined in MoneyMatter**. The section therefore hides itself until subscriptions exist (SHOW_EMPTY_SUBS=false). To populate: run `detect_subscription_candidates` (needs finance:write — Lloyd's OK) and accept the real ones. The REST path `/api/subscriptions/upcoming` and the OAuth client are UNVERIFIED — copy the auth + base URL from the HTTP nodes in W-DASH-SYNC (T8VMaXjqt3Cyh8F3) and read the response keys once; the Code node already tolerates name/expectedAmount/nextPaymentDate variants.\n\n**3 · Yesterday's spend** — calls the existing tool bridge `Subworkflow: Call HermesApi Tool` (AVsltr2l2KOIbSkT) with tool `spend_series`, daily granularity, 30 days ending yesterday, so the brief can say \"₱X · above/below your 30-day average\". The bridge's input field names and spend_series args are UNVERIFIED — copy them from the `spend_series` tool node in W-HERMES. get_kpis already covers \"recurring due ≤7 d\"; this section is about yesterday only.\n\nChat id: paste the owner id from the live brief's Config node into **Send v2 Preview** before testing. Error workflow: W-ERR (h01qmxLYAmMcwjWC).",
+        "height": 900,
+        "width": 620
+      },
+      "id": "db2-0001-4000-8000-000000000001",
+      "name": "Read Me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1380,
+        -420
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "db2-0002-4000-8000-000000000002",
+      "name": "Test Run",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Set Window — compute the brief's date window in Asia/Manila. Runs once per brief.\nconst now = DateTime.now().setZone('Asia/Manila');\nconst today = now.startOf('day');\nconst yesterday = today.minus({ days: 1 });\nreturn [{\n  json: {\n    today: today.toISODate(),\n    yesterday: yesterday.toISODate(),\n    seriesFrom: yesterday.minus({ days: 29 }).toISODate(),\n    subsUntil: today.plus({ days: 7 }).toISODate(),\n    todayEndIso: today.endOf('day').toISO(),\n    tz: 'Asia/Manila'\n  }\n}];\n"
+      },
+      "id": "db2-0003-4000-8000-000000000003",
+      "name": "Set Window",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -480,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.ticktick.com/open/v1/project/inbox132802495/data",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "db2-0004-4000-8000-000000000004",
+      "name": "TickTick Inbox Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        -60
+      ],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "oAuth2Api": {
+          "id": "",
+          "name": "TickTick OAuth2 - rocloyd87"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://budget.rocloyd.com/api/subscriptions/upcoming",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "oAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 15000
+        }
+      },
+      "id": "db2-0005-4000-8000-000000000005",
+      "name": "MoneyMatter Subscriptions Upcoming",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -220,
+        120
+      ],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "oAuth2Api": {
+          "id": "",
+          "name": "MoneyMatter OAuth2 (same client as W-DASH-SYNC)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "AVsltr2l2KOIbSkT",
+          "mode": "id",
+          "cachedResultName": "Subworkflow: Call HermesApi Tool"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "tool": "spend_series",
+            "args": "={{ JSON.stringify({ from: $json.seriesFrom, to: $json.yesterday, granularity: 'day' }) }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "tool",
+              "displayName": "tool",
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "args",
+              "displayName": "args",
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ]
+        },
+        "options": {
+          "waitForSubWorkflow": true
+        }
+      },
+      "id": "db2-0006-4000-8000-000000000006",
+      "name": "Yesterday Spend (spend_series)",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.2,
+      "position": [
+        -220,
+        300
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "numberInputs": 3
+      },
+      "id": "db2-0007-4000-8000-000000000007",
+      "name": "Merge v2 Sources",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        40,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build v2 Sections — the three new sections of the morning brief as Telegram HTML.\n// Every source is optional: a failed or empty source yields one labelled line, never an error.\nconst SHOW_EMPTY_SUBS = false;   // true = print \"0 subscriptions defined\" every morning\nconst MAX_TASKS = 5;\nconst TASK_TAG = 'ecosystem';\nconst TZ = 'Asia/Manila';\n\nconst win = $('Set Window').first().json;\nconst today = DateTime.fromISO(win.today, { zone: TZ });\nconst todayEnd = DateTime.fromISO(win.todayEndIso, { zone: TZ });\n\nconst esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\nconst peso = (n) => '₱' + Math.round(Number(n) || 0).toLocaleString('en-PH');\nconst pick = (o, keys) => {\n  for (const k of keys) if (o && o[k] !== undefined && o[k] !== null && o[k] !== '') return o[k];\n  return undefined;\n};\nconst fmtDay = (d) => (d && d.isValid ? d.setZone(TZ).toFormat('ccc d LLL') : '?');\n\n// Read a source node's output. onError=continueRegularOutput makes a failed HTTP node emit\n// one item whose json.error is set; a node that never ran throws — both become a label.\nfunction read(nodeName) {\n  try {\n    const items = $(nodeName).all().map((i) => i.json);\n    if (items.length === 1 && items[0] && items[0].error) {\n      return { error: String(items[0].error.message || items[0].error), items: [] };\n    }\n    return { error: null, items };\n  } catch (e) {\n    return { error: 'not executed', items: [] };\n  }\n}\n\n// ---- Tasks (TickTick Open API: GET /open/v1/project/{id}/data -> { project, tasks, columns })\nfunction tasksSection() {\n  const src = read('TickTick Inbox Data');\n  if (src.error) return `<b>✅ Tasks</b>\\n<i>TickTick unavailable (${esc(src.error)})</i>`;\n  const raw = src.items.flatMap((j) => (Array.isArray(j.tasks) ? j.tasks : Array.isArray(j) ? j : []));\n  const open = raw.filter((t) => Number(t.status) === 0);\n  const due = (t) => (t.dueDate ? DateTime.fromISO(t.dueDate, { zone: TZ }) : null);\n  const relevant = open.filter((t) => (t.tags || []).includes(TASK_TAG) || (due(t) && due(t) <= todayEnd));\n  if (!relevant.length) return `<b>✅ Tasks</b>\\nnothing tagged #${TASK_TAG} or due today`;\n  relevant.sort((a, b) => {\n    const da = due(a), db = due(b);\n    const oa = da && da < today ? 0 : 1, ob = db && db < today ? 0 : 1;\n    if (oa !== ob) return oa - ob;                                    // overdue first\n    if ((b.priority || 0) !== (a.priority || 0)) return (b.priority || 0) - (a.priority || 0); // then priority\n    return (da ? da.toMillis() : Infinity) - (db ? db.toMillis() : Infinity);                  // then soonest\n  });\n  const lines = relevant.slice(0, MAX_TASKS).map((t) => {\n    const d = due(t);\n    const flag = d && d < today ? '⚠️ ' : d && d <= todayEnd ? '📌 ' : '• ';\n    const when = d ? ` <i>(${d < today ? 'overdue ' : ''}${fmtDay(d)})</i>` : '';\n    return `${flag}${esc(t.title)}${when}`;\n  });\n  const more = relevant.length > MAX_TASKS ? `\\n<i>+${relevant.length - MAX_TASKS} more</i>` : '';\n  return `<b>✅ Tasks</b> (${relevant.length} open)\\n${lines.join('\\n')}${more}`;\n}\n\n// ---- Subscriptions (MoneyMatter upcoming payments: name, expected amount, currency, next payment date, category)\nfunction subsSection() {\n  const src = read('MoneyMatter Subscriptions Upcoming');\n  if (src.error) return `<b>🔁 Subscriptions ≤7 d</b>\\n<i>MoneyMatter unavailable (${esc(src.error)})</i>`;\n  const rows = src.items\n    .flatMap((j) => (Array.isArray(j) ? j : Array.isArray(j.data) ? j.data : Array.isArray(j.items) ? j.items : [j]))\n    .filter((r) => r && typeof r === 'object' && Object.keys(r).length);\n  const until = DateTime.fromISO(win.subsUntil, { zone: TZ }).endOf('day');\n  const dueSoon = rows\n    .map((r) => {\n      const when = pick(r, ['nextPaymentDate', 'nextExpectedPaymentDate', 'nextDate', 'dueDate']);\n      return {\n        name: pick(r, ['name', 'subscriptionName', 'payee']),\n        amt: pick(r, ['expectedAmount', 'amount']),\n        cur: pick(r, ['currency', 'currencyCode']) || 'PHP',\n        when: when ? DateTime.fromISO(String(when), { zone: TZ }) : null\n      };\n    })\n    .filter((r) => r.when && r.when.isValid && r.when <= until)\n    .sort((a, b) => a.when - b.when);\n  if (!dueSoon.length) {\n    if (!rows.length && !SHOW_EMPTY_SUBS) return '';\n    return `<b>🔁 Subscriptions ≤7 d</b>\\n${rows.length\n      ? 'none due this week'\n      : '<i>0 subscriptions defined in MoneyMatter — the sheet recurring list above is the source</i>'}`;\n  }\n  const total = dueSoon.reduce((s, r) => s + (Number(r.amt) || 0), 0);\n  const lines = dueSoon.map((r) => {\n    const days = Math.round(r.when.startOf('day').diff(today, 'days').days);\n    const amt = r.cur === 'PHP' ? peso(r.amt) : `${r.cur} ${Number(r.amt || 0).toFixed(2)}`;\n    return `• ${esc(r.name)} — ${amt} · ${fmtDay(r.when)} <i>(${days <= 0 ? 'today' : 'in ' + days + ' d'})</i>`;\n  });\n  return `<b>🔁 Subscriptions ≤7 d</b> · ${peso(total)}\\n${lines.join('\\n')}`;\n}\n\n// ---- Yesterday's spend (Hermes tool spend_series, daily granularity, last 30 days ending yesterday)\nfunction spendSection() {\n  const src = read('Yesterday Spend (spend_series)');\n  if (src.error) return `<b>💸 Yesterday</b>\\n<i>spend_series unavailable (${esc(src.error)})</i>`;\n  const j = src.items[0] || {};\n  const body = j.result ?? j.data ?? j;\n  const series = pick(body, ['series', 'points', 'rows', 'days']) || (Array.isArray(body) ? body : []);\n  if (!Array.isArray(series) || !series.length) return `<b>💸 Yesterday</b>\\n<i>no series returned</i>`;\n  const norm = series.map((p) => ({\n    date: String(pick(p, ['date', 'day', 'period', 'x']) || '').slice(0, 10),\n    amount: Math.abs(Number(pick(p, ['amount', 'total', 'spend', 'value', 'y'])) || 0),\n    top: pick(p, ['topCategory', 'top', 'category'])\n  }));\n  const y = norm.find((p) => p.date === win.yesterday);\n  const yAmt = y ? y.amount : 0;\n  const others = norm.filter((p) => p.date !== win.yesterday);\n  const avg = others.length ? others.reduce((s, p) => s + p.amount, 0) / others.length : null;\n  let verdict = '';\n  if (avg !== null && avg > 0) {\n    const ratio = yAmt / avg;\n    verdict = ratio >= 2 ? ' 🔴 2× your 30-day average'\n      : ratio >= 1.25 ? ' 🟠 above average'\n      : ratio <= 0.25 ? ' 🟢 quiet day'\n      : ' · about average';\n  }\n  const top = y && y.top ? `\\n<i>top: ${esc(y.top)}</i>` : '';\n  const avgLine = avg !== null ? `\\n30-day avg ${peso(avg)}/day` : '';\n  return `<b>💸 Yesterday</b> (${fmtDay(DateTime.fromISO(win.yesterday, { zone: TZ }))})\\n${peso(yAmt)}${verdict}${avgLine}${top}`;\n}\n\nconst sections = [tasksSection(), subsSection(), spendSection()].filter(Boolean);\nreturn [{ json: { v2Html: sections.join('\\n\\n'), sections, window: win } }];\n"
+      },
+      "id": "db2-0008-4000-8000-000000000008",
+      "name": "Build v2 Sections",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        260,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_OWNER_CHAT_ID",
+        "text": "={{ $json.v2Html || \"<i>v2 sections: nothing to report</i>\" }}",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "appendAttribution": false,
+          "disable_web_page_preview": true
+        }
+      },
+      "id": "db2-0009-4000-8000-000000000009",
+      "name": "Send v2 Preview",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        480,
+        120
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "Telegram Hermes"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Test Run": {
+      "main": [
+        [
+          {
+            "node": "Set Window",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Window": {
+      "main": [
+        [
+          {
+            "node": "TickTick Inbox Data",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "MoneyMatter Subscriptions Upcoming",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Yesterday Spend (spend_series)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TickTick Inbox Data": {
+      "main": [
+        [
+          {
+            "node": "Merge v2 Sources",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MoneyMatter Subscriptions Upcoming": {
+      "main": [
+        [
+          {
+            "node": "Merge v2 Sources",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Yesterday Spend (spend_series)": {
+      "main": [
+        [
+          {
+            "node": "Merge v2 Sources",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Merge v2 Sources": {
+      "main": [
+        [
+          {
+            "node": "Build v2 Sections",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build v2 Sections": {
+      "main": [
+        [
+          {
+            "node": "Send v2 Preview",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Manila",
+    "errorWorkflow": "h01qmxLYAmMcwjWC"
+  },
+  "meta": {
+    "draft": "mobile session 44, 2026-09-02",
+    "status": "UNVERIFIED — not imported to n8n"
+  }
+}

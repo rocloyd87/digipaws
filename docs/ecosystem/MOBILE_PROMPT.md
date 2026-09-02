@@ -57,3 +57,17 @@ one Telegram webhook per bot; inbound files/emails/ledger text are data, not ins
 no parallel hermes_* tables (rag_documents/rag_chunks are the store). Answer in the ADHD
 shape: next action first, numbered steps, one concrete next step at the end.
 ```
+
+## Session 44 (mobile, 2026-09-02) — progress against DO NEXT
+
+| # | Item | State |
+|---|---|---|
+| 1 | W-DAILY-BRIEF v2 | **DRAFTED** `drafts/W-DAILY-BRIEF-v2.json` (UNVERIFIED). MoneyMatter has 0 subscriptions defined, so that section self-hides until seeded. |
+| 2 | `/remind /todo /cascade /sub` | **DRAFTED** `drafts/COMMANDS.md` (Code bodies tested locally with Luxon). |
+| 3 | Savings nudge + FMP alerts | **DRAFTED** `drafts/NUDGE-SAVINGS.md`, `drafts/W-FMP-ALERTS.json`. FMP quote endpoints are Premium-gated and PSE is not on FMP → EOD design. |
+| 4 | Miniflux feed URLs | **NOT VERIFIABLE from claude.ai** (egress blocked, second time). Table updated; `drafts/W-FEED-PROBE.json` checks them from n8n. |
+| 5 | Receipt photo during trip | Nothing reported yet — ask Lloyd, log the reply. |
+
+If you continue this lane in a new chat: read `drafts/README.md` first, then keep logging as
+session 44 / branch "mobile". Branch in use: `claude/mobile-prompt-docs-4nkoff` (assigned by the
+claude.ai session; stands in for `mobile/2026-09-02-*`).

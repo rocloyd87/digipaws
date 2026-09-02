@@ -1,0 +1,557 @@
+{
+  "name": "W-FMP-ALERTS — Price Alerts (draft)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## W-FMP-ALERTS — Price Alerts (mobile draft 2026-09-02, UNVERIFIED)\n\n**What was checked from the mobile lane (FMP connector, this plan):**\n- Real-time `quote` / `batch-quote` endpoints → **ACCESS DENIED (Premium+)**. Do not build on them.\n- `historical-price-eod-light` → **works**: `[{symbol, date, price, volume}]`, newest first.\n- PSE listings: **not on FMP** (SM Investments → OTC `SVTMF`, ICTSI → OTC `ICTEF`; FMP's \"PSE\" exchange is Prague). PSE prices therefore come from **GOOGLEFINANCE in the watchlist tab**, not from FMP.\n\n**Design:** end-of-day alerts, two lanes, one Telegram message.\n- US lane: schedule 05:45 PHT Tue–Sat (after the US close) → per-symbol FMP EOD light (400 days, gives 52-week high/low) → Normalize.\n- PSE lane: schedule 15:45 PHT Mon–Fri (PSE closes 12:30–15:00; GOOGLEFINANCE lags ≤20 min) → prices read straight from the sheet's formula columns.\n- Both → Evaluate Alerts (rules: above · below · pct_day · breakout_52w · drawdown_from_high; per-row cooldown_h, default 24) → Telegram (only when something fired) → write last_price / last_alert_at back.\n\n**Watchlist tab** `_HERMES_WATCHLIST` in the Alfred sheet (10YwN_15MYlGdZQgS1vO6uJgzCIKa8Ycd1Mu3IAZ7uw0) — create it with these headers, one row per alert:\nsymbol | venue (US|PSE) | alert_type | threshold | note | active | cooldown_h | last_price | last_alert_at | last_checked_at | gf_price | gf_prev | gf_high52 | gf_low52\nFormulas (row 2, fill down): gf_price `=IFERROR(GOOGLEFINANCE(IF(B2=\"PSE\",\"PSE:\"&A2,A2),\"price\"),\"\")` · gf_prev `=IFERROR(GOOGLEFINANCE(IF(B2=\"PSE\",\"PSE:\"&A2,A2),\"closeyest\"),\"\")` · gf_high52 `=IFERROR(GOOGLEFINANCE(IF(B2=\"PSE\",\"PSE:\"&A2,A2),\"high52\"),\"\")` · gf_low52 `=IFERROR(GOOGLEFINANCE(IF(B2=\"PSE\",\"PSE:\"&A2,A2),\"low52\"),\"\")`.\nSeed rows to test: AAPL US above 320 · AAPL US drawdown_from_high 15 · SM PSE below 800 · ICT PSE breakout_52w.\n\n**Credentials:** FMP key as a Query Auth credential `FMP apikey` (parameter `apikey`); Google Sheets credential = the one the Alfred workflows already use. Free tier is 250 calls/day: one call per US symbol per day.\n\n**UNVERIFIED:** Google Sheets node field names (typeVersion 4.5 shown), exact FMP stable path `/stable/historical-price-eod/light`, GOOGLEFINANCE attribute coverage for PSE tickers (`high52` may be blank for thin names — Evaluate treats blank as \"rule not evaluable\"). Reference pattern: n8n template #7701.",
+        "height": 980,
+        "width": 640
+      },
+      "id": "fmp-0001",
+      "name": "Read Me",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1500,
+        -520
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "45 5 * * 2-6"
+            }
+          ]
+        }
+      },
+      "id": "fmp-0002",
+      "name": "US close 05:45 PHT",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -820,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "cronExpression",
+              "expression": "45 15 * * 1-5"
+            }
+          ]
+        }
+      },
+      "id": "fmp-0003",
+      "name": "PSE close 15:45 PHT",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -820,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "10YwN_15MYlGdZQgS1vO6uJgzCIKa8Ycd1Mu3IAZ7uw0"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "_HERMES_WATCHLIST"
+        },
+        "options": {}
+      },
+      "id": "fmp-0004",
+      "name": "Read Watchlist",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        -580,
+        60
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Alfred (existing)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "us",
+                    "leftValue": "={{ String($json.venue || \"US\").toUpperCase() }}",
+                    "rightValue": "US",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "id": "trig",
+                    "leftValue": "={{ $('US close 05:45 PHT').isExecuted }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "US"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "typeValidation": "loose",
+                  "version": 2
+                },
+                "combinator": "and",
+                "conditions": [
+                  {
+                    "id": "pse",
+                    "leftValue": "={{ String($json.venue || \"\").toUpperCase() }}",
+                    "rightValue": "PSE",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  },
+                  {
+                    "id": "trig2",
+                    "leftValue": "={{ $('PSE close 15:45 PHT').isExecuted }}",
+                    "rightValue": true,
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    }
+                  }
+                ]
+              },
+              "renameOutput": true,
+              "outputKey": "PSE"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "none"
+        }
+      },
+      "id": "fmp-0005",
+      "name": "Lane by Venue",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -340,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://financialmodelingprep.com/stable/historical-price-eod/light",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "queryAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "symbol",
+              "value": "={{ $json.symbol }}"
+            },
+            {
+              "name": "from",
+              "value": "={{ $now.minus({ days: 400 }).toISODate() }}"
+            },
+            {
+              "name": "to",
+              "value": "={{ $now.toISODate() }}"
+            }
+          ]
+        },
+        "options": {
+          "timeout": 20000,
+          "response": {
+            "response": {
+              "fullResponse": false
+            }
+          }
+        }
+      },
+      "id": "fmp-0006",
+      "name": "FMP EOD Light",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -100,
+        -80
+      ],
+      "onError": "continueRegularOutput",
+      "credentials": {
+        "queryAuth": {
+          "id": "",
+          "name": "FMP apikey"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Attach the FMP array (or error) to its watchlist row, pairing by item index.\nconst rows = $('Lane by Venue').all(0).map(i => i.json);\nreturn $input.all().map((it, idx) => {\n  const j = it.json;\n  const history = Array.isArray(j) ? j : (Array.isArray(j.data) ? j.data : null);\n  return { json: { ...rows[idx], history, error: j.error || (history ? undefined : 'unexpected FMP shape') } };\n});"
+      },
+      "id": "fmp-0007",
+      "name": "Attach History",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        120,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Normalize FMP — turn one symbol's EOD-light history (newest first) into the fields the evaluator needs.\n// Input item: { symbol, venue, alert_type, threshold, note, cooldown_h, last_alert_at, history: [{date, price, volume}] }\n// (the HTTP node's array is attached as `history` by the preceding Merge/Set; a failed fetch has `error`).\nconst out = [];\nfor (const item of $input.all()) {\n  const j = item.json;\n  if (j.error || !Array.isArray(j.history) || j.history.length < 2) {\n    out.push({ json: { ...j, price: null, prev_close: null, change_pct: null, high52: null, low52: null, asof: null, fetch_error: j.error ? String(j.error.message || j.error) : 'no history' } });\n    continue;\n  }\n  const h = [...j.history].sort((a, b) => (a.date < b.date ? 1 : -1)); // newest first\n  const price = Number(h[0].price), prev = Number(h[1].price);\n  const year = h.slice(0, 252).map((r) => Number(r.price)).filter((n) => Number.isFinite(n));\n  out.push({ json: {\n    ...j, history: undefined,\n    price, prev_close: prev,\n    change_pct: prev ? ((price - prev) / prev) * 100 : null,\n    high52: Math.max(...year), low52: Math.min(...year),\n    asof: h[0].date\n  } });\n}\nreturn out;\n"
+      },
+      "id": "fmp-0008",
+      "name": "Normalize FMP",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        340,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// PSE lane: map the sheet's GOOGLEFINANCE columns onto the evaluator's fields.\nreturn $input.all().map(({ json: r }) => ({ json: { ...r, price: r.gf_price, prev_close: r.gf_prev, high52: r.gf_high52, low52: r.gf_low52, asof: $now.toISODate(), fetch_error: r.gf_price === '' || r.gf_price == null ? 'GOOGLEFINANCE blank' : undefined } }));"
+      },
+      "id": "fmp-0009",
+      "name": "From Sheet Columns",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        120,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "numberInputs": 2
+      },
+      "id": "fmp-0010",
+      "name": "Merge Lanes",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        560,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Evaluate Alerts — one item per watchlist row with price fields already attached\n// (FMP branch via Normalize FMP, PSE branch straight from the sheet's GOOGLEFINANCE columns).\n// Emits ONE Telegram message item plus one `updates` array for the sheet write-back.\nconst TZ = 'Asia/Manila';\nconst now = DateTime.now().setZone(TZ);\nconst esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');\nconst num = (v) => {\n  if (v == null || v === '') return null;\n  const n = Number(String(v).replace(/[,%$₱\\s]/g, ''));\n  return Number.isFinite(n) ? n : null;\n};\nconst money = (v, venue) => (v == null ? '—' : (venue === 'PSE' ? '₱' : '$') + Number(v).toLocaleString('en-US', { maximumFractionDigits: 2 }));\nconst pct = (v) => (v == null ? '' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`);\n\nconst fired = [], errors = [], updates = [];\nfor (const { json: r } of $input.all()) {\n  if (String(r.active).toUpperCase() === 'FALSE' || r.active === false || !r.symbol) continue;\n  const venue = String(r.venue || 'US').toUpperCase();\n  const price = num(r.price), prev = num(r.prev_close), high52 = num(r.high52), low52 = num(r.low52);\n  const changePct = r.change_pct != null ? num(r.change_pct) : (price && prev ? ((price - prev) / prev) * 100 : null);\n  if (price == null) { errors.push(`${r.symbol}: ${esc(r.fetch_error || 'no price')}`); continue; }\n  const threshold = num(r.threshold);\n  const type = String(r.alert_type || '').toLowerCase();\n  let hit = false, why = '';\n  if (type === 'above' && threshold != null && price >= threshold) { hit = true; why = `above ${money(threshold, venue)}`; }\n  else if (type === 'below' && threshold != null && price <= threshold) { hit = true; why = `below ${money(threshold, venue)}`; }\n  else if (type === 'pct_day' && threshold != null && changePct != null && Math.abs(changePct) >= threshold) { hit = true; why = `moved ${pct(changePct)} (≥${threshold}%)`; }\n  else if (type === 'breakout_52w' && high52 != null && price >= high52 * 0.995) { hit = true; why = `at 52-week high ${money(high52, venue)}`; }\n  else if (type === 'drawdown_from_high' && threshold != null && high52) {\n    const dd = ((high52 - price) / high52) * 100;\n    if (dd >= threshold) { hit = true; why = `${dd.toFixed(0)}% below its 52-week high ${money(high52, venue)}`; }\n  }\n  const cooldownH = num(r.cooldown_h) ?? 24;\n  const last = r.last_alert_at ? DateTime.fromISO(String(r.last_alert_at), { zone: TZ }) : null;\n  const cooled = !last || !last.isValid || now.diff(last, 'hours').hours >= cooldownH;\n  updates.push({ symbol: r.symbol, last_price: price, last_checked_at: now.toISO(), ...(hit && cooled ? { last_alert_at: now.toISO() } : {}) });\n  if (hit && cooled) {\n    const icon = type === 'below' || type === 'drawdown_from_high' || (changePct != null && changePct < 0) ? '📉' : '📈';\n    fired.push(`${icon} <b>${esc(r.symbol)}</b> ${money(price, venue)} ${pct(changePct)} — ${why}${r.note ? ` <i>(${esc(r.note)})</i>` : ''}`);\n  }\n}\n\nif (!fired.length && !errors.length) return [{ json: { send: false, updates } }];\nconst head = `<b>📊 Price alerts</b> · ${now.toFormat('ccc d LLL')}`;\nconst body = fired.length ? fired.join('\\n') : '<i>no thresholds crossed</i>';\nconst foot = errors.length ? `\\n<i>unavailable: ${errors.join(' · ')}</i>` : '';\nreturn [{ json: { send: fired.length > 0, text: `${head}\\n${body}${foot}`, fired: fired.length, updates } }];\n"
+      },
+      "id": "fmp-0011",
+      "name": "Evaluate Alerts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "send",
+              "leftValue": "={{ $json.send }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fmp-0012",
+      "name": "Anything Fired?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1000,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "REPLACE_WITH_OWNER_CHAT_ID",
+        "text": "={{ $json.text }}",
+        "additionalFields": {
+          "parse_mode": "HTML",
+          "appendAttribution": false,
+          "disable_web_page_preview": true
+        }
+      },
+      "id": "fmp-0013",
+      "name": "Send Alerts",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1220,
+        -60
+      ],
+      "credentials": {
+        "telegramApi": {
+          "id": "",
+          "name": "Telegram Hermes"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "updates",
+        "options": {}
+      },
+      "id": "fmp-0014",
+      "name": "Split Updates",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        180
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "10YwN_15MYlGdZQgS1vO6uJgzCIKa8Ycd1Mu3IAZ7uw0"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "_HERMES_WATCHLIST"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "matchingColumns": [
+            "symbol"
+          ],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "fmp-0015",
+      "name": "Write Back",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1440,
+        180
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "",
+          "name": "Google Sheets - Alfred (existing)"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "US close 05:45 PHT": {
+      "main": [
+        [
+          {
+            "node": "Read Watchlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PSE close 15:45 PHT": {
+      "main": [
+        [
+          {
+            "node": "Read Watchlist",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Watchlist": {
+      "main": [
+        [
+          {
+            "node": "Lane by Venue",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lane by Venue": {
+      "main": [
+        [
+          {
+            "node": "FMP EOD Light",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "From Sheet Columns",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "FMP EOD Light": {
+      "main": [
+        [
+          {
+            "node": "Attach History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Attach History": {
+      "main": [
+        [
+          {
+            "node": "Normalize FMP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize FMP": {
+      "main": [
+        [
+          {
+            "node": "Merge Lanes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "From Sheet Columns": {
+      "main": [
+        [
+          {
+            "node": "Merge Lanes",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Lanes": {
+      "main": [
+        [
+          {
+            "node": "Evaluate Alerts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Evaluate Alerts": {
+      "main": [
+        [
+          {
+            "node": "Anything Fired?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anything Fired?": {
+      "main": [
+        [
+          {
+            "node": "Send Alerts",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Split Updates",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Split Updates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Updates": {
+      "main": [
+        [
+          {
+            "node": "Write Back",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Manila",
+    "errorWorkflow": "h01qmxLYAmMcwjWC"
+  },
+  "meta": {
+    "draft": "mobile session 44, 2026-09-02",
+    "status": "UNVERIFIED — not imported to n8n"
+  }
+}
