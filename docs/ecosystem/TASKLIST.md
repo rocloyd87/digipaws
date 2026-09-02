@@ -31,8 +31,9 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
    `floorReserve` 863,600.88): reply "🔴 NOT SAFE · reserve ₱863,601 unfunded by ₱462,380 ·
    liquid ₱401,220 · 1.87 months · G2 basis 12 × ₱71,967", 20 s, exec 20780. **Still to do:**
    send one receipt photo (expect a one-line parsed row + a 📥 FILED card, no loop).
-4. **Approve the BPI USD adjustment** (say "approved BPI USD" — agent adjusts to $0.31; the fee
-   row already exists). GCash is DONE (380.10, both legs agreed).
+4. ~~Approve the BPI USD adjustment~~ **DONE 2026-09-02 10:48** — adjusted 3.00 → 0.31
+   (txn `01a06004-2647-713d-91ce-c92b9da4f2b0`). GCash DONE (380.10). All 29 MoneyMatter
+   accounts now match BALANCE_CONTROL truth on every evidenced leg.
 5. Q1 is resolved for v1 (Drive vault, D-109) — say so if you want LifeVault instead. Still
    open: Q4 HSBC name. Install Autosync for Google Drive so captures reach the phone vault.
 
