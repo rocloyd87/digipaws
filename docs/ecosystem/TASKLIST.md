@@ -83,6 +83,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
       basis, floor reserve, runway, liquid, burn + top drivers, budget left, recurring due ≤7 d,
       kept, next income) + Google Calendar today → Telegram HTML. First brief sent (msg 304,
       exec 20787). Dead sources are labelled, never fatal.
+- [x] `/spend` `/networth` `/runway` → deterministic /stats card (W-HERMES `Is Stats Command`);
+      `/spend` verified live 2026-09-02 11:04 (card in seconds, no LLM call).
+- [ ] Stats-card budget rows look implausible (B3 Household ₱74, E4 ₱82 "6-mo medians") —
+      the `budgetOutlook` enrichment needs a look once categories are cleaned.
 - [ ] Brief v2: TickTick open tasks (needs a TickTick credential/token in n8n), MoneyMatter
       subscriptions (needs the OAuth client W-DASH-SYNC uses), yesterday's spend, news top 5.
 - [ ] Data-quality flag from the first brief: top burn driver is **"G2 Review / Uncategorized"
