@@ -35,12 +35,11 @@ ORIENT FIRST, in this order:
    02-DECISIONS (D-106..D-108 are the latest).
 3. Supabase fbtqqrpeiwhbxxkpyzdt: newest ~10 rows of public.alfred_build_log (session 43 is
    the latest). Log your own milestones as session 44 at close.
-4. Check what I completed from TASKLIST.md §A (SECOND clasp push + deploy for the cache
-   fingerprint/essential-prefix commit, BPI USD approval, Hermes photo + /note + safe-to-spend
-   re-test, Q4). Verify on the machine: clasp deployments (expect a version >26 on
-   AKfycbw9t20…), get_kpis tier1 has floorReserve ≈ 863,600 and essentialMedian ≈ 71,967,
-   MoneyMatter get_accounts (Cash 6,036, GCash 380.10, BPI USD 0.31 once approved), newest
-   W-HERMES and W-INBOX-FILE executions (no "max iterations"; a FILED card).
+4. Check TASKLIST.md §A: the THIRD clasp push + deploy (reject_staged + key canonicalisation,
+   CoPilot Hermes worktree commit after 37bf844) may still be pending — run it, then verify
+   `reject_staged` works by asking Hermis to discard `tg-307-SOCOTECO`. Everything else in §A
+   was verified live on 2026-09-02 (safe-to-spend, photo, /note, /spend, BPI USD 0.31).
+   Also merge any `mobile/*` PR after verifying its claims on the machine.
 
 TOOLS YOU HAVE: n8n MCP (read + patch workflows; no agent-fired financial webhooks), MoneyMatter
 MCP (reads fine; writes/deletes need my explicit OK per call), Supabase MCP, Google Drive,

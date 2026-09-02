@@ -24,12 +24,18 @@ YOU CANNOT (leave for the desktop, say so plainly): push GAS (clasp), edit live 
 (the n8n MCP is desktop-only), touch the Knowledge OS vault, run test suites, or claim
 anything is "verified on the machine".
 
-STATE (2026-09-02 evening): Hermes safe-to-spend and receipt-photo bugs fixed and live;
-W-INBOX-FILE (/note, photos, documents → Drive vault note) live; W-DAILY-BRIEF 07:00 PHT live
-(first brief sent); /spend /networth /runway → stats card; all 29 MoneyMatter accounts match
-BALANCE_CONTROL; Release CI fixed. Open for me: receipt-photo live test, Q4 (is "HSBC Live+"
-in Tarsi the same card as "HSBC Gold Visa" in MoneyMatter?), accept-all on the category
-rulings worksheet ("G2 Review / Uncategorized" is the top burn driver, ₱112k/mo).
+STATE (2026-09-02 night): ALL Hermes paths verified live — "safe to spend?" (NOT SAFE, floor
+₱863,601 unfunded by ₱462,380), receipt photo (SOCOTECO II −₱2,702 parsed + staged in 25 s,
+approved), /note (FILED card). W-INBOX-FILE live; W-DAILY-BRIEF 07:00 PHT live (first brief
+sent); /spend /networth /runway → stats card; all 29 MoneyMatter accounts match
+BALANCE_CONTROL; Release CI fixed; GitHub auth pinned. A `reject_staged` tool was added to
+Hermes and the GAS side (key canonicalisation tg-<id> + hermesStagingReject_) is COMMITTED
+BUT NOT PUSHED — it goes live only after the desktop runs clasp push + deploy; until then
+Hermes' reject_staged returns an unknown-tool error (expected). One stale pending staging
+row `tg-307-SOCOTECO` (Cash) exists in HERMES_STAGING; it is harmless (Apply skips pending
+rows) and will be rejected once the tool is live. Open for me: Q4 (is "HSBC Live+" in Tarsi
+the same card as "HSBC Gold Visa" in MoneyMatter?), accept-all on the category rulings
+worksheet ("G2 Review / Uncategorized" is the top burn driver, ₱112k/mo).
 
 DO NEXT, in order, skipping what is done:
 1. Draft W-DAILY-BRIEF v2 as docs/ecosystem/drafts/W-DAILY-BRIEF-v2.json: add TickTick open

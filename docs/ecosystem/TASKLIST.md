@@ -4,6 +4,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈5 min total)
 
+**NEW (2026-09-02 night):** a third GAS push + deploy is pending for `reject_staged` +
+idempotency-key canonicalisation (96_HermesStaging.js, 95_HermesApi.js; tests green). Same two
+commands as step 1 with description `v28 session-43c: reject_staged + key canonicalisation`.
+Then in Telegram tell Hermis "discard the SOCOTECO capture tg-307-SOCOTECO" to clear the stale
+pending row (or approve it again — canonical keys now dedupe both rows to `tg-307`).
+
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
    needed for the cache-fingerprint + essential-prefix follow-up (commit on the Hermes
