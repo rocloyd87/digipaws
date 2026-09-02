@@ -27,14 +27,18 @@ the claimed-write gap for real.
    `/exec`: `get_kpis.freshness.fingerprint` = `v4…`, `monthPace` and `recurringDue30d` present
    (recurring due ≤30 d: ₱5,126.07 across 4 charges); approve/reject skip rejected rows.
 
-2. **Telegram, after the deploy** (each one is a deterministic route, no LLM):
-   - `/pending` → 📋 PENDING card (only `tg-jollibee-20260822` left; the stale rows were discarded
-     from the desktop).
-   - `/sub` → 🔁 SUBSCRIPTIONS card from the ledger detector.
-   - `/remind test ping in 5m` → ⏰ REMINDER SET + event on rocloyd87@gmail.com (delete it after).
-   - **One fresh receipt photo** → card must quote `tg-<that message id>`; then `approve tg-<id>`
-     → ✅ APPROVED. If the date on the receipt is misread, the card asks "Is the date … right?"
-     instead of staging. Report the exec ids.
+2. **Telegram tests (Lloyd opened Telegram web in the browser pane; the agent drove it):**
+   - ~~`/pending`~~ **PASSED** (exec 20945, 15 nodes, 4.7 s, no agent) → one row `tg-jollibee-20260822`.
+   - ~~`/sub`~~ **PASSED** (exec 20946, 16 nodes, 9 s) → 🔁 SUBSCRIPTIONS card, stale flags shown.
+   - `/remind test ping in 5m` → parsed correctly (exec 20948) but **Calendar insert 403 Forbidden**:
+     the `GCalendar - Rocloyd87@gmail.com` credential reads (brief) but its consent is read-only;
+     the other Calendar credential is a different Google account (404). **Lloyd:** n8n →
+     Credentials → `GCalendar - Rocloyd87@gmail.com` → Reconnect, accept the full calendar scope,
+     then re-send `/remind test ping in 5m` (delete the event afterwards).
+   - **One fresh receipt photo** (phone) → the card must quote `tg-<that message id>`; then
+     `approve tg-<id>` → ✅ APPROVED via the deterministic route. Still owed.
+   - **Decide `tg-jollibee-150`** (APPROVED test row, Cash −150, 2026-08-22): reply here and the
+     agent discards it with `reject_staged` if it was not a real meal.
 3. **Chowking receipt by hand** (−564 · Chowking Gaisano Mall Bajada · 2026-09-02 · D2). Name the
    card account first, then run (replace `ACCOUNT`):
 

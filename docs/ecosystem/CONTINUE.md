@@ -46,7 +46,9 @@ STATE (2026-09-02 night, verified on the machine):
 - n8n LIVE: W-HERMES 91 nodes — deterministic approve|reject tg-N / bare tg-N / /pending route,
   /sub, /remind, list_staged tool, prompt rule 6 + Grounding Guard v2 (claimed-write check);
   WF-RAG-SEARCH empty query → empty result; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at
-  12:30 + 19:30. None of the new routes has had a live Telegram test yet.
+  12:30 + 19:30. Live-tested: /pending (exec 20945) and /sub (20946) PASS on the deterministic
+  route; /remind parses but Calendar insert is 403 until Lloyd reconnects the rocloyd87 Calendar
+  credential with full scope; the fresh-receipt test is still owed.
 - The session-44 "grounding failure" was a misquote (README C9) — the real trace is in
   sessions/2026-09-02-session-45.md §1.
 - Not built (credentials missing): /todo (TickTick OAuth2), /cascade (Airbnb iCal), brief-v2
