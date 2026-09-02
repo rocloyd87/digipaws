@@ -121,8 +121,11 @@ only — it does not touch the DigiPaws app code that shares this repository.
 - **B — DONE this session:** n8n audited, Hermes fixed, W-BACKUP-N8N verified existing.
 - **C — W-INBOX-FILE:** blocked on **Q1** (which vault is canonical for captured notes).
 - **D — Memory/RAG:** LIVE. Remaining: wire inbox-lane notes into the RAG lane per Q1.
-- **E — Daily 07:00 brief, command surface, Miniflux digest, nudges, FMP alerts:** next build
-  wave; `W-HERMES-NUDGE` and `W-HERMES-DIGEST` already exist — extend, don't duplicate.
+- **E — Proactive layer:** `W-DAILY-BRIEF` **LIVE** (07:00 PHT, first brief sent 2026-09-02);
+  command surface, Miniflux digest, nudges, FMP alerts still to build — `W-HERMES-NUDGE` and
+  `W-HERMES-DIGEST` already exist, extend, don't duplicate.
+- **Repo hygiene:** Release CI (the DigiPaws app's signing pipeline) no longer runs on docs
+  pushes and no longer fails on the fork's missing signing secrets (`25691d6`).
 - **F — Health pipeline, Uptime Kuma, monthly scorecard:** `WF-HEALTH` staging tools already
   exist in Hermes (get/stage/approve/reject_health); health-connect-webhook is the ingest gap.
 

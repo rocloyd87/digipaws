@@ -34,6 +34,7 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
 |---|---|---|
 | W-HERMES — Financial Assistant | `Diz990QbM3cZYCKp` | Telegram agent (single webhook) |
 | Subworkflow: Call HermesApi Tool | `AVsltr2l2KOIbSkT` | Shared tool → GAS bridge |
+| W-DAILY-BRIEF — 07:00 Morning Brief | `Cu6opCPfQPHJMKRJ` | 07:00 PHT brief (get_kpis + Calendar) → Telegram; hook `daily-brief-run` (added 2026-09-02) |
 | W-INBOX-FILE — Telegram Capture to Vault | `EDfBh8vqrQjthY7C` | Sub-workflow off W-HERMES: `/note`, photos, documents → Drive vault note + card (added 2026-09-02) |
 | W-DASH-SYNC — Nightly Alex to Budget-Tracker Push | `T8VMaXjqt3Cyh8F3` | 02:00 push + drift gate; 03:40 verifier; webhooks `dash-sync-run`, `verifier-run` |
 | W-BACKUP-N8N — Weekly Workflow Backup | `wvgRTsbYSOEUcIw3` | Sunday 03:00, GAS-sealed |

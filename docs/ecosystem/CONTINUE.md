@@ -34,10 +34,14 @@ B. W-INBOX-FILE v1 is LIVE (EDfBh8vqrQjthY7C, wired into W-HERMES). Trace my fir
    (Telegram Trigger must also listen to callback_query), undo = trash the Drive note, and
    index Drive Obsidian Vault/00 Inbox into RAG (extend W-HERMES-DOCS or a second Drive
    trigger). If I say LifeVault should be the target, verify livesync-bridge on the VPS first.
-C. Then build order E: W-DAILY-BRIEF 07:00 PHT reusing get_kpis + W-HERMES-DIGEST format;
-   command routing (/brief /spend /log /note /remind /todo /sub /networth /goals /cascade)
-   as pre-agent IF nodes; extend W-HERMES-NUDGE (do not rebuild). Miniflux only after the Pi
-   has headroom.
+C. Build order E, continued. DONE: W-DAILY-BRIEF (Cu6opCPfQPHJMKRJ, 07:00 PHT, hook
+   POST /webhook/daily-brief-run); /spend /networth /runway route to the /stats card. NEXT:
+   brief v2 (TickTick tasks — needs a TickTick token credential in n8n; MoneyMatter
+   subscriptions via the W-DASH-SYNC OAuth client; yesterday's spend); /remind → Google
+   Calendar (credential 4q1Dm9DBfArZD2sA exists), /todo → TickTick, /cascade → Cascade
+   status; extend W-HERMES-NUDGE (do not rebuild); Miniflux only after the Pi has headroom.
+   Data-quality first: "G2 Review / Uncategorized" is the top burn driver (₱112k/mo) — the
+   category-rulings backlog distorts every KPI; push Lloyd's accept-all on the worksheet.
 D. Apply the variance fixes only after my answers to Q2/Q3: GCash balance adjustment to 380.10
    if the app agrees; BPI USD adjustment to 0.31 (the $2.69 fee row ALREADY exists — never
    add another). Pair every manual MoneyMatter write with dashSyncMarkSynced.

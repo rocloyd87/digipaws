@@ -39,6 +39,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## B — Audit & fixes — DONE (session 43)
 
+- [x] **Release CI red on every push** (fork has no signing secrets; `Sign Fdroid Variant APKs`
+      failed after a green build). Fixed in `25691d6`: docs-only pushes no longer trigger it,
+      signing/scan/publish steps gated on `SIGNING_KEY`, unsigned APK uploaded instead.
+
 - [x] n8n instance audited: 19 workflows, Hermes config read, allowlist verified.
 - [x] W-BACKUP-N8N exists (weekly) — mobile draft marked superseded.
 - [x] Backup-filename glob: no defect (phone vs sheet export naming is by design).
@@ -72,11 +76,17 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 - [x] LifeVault → RAG nightly (`W-OBSIDIAN-INGEST`), `rag_search` journal recall proven.
 - [ ] After C: inbox-lane notes indexed the next night (no new tables).
 
-## E — Proactive layer — NEXT wave
+## E — Proactive layer — IN PROGRESS
 
-- [ ] `W-DAILY-BRIEF` 07:00 PHT: `get_kpis` (safe-to-spend, balances), subscriptions due ≤7 d
-      (MoneyMatter `get_upcoming_subscription_payments`), Calendar today, TickTick open tasks,
-      yesterday's spend (`spend_series`), news top 5 (after F9). Reuse `W-HERMES-DIGEST` format.
+- [x] `W-DAILY-BRIEF — 07:00 Morning Brief` (`Cu6opCPfQPHJMKRJ`) **LIVE 2026-09-02**: schedule
+      07:00 PHT + owner hook `POST /webhook/daily-brief-run`; get_kpis (safe-to-spend on the G2
+      basis, floor reserve, runway, liquid, burn + top drivers, budget left, recurring due ≤7 d,
+      kept, next income) + Google Calendar today → Telegram HTML. First brief sent (msg 304,
+      exec 20787). Dead sources are labelled, never fatal.
+- [ ] Brief v2: TickTick open tasks (needs a TickTick credential/token in n8n), MoneyMatter
+      subscriptions (needs the OAuth client W-DASH-SYNC uses), yesterday's spend, news top 5.
+- [ ] Data-quality flag from the first brief: top burn driver is **"G2 Review / Uncategorized"
+      ₱112k/mo** — the category worksheet backlog is now the biggest distortion in every KPI.
 - [ ] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade`
       (`/stats`, `/report` exist; route new ones in `Is Stats Command`-style IF nodes before the
       agent, one tool call each).
