@@ -64,3 +64,7 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
   Drive CSV `Alfred Shared State\statement_sync\ACCOUNT_BALANCES.csv`.
 - Sessions log to `alfred_build_log` (numbered) and to the Knowledge OS vault; the vault is the
   deeper record.
+- GitHub auth on the desktop: two GCM identities exist (`rocloyd87`, `cascadereservations-del`).
+  A global `url.https://rocloyd87@github.com/rocloyd87/.insteadOf` rewrite pins Alfred/Hermes
+  repos to `rocloyd87`; do not set `credential.useHttpPath` for github.com (it falls back to the
+  Cascade token and 403s). Set 2026-09-02 with Lloyd's authorization.
