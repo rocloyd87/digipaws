@@ -3,7 +3,16 @@ name: Release CI
 on:
   push:
     branches: [ "kt-rewrite" ]
+    # docs/ecosystem holds the Hermes/Alfred handoff docs; they never touch the app.
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
   workflow_dispatch:
+
+# This fork has no signing/publishing secrets. Build always; sign and publish
+# only when SIGNING_KEY exists, so a docs or app push never fails on signing.
+env:
+  HAS_SIGNING_KEY: ${{ secrets.SIGNING_KEY != '' }}
 
 jobs:
   build:
@@ -39,7 +48,15 @@ jobs:
       - name: Build Fdroid Release APK
         run: ./gradlew assembleFdroidRelease
 
+      - name: Upload Unsigned Fdroid Release APK
+        if: env.HAS_SIGNING_KEY != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: fdroid-release-apk-unsigned
+          path: app/build/outputs/apk/fdroid/release
+
       - name: Sign Fdroid Variant APKs
+        if: env.HAS_SIGNING_KEY == 'true'
         uses: r0adkll/sign-android-release@v1
         id: sign_app_fdroid
         with:
@@ -50,6 +67,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Get APK Info
+        if: env.HAS_SIGNING_KEY == 'true'
         id: apk_info
         run: |
           APK_PATH=${{ steps.sign_app_fdroid.outputs.signedReleaseFile }}
@@ -67,6 +85,7 @@ jobs:
           echo "commit_author=$COMMIT_AUTHOR" >> $GITHUB_OUTPUT
 
       - name: VirusTotal Scan
+        if: env.HAS_SIGNING_KEY == 'true'
         uses: crazy-max/ghaction-virustotal@v4
         id: vt
         with:
@@ -74,6 +93,7 @@ jobs:
           files: ${{ steps.apk_info.outputs.apk_path }}
 
       - name: Send Signed APK to Discord
+        if: env.HAS_SIGNING_KEY == 'true'
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_BETA_WEBHOOK }}
           VT_ANALYSIS: ${{ steps.vt.outputs.analysis }}
@@ -119,6 +139,7 @@ jobs:
             "$DISCORD_WEBHOOK"
 
       - name: Send Signed APK to Telegram
+        if: env.HAS_SIGNING_KEY == 'true'
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           VT_ANALYSIS: ${{ steps.vt.outputs.analysis }}
@@ -152,6 +173,7 @@ jobs:
             "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendDocument"
 
       - name: Upload Signed Fdroid Release APK
+        if: env.HAS_SIGNING_KEY == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: fdroid-release-apk
