@@ -66,7 +66,7 @@ shape: next action first, numbered steps, one concrete next step at the end.
 | 2 | `/remind /todo /cascade /sub` | **DRAFTED** `drafts/COMMANDS.md` (Code bodies tested locally with Luxon). |
 | 3 | Savings nudge + FMP alerts | **DRAFTED** `drafts/NUDGE-SAVINGS.md`, `drafts/W-FMP-ALERTS.json`. FMP quote endpoints are Premium-gated and PSE is not on FMP → EOD design. |
 | 4 | Miniflux feed URLs | **NOT VERIFIABLE from claude.ai** (egress blocked, second time). Table updated; `drafts/W-FEED-PROBE.json` checks them from n8n. |
-| 5 | Receipt photo during trip | **DONE, two defects found** (Chowking ₱564, 2026-09-02): inbox lane filed OK; receipt lane parsed the year as 2024; staging refused `tg-312` as "must be at least 8 characters" — a minLength-8 key validator contradicts prompt rule 6 and explains the padded keys in session 43. Logged as build-log row 61; fix list in TASKLIST §A. |
+| 5 | Receipt photo during trip | **DONE, two defects found** (Chowking ₱564, 2026-09-02): inbox lane filed OK; receipt lane parsed the year as 2024; staging refused `tg-312` as "must be at least 8 characters" — a minLength-8 key validator contradicts prompt rule 6 and explains the padded keys in session 43. Logged as build-log row 61; fix list in TASKLIST §A. Re-sent with `tg-00000312` → **staged, awaiting approval** (row 62). Side alert: WF-RAG-SEARCH exec 20847 "query is required" (agent called rag_search with an empty query) — noise, fix in TASKLIST §A. |
 
 If you continue this lane in a new chat: read `drafts/README.md` first, then keep logging as
 session 44 / branch "mobile". Branch in use: `claude/mobile-prompt-docs-4nkoff` (assigned by the

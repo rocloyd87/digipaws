@@ -22,6 +22,14 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
   check with pattern `^tg-\d+$` (or canonicalise before validating) in both places; keep rule 6.
   Until then, approving with the padded key is safe: the session-43 canonicaliser maps
   `tg-00000312` → `tg-312` once pushed. Build-log row 61.
+- **Follow-up:** Lloyd re-sent with the padded key + corrected date/card → Hermes "staged
+  tg-00000312, awaiting approval". Desktop: confirm ONE HERMES_STAGING row for this receipt, then
+  approve. Build-log row 62.
+- **New alert (W-ERR, same evening):** `WF-RAG-SEARCH — Vector Retrieval` exec 20847, node
+  `Validate Input`, *"query is required line 3"* — almost certainly the agent calling `rag_search`
+  with an empty query during the correction turn. Alert noise only. Desktop: read exec 20847; make
+  `query` required in the `rag_search` tool schema and have `Validate Input` return an empty
+  result / tool-error string instead of throwing, so a bad agent argument never pages W-ERR.
 
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
