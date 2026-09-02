@@ -1,50 +1,66 @@
-# Hermes Ecosystem — Task List (2026-09-02, session 43)
+# Hermes Ecosystem — Task List (2026-09-02 night, session 45)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
-## A — Lloyd's one-tap actions (≈5 min total)
+## A — Lloyd's one-tap actions (≈15 min total, session 45)
 
-**NEW (2026-09-02 night):** a third GAS push + deploy is pending for `reject_staged` +
-idempotency-key canonicalisation (96_HermesStaging.js, 95_HermesApi.js; tests green). Same two
-commands as step 1 with description `v28 session-43c: reject_staged + key canonicalisation`.
-Then in Telegram tell Hermis "discard the SOCOTECO capture tg-307-SOCOTECO" to clear the stale
-pending row (or approve it again — canonical keys now dedupe both rows to `tg-307`).
+**CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
+happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
+real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
+validator refused `tg-312` as "8+ chars"; the bare-key message went to the LLM, which made ten
+exploratory calls (three `rag_search` with an empty query → exec 20847 / W-ERR) and replied "I don't
+have the data for that capture"; `approve_staged` then correctly said NOT FOUND. All four real
+defects are fixed in code (GAS, push pending) and live (n8n); the Grounding Guard v2 now also closes
+the claimed-write gap for real.
 
-**FINDING (2026-09-02 evening, mobile s44, live receipt #2 — Chowking Gaisano Davao ₱564):**
-- Inbox lane OK (📥 FILED card, photo in `00 Inbox`).
-- Receipt lane parsed `₱-564, Chowking (Gaisano Mall), 2024-09-02, D2 Dining` — **year wrong**
-  (receipt says 09/02/2026). Add a date sanity guard: parsed date older than 90 days or in the
-  future → ask before staging.
-- Staging refused with *"ID tg-312 … must be at least 8 characters long"* and Hermes asked for
-  `tg-00000312`. So the `stage_expense` idempotency key has a **minLength 8** validator (n8n tool
-  schema or `96_HermesStaging.js`) that contradicts prompt rule 6 (exact `tg-<message_id>`) — this
-  is why the agent padded to `tg-00000307` in the SOCOTECO trace. Desktop: replace the length
-  check with pattern `^tg-\d+$` (or canonicalise before validating) in both places; keep rule 6.
-  Until then, approving with the padded key is safe: the session-43 canonicaliser maps
-  `tg-00000312` → `tg-312` once pushed. Build-log row 61.
-- **Follow-up:** Lloyd re-sent with the padded key + corrected date/card → Hermes "staged
-  tg-00000312, awaiting approval". **Approval then failed:** Hermes answered *"I don't have the
-  data for that capture"* — that is exec 20847 below: instead of `approve_staged(tg-00000312)`
-  the agent tried `rag_search` with an empty query and gave up. The row is still pending in
-  HERMES_STAGING (harmless; Apply skips pending). Desktop: confirm ONE row for this receipt and
-  approve it; then tighten prompt/tool descriptions so any "approve|reject tg-<key>" message goes
-  straight to `approve_staged`/`reject_staged` with that exact key (no search) — or better, add a
-  deterministic pre-agent IF route for it, like the `/stats` card. Build-log row 62.
-- **🔴 GROUNDING FAILURE (row 63):** the retry `approve_staged tg-00000312` returned *NOT FOUND*,
-  and the Drive text export of the Alfred sheet confirms **no row for 312 exists anywhere** —
-  HERMES_STAGING holds only tg-00000284/285, tg-287-receipt (pending), tg-307-SOCOTECO (pending),
-  tg-00000307 (approved) and two Jollibee test keys. Hermes' "staged tg-00000312, awaiting
-  approval" was a claimed write that never landed (guardrail 5). Desktop, first thing after the
-  clasp push: open the W-HERMES execution for that turn (~13:30–14:00 PHT), see whether
-  `stage_expense` was called, errored, or the bridge returned ok without writing; then make the
-  Grounding Guard require the tool's returned key in any "staged" card. Stage the Chowking receipt
-  by hand if still wanted: −564 · Chowking (Gaisano Mall Bajada, Davao) · 2026-09-02 · D2 ·
-  Mastercard/Visa (Lloyd names the card). Also note `tg-287-receipt` is a second stale pending row.
-- **New alert (W-ERR, same evening):** `WF-RAG-SEARCH — Vector Retrieval` exec 20847, node
-  `Validate Input`, *"query is required line 3"* — almost certainly the agent calling `rag_search`
-  with an empty query during the correction turn. Alert noise only. Desktop: read exec 20847; make
-  `query` required in the `rag_search` tool schema and have `Validate Input` return an empty
-  result / tool-error string instead of throwing, so a bad agent argument never pages W-ERR.
+1. **Push + deploy GAS v28** (agent is classifier-blocked). Fresh pull already made this session with
+   five files copied over it (93, 95, 96, 98, 127 — byte-equal to `hermes-wave-1-trust-94a9fb`
+   HEAD `ad00d50`). Run each block as its own command:
+
+   ```bash
+   cd "C:/Users/Lloyd/AppData/Local/Temp/claude/C--Users-Lloyd-Claude-Projects-CoPilot--claude-worktrees-hermes-ecosystem-s45-34431f/00af9446-d1e8-46d6-82c7-fd1c9ecaff25/scratchpad/gas-pull" && clasp push -f
+   ```
+
+   ```bash
+   clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v28 session-45: tg-key rule, date guard, canonical approve, list_staged, savings nudges, tarsi-over-partial"
+   ```
+
+   If that folder is gone: `clasp pull` into any empty folder with `.clasp.json` =
+   `{"scriptId":"1kGk9s94z2R1EbyoLpPuVEqQG3Nqjtx4FivZk7hlOidlr7KPP6mWT4L4F"}`, copy
+   `scripts/alex/93_Metrics.js 95_HermesApi.js 96_HermesStaging.js 98_HermesNudges.js 127_DashSync.js`
+   from the worktree over it, then the same two commands. Never push from the repo folder (it is
+   behind live: 90_RefAccounts, modules 128–141).
+2. **Telegram, after the deploy** (each one is a deterministic route, no LLM):
+   - `/pending` → 📋 PENDING card listing `tg-287` and `tg-307` (stale rows).
+   - `reject tg-307` and `reject tg-287` → 🗑 DISCARDED each; `/pending` → NOTHING PENDING.
+   - `/sub` → 🔁 SUBSCRIPTIONS card from the ledger detector.
+   - `/remind test ping in 5m` → ⏰ REMINDER SET + event on rocloyd87@gmail.com (delete it after).
+   - **One fresh receipt photo** → card must quote `tg-<that message id>`; then `approve tg-<id>`
+     → ✅ APPROVED. If the date on the receipt is misread, the card asks "Is the date … right?"
+     instead of staging. Report the exec ids.
+3. **Chowking receipt by hand** (−564 · Chowking Gaisano Mall Bajada · 2026-09-02 · D2). Name the
+   card account first, then run (replace `ACCOUNT`):
+
+   ```bash
+   curl -sS -X POST "https://script.google.com/macros/s/AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ/exec" -H "Content-Type: application/json" -d "{\"key\":\"<HERMES_SHARED_SECRET>\",\"tool\":\"stage_expense\",\"params\":{\"amount\":\"-564\",\"date\":\"2026-09-02\",\"payee\":\"Chowking Gaisano Mall Bajada\",\"category\":\"D2\",\"account\":\"ACCOUNT\",\"raw_input\":\"Chowking SI#08091072 09/02/2026 total due 564.00 Mastercard/Visa\",\"idempotency_key\":\"tg-312\",\"evidence_url\":\"https://drive.google.com/file/d/1VYYLqRpVGMUC7UFhjb2sQz243jRWdUdD/view?usp=drivesdk\"}}"
+   ```
+
+   Then in Telegram: `approve tg-312`. (The secret is the W-HERMES Config `gas_key`.)
+4. **Category rulings accept-all** (Apps Script editor, Run in this order; each logs a count):
+   `catAcceptAutofill` (135_CatAccept.js) → `categoryRulingsPreview` → `categoryRulingsApply`
+   (134_CategoryRulings.js) → `catAcceptPairApply` (135). Note: 135 encodes the 2026-09-01
+   worksheet, and many of its decisions keep rows in "G2 Review / Uncategorized" — it clears the
+   backlog of *undecided* rows; a second pass on the G2 bucket itself is still needed to move the
+   ₱112k/mo out of G2.
+5. **Credentials that unblock the remaining drafts** (n8n → Credentials):
+   - `TickTick OAuth2 - rocloyd87` (generic OAuth2 API; steps in `drafts/W-DAILY-BRIEF-v2.json`
+     Read Me §1) → then `/todo` route + brief tasks section.
+   - `FMP apikey` (Query Auth, parameter `apikey`) + create the `_HERMES_WATCHLIST` tab → then
+     import `drafts/W-FMP-ALERTS.json`.
+   - `Airbnb iCal - Cascade` (Query Auth, parameter `s`) → then `/cascade` route.
+6. **MoneyMatter:** say "OK detect subscriptions" and the next session runs
+   `detect_subscription_candidates` (finance:write) and lists the candidates for accept/dismiss.
+7. Q4 HSBC name ("HSBC Live+" = "HSBC Gold Visa"?) is still open.
 
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
@@ -138,7 +154,10 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
       `/spend` verified live 2026-09-02 11:04 (card in seconds, no LLM call).
 - [ ] Stats-card budget rows look implausible (B3 Household ₱74, E4 ₱82 "6-mo medians") —
       the `budgetOutlook` enrichment needs a look once categories are cleaned.
-- [ ] Brief v2: **DRAFTED (mobile s44, UNVERIFIED)** → `drafts/W-DAILY-BRIEF-v2.json`: TickTick
+- [x] Brief v2 partial (session 45): **"💸 YESTERDAY" spliced live** into `Cu6opCPfQPHJMKRJ`
+      (`Fetch Spend Series` → `Format Brief`), validated; first real run 07:00 2026-09-03. TickTick
+      tasks + MoneyMatter subscriptions sections still wait for the credential / seeded subscriptions.
+- [ ] Brief v2 remainder: **DRAFTED (mobile s44)** → `drafts/W-DAILY-BRIEF-v2.json`: TickTick
       open tasks (credential setup steps in the sticky), MoneyMatter subscriptions ≤7 d (connector
       read 2026-09-02: **0 subscriptions defined** — section self-hides until seeded), yesterday's
       spend via `spend_series` vs 30-day average. Desktop: import, test, splice into
@@ -147,28 +166,36 @@ pending row (or approve it again — canonical keys now dedupe both rows to `tg-
       ₱112k/mo** — the category worksheet backlog is now the biggest distortion in every KPI.
 - [ ] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade`
       (`/stats`, `/report` exist; route new ones in `Is Stats Command`-style IF nodes before the
-      agent, one tool call each). **`/remind /todo /cascade /sub` DRAFTED (mobile s44)** →
-      `drafts/COMMANDS.md` — IF + Code + tool + reply snippets, Code bodies tested locally.
+      agent, one tool call each). **Session 45: `/sub` and `/remind` BUILT live** in W-HERMES
+      (validated, awaiting one Telegram test each); `approve|reject tg-N`, bare `tg-N`, `/pending`
+      also deterministic now. **`/todo` and `/cascade` NOT built** — need the TickTick OAuth2 and
+      Airbnb iCal credentials (§A 5). Draft: `drafts/COMMANDS.md`.
 - [ ] Miniflux on the Pi (`miniflux-homelab.md`), then digest workflow (templates #6011/#7627).
-      Feed URLs still UNVERIFIED after two mobile attempts (egress blocked) — run
-      `drafts/W-FEED-PROBE.json` once from n8n and paste the verdicts into the doc.
-- [ ] Savings nudges: extend `W-HERMES-NUDGE` with MoneyMatter budget stats; paycheck-detection
-      snapshot pattern from hail2victors/n8n-Actual-Automation. **DRAFTED (mobile s44)** →
-      `drafts/NUDGE-SAVINGS.md`: 5 rules, thresholds, messages, get_kpis gaps, GAS rule sketch.
+      **Feed URLs VERIFIED 2026-09-02 (session 45, desktop probe):** all six primaries + Google News
+      are live RSS; two fallbacks 403. Table in `miniflux-homelab.md`. `W-FEED-PROBE.json` was not
+      imported (probe ran from the desktop instead).
+- [x] Savings nudges **CODED (session 45, `ad00d50`, live after v28):** `hermesNudgeSavingsRules_`
+      N1–N5 in `98_HermesNudges.js` with 12/12 tests, `get_kpis.monthPace` + `recurringDue30d`
+      in `93_Metrics.js`; `W-HERMES-NUDGE` schedule now 12:30 + 19:30 PHT. First N4 run only seeds
+      the milestone state. Draft: `drafts/NUDGE-SAVINGS.md`.
 - [ ] FMP price/breakout alerts (watchlist tab in the Alfred sheet; template #7701 pattern).
-      **DRAFTED (mobile s44)** → `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
+      **DRAFTED (mobile s44), NOT imported (session 45: needs the FMP apikey credential + the
+      `_HERMES_WATCHLIST` tab first, §A 5)** → `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
       endpoints are Premium-gated on this plan and PSE tickers are not on FMP, so the draft is
       end-of-day (FMP EOD light for US, GOOGLEFINANCE columns for PSE).
-- [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week.
+- [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week
+      (created 2026-08-31 → earliest 2026-09-07; untouched in session 45).
 
 ## F — LATER
 
 - [ ] Health Connect webhook → n8n → `stage_health` (tools exist).
 - [ ] Uptime Kuma on the Pi (n8n, MoneyMatter, HA → Telegram).
 - [ ] Monthly scorecard; Sunday briefing.
-- [ ] Wire real `essential_prefixes` (A1,A2,B1,B2,B3,C1,C2) into `goalsEssentialMedianApprox_`
-      (replaces the 0.9 approximation for the G2 floor).
-- [ ] Upstream account-feed fix so W-DASH-SYNC stops carrying the phantom −641k GCash line
-      (prefer statement/tarsi over COMPUTED_PARTIAL).
+- [x] ~~Wire real `essential_prefixes`~~ **DONE 2026-09-02 (`37bf844`):** `metricsKpis` uses
+      `metricsEssentialMedian_` over `GOAL_CONTRACT.essential_prefixes`; the 0.9 approximation is
+      only the fallback when no essential-coded rows exist.
+- [x] Upstream account-feed fix **CODED (session 45, `ad00d50`, live after v28):**
+      `dashSyncAccountsRead_` prefers `tarsi_balance` unless `coverage === 'FULL'`; the phantom
+      −641k GCash line disappears from the 02:00 report the first night after the deploy (verify).
 - [ ] Carried Alex items: 30 blank category rows; sheet script cleanup; HSBC September statement
       refresh; small-account confirmations; sheet link-sharing decision.

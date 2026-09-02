@@ -1,4 +1,16 @@
-# drafts/ — mobile-lane output awaiting desktop verification
+# drafts/ — mobile-lane output (session 44) and its desktop disposition (session 45)
+
+**Desktop status, 2026-09-02 night (session 45):**
+
+| Draft | Disposition |
+|---|---|
+| `W-DAILY-BRIEF-v2.json` | **Partially applied.** The `spend_series` "yesterday" source was spliced straight into the live brief (`Fetch Spend Series` → `Format Brief`, validated). TickTick tasks (no OAuth2 credential yet) and MoneyMatter subscriptions (0 defined) sections NOT applied. Not imported as a scratch workflow. |
+| `COMMANDS.md` | **`/sub` and `/remind` applied** live in W-HERMES (deterministic routes, validated, one Telegram test each still owed). `/todo` (TickTick credential) and `/cascade` (Airbnb iCal credential) NOT applied. |
+| `NUDGE-SAVINGS.md` | **Applied in GAS** (`hermesNudgeSavingsRules_`, `get_kpis.monthPace` / `recurringDue30d`, 12/12 tests, commit `ad00d50`) — live after the v28 push; `W-HERMES-NUDGE` schedule now 12:30 + 19:30. |
+| `W-FMP-ALERTS.json` | **Not imported** — needs the FMP `apikey` credential and the `_HERMES_WATCHLIST` tab first (TASKLIST §A 5). |
+| `W-FEED-PROBE.json` | **Superseded** — the probe was run from the desktop (open egress) instead; verdicts in `../miniflux-homelab.md`. Keep for a re-run from the Pi/VPS if ever needed. |
+
+Original mobile-lane notes follow.
 
 Everything here was written away from the desktop (claude.ai Code, no n8n / clasp / GAS test
 access). **Nothing in this folder has run on the machine.** The desktop session imports, tests,

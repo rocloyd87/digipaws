@@ -106,7 +106,10 @@ Two attempts, both blocked before reaching the sites:
 | 2026-09-01 (mobile, session 42) | claude.ai drafting sandbox | egress blocked — no URL fetched |
 | 2026-09-02 (mobile, session 44) | claude.ai Code sandbox | all 7 hosts refused by the egress proxy (`EGRESS_BLOCKED`, 403 at CONNECT) — no URL fetched |
 
-So every row below is still **UNVERIFIED**. Verify from a machine with open egress (the VPS or
+| 2026-09-02 night (desktop, session 45) | Lloyd's desktop, Python urllib with the Miniflux UA | **all seven primaries fetched and parsed as RSS**; two fallbacks return 403 (table below) |
+
+Verified from the desktop, not yet from the Pi (same public hosts; a difference there would be a
+Pi egress issue). The old note follows for history: verify from a machine with open egress (the VPS or
 the Pi) with either:
 
 1. `drafts/W-FEED-PROBE.json` — import into n8n, press *Run once*: it fetches every URL below plus
@@ -117,13 +120,13 @@ the Pi) with either:
 
 | Feed | URL | Status | If dead, try |
 |---|---|---|---|
-| BusinessWorld | https://www.bworldonline.com/feed/ | UNVERIFIED (WordPress default path) | https://www.bworldonline.com/rss/ |
-| Inquirer Business | https://business.inquirer.net/feed | UNVERIFIED (WordPress default path) | https://newsinfo.inquirer.net/feed (whole site) |
-| Philstar Business | https://www.philstar.com/rss/business | UNVERIFIED (Philstar's published pattern) | https://www.philstar.com/rss/headlines |
-| gCaptain | https://gcaptain.com/feed/ | UNVERIFIED (WordPress default path) | https://gcaptain.com/feed/?post_type=post |
-| Splash247 | https://splash247.com/feed/ | UNVERIFIED (WordPress default path) | https://splash247.com/rss |
-| Seatrade Maritime | https://www.seatrade-maritime.com/rss.xml | UNVERIFIED — least certain | https://www.seatrade-maritime.com/rss, else the RSS link in the site footer |
-| Google News RSS | news.google.com/rss/search?… | pattern is documented and stable; UNVERIFIED here | — |
+| BusinessWorld | https://www.bworldonline.com/feed/ | **OK 2026-09-02** — RSS, 30 items, latest 2026-09-02 (301 → https://bworldonline.com/feed/; use the bare host) | https://www.bworldonline.com/rss/ (also OK, same redirect) |
+| Inquirer Business | https://business.inquirer.net/feed | **OK 2026-09-02** — RSS, 40 items, latest 2026-09-02 | https://newsinfo.inquirer.net/feed (OK, 40 items) |
+| Philstar Business | https://www.philstar.com/rss/business | **OK 2026-09-02** — RSS, 20 items, latest 2026-09-02 10:00 PHT | https://www.philstar.com/rss/headlines (OK, 10 items) |
+| gCaptain | https://gcaptain.com/feed/ | **OK 2026-09-02** — RSS, 12 items, latest 2026-09-02 | https://gcaptain.com/feed/?post_type=post (OK) |
+| Splash247 | https://splash247.com/feed/ | **OK 2026-09-02** — RSS, 10 items, latest 2026-09-02 12:00 UTC | ~~https://splash247.com/rss~~ (HTTP 403) |
+| Seatrade Maritime | https://www.seatrade-maritime.com/rss.xml | **OK 2026-09-02** — RSS, 50 items, latest 2026-09-02 | ~~https://www.seatrade-maritime.com/rss~~ (HTTP 403) |
+| Google News RSS | https://news.google.com/rss/search?q=PSEi+OR+%22Philippine+Stock+Exchange%22&hl=en-PH&gl=PH&ceid=PH:en | **OK 2026-09-02** — RSS, 100 items (PH top stories feed also OK, 38 items) | — |
 
 Miniflux itself is the last resort: import the OPML and it flags unreachable feeds on its first
 refresh (Feeds → filter "with errors").

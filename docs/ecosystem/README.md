@@ -1,4 +1,4 @@
-# Hermes Ecosystem — Master Handoff (2026-09-02, session 43)
+# Hermes Ecosystem — Master Handoff (2026-09-02 night, session 45)
 
 Master handoff for Lloyd's personal-OS project (Hermes / Alfred / Alex / Tarsi / MoneyMatter),
 versioned here so any worktree or session can reconstruct the state. This folder is documentation
@@ -13,7 +13,9 @@ only — it does not touch the DigiPaws app code that shares this repository.
 | `TECH_STACK.md` | Every component, ID, integration and convention (no secrets) |
 | `TASKLIST.md` | The live checklist: done / blocked-on-Lloyd / next, by build order |
 | `CONTINUE.md` | Paste-ready prompt for the next session |
-| `sessions/2026-09-02-session-43.md` | Evidence trail for everything asserted here |
+| `sessions/2026-09-02-session-43.md` | Evidence trail for session 43 |
+| `sessions/2026-09-02-session-45.md` | Evidence trail for session 45 (desktop, night) — read this for the current state of Hermes |
+| `drafts/` | Mobile-lane drafts (session 44); `drafts/README.md` says which were applied in session 45 |
 | `variance-forensics-2026-09-01.md` | Mobile-session forensics (read with the corrections below) |
 | `miniflux-homelab.md` | Pi-sized Miniflux compose + OPML for the news digest (unbuilt) |
 | `n8n-drafts/` | Mobile-session drafts — see `n8n-drafts/README.md` for which are superseded |
@@ -33,14 +35,37 @@ only — it does not touch the DigiPaws app code that shares this repository.
 |---|---|
 | MoneyMatter (budget.rocloyd.com) | TRUTH ledger, 29 accounts. MCP connector **works from the desktop session** (`get_accounts`, `search_transactions`, `delete_transaction` all exercised). 8 evidenced accounts EXACT vs BALANCE_CONTROL. |
 | Tarsi (phone) | Re-import of `tarsi-backup-alex-20260901-131025.json` **confirmed by Lloyd 2026-09-02**. Phone exports are named `tarsi-backup-<stamp>.json` **by design** — see correction C2. |
-| Hermes (n8n `W-HERMES`, `Diz990QbM3cZYCKp`) | v1 live, 70 nodes, Gemini `gemini-3-flash-preview`, 30 tools via `Subworkflow: Call HermesApi Tool` (`AVsltr2l2KOIbSkT`) → GAS `95_HermesApi.js`. **Two bugs fixed this session** (see Hermes fixes). |
+| Hermes (n8n `W-HERMES`, `Diz990QbM3cZYCKp`) | v1 live, **91 nodes** (session 45), Gemini `gemini-3-flash-preview`, 32 tools via `Subworkflow: Call HermesApi Tool` (`AVsltr2l2KOIbSkT`) → GAS `95_HermesApi.js`. Deterministic pre-agent routes: `/stats /spend /networth /runway /report`, `/note`, `route/skip` rulings, **`approve|reject tg-N`, bare `tg-N`, `/pending`, `/sub`, `/remind`** (session 45). Grounding Guard v2 blocks claimed writes. |
 | n8n (n8n.rocloyd.com, VPS 46.62.229.128) | 19 active workflows (full list in `TECH_STACK.md`). Reachable from the desktop via the n8n MCP — the "n8n credentials" blocker of session 42 does not apply on desktop. |
-| Alfred sheet + GAS (Lloyd Transactions, 120 modules) | Live. Web-app deployment pinned at **@24** (`AKfycbw9t20…`); modules 128–141 + the session-43 metrics fix need a deploy repoint to serve through `/exec`. |
+| Alfred sheet + GAS (Lloyd Transactions, 120 modules) | Live at **@27** (`v27 session-43b`). **v28 pending Lloyd** (TASKLIST §A 1): tg-key rule, date guard, canonical approve, `list_staged`, savings nudges, tarsi-over-partial DashSync. Until then `reject_staged` / `list_staged` answer "NOT DEPLOYED". |
 | Supabase Alfred (`fbtqqrpeiwhbxxkpyzdt`) | pgvector RAG store LIVE (`rag_documents`/`rag_chunks`/`rag_ingest_runs`), `alfred_build_log`, cc_* pipeline, Alex projection tables, Metabase. Never create parallel `hermes_*` tables. |
 | Notes / RAG | **Already built** (D-100, R8 closed 2026-08-31): Obsidian **LifeVault** ↔ Self-hosted LiveSync (CouchDB on VPS) → plain-file mirror → `W-OBSIDIAN-INGEST` nightly 02:45 → `rag_search` in Hermes (journal recall trace-proven). The Drive "Obsidian Vault" PARA scaffold from 2026-09-01 is a **second, separate vault** — see open question Q1. |
 | Claude Routine | Weekly Investment & Goals Advisory `trig_01AoRH8tc7F7MrFpxHweejH8`, Mondays 00:00 UTC (08:00 PHT). |
 | Homelab (Orange Pi Zero2, 192.168.0.35) | HA 2025.8.1 + Pi-hole v6. Miniflux / Uptime Kuma still planned. |
 | Nightly gates | `W-DASH-SYNC` 02:00 (push + drift gate, mint >10k only) and 03:40 six-field verifier → Telegram. Drift Gate patched 2026-09-02 so a `computed_balance` target with non-FULL coverage is **reported but never minted** (D-106). |
+
+## Session 45 (2026-09-02 night, desktop) — what changed
+
+Full evidence in `sessions/2026-09-02-session-45.md`; one-tap list in `TASKLIST.md` §A.
+
+- **C9 — The session-44 "grounding failure" (build-log row 63) did not happen as recorded.** No
+  execution sent "staged tg-00000312, awaiting approval". The bare-key message went to the LLM,
+  which made ten exploratory calls (three empty `rag_search` → W-ERR) and said "I don't have the
+  data for that capture"; `approve_staged` then correctly said NOT FOUND. The four real defects
+  (minLength-8 validator vs rule 6, no tool discipline on a bare key, `rag_search` throwing on an
+  empty query, year misparse) are fixed; the claimed-write *gap* is closed by Grounding Guard v2.
+- GAS `be67932` + `ad00d50` (worktree `hermes-wave-1-trust-94a9fb`): `^tg-\d+$` key rule, 90-day /
+  future receipt-date guard (`confirm_date` override), canonical `approve_staged`, `list_staged`,
+  savings nudges N1–N5, `get_kpis.monthPace` / `recurringDue30d`, DashSync prefers tarsi over a
+  PARTIAL computed walk. `check:gas` 93/93. **Push + deploy v28 pending Lloyd.**
+- n8n live: WF-RAG-SEARCH empty query → empty result (no W-ERR); W-HERMES deterministic staging
+  route, `/sub`, `/remind`, `list_staged` tool, tightened tool descriptions + prompt rule 6,
+  Grounding Guard v2; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at 12:30 + 19:30.
+- Miniflux feed URLs verified from the desktop (all six + Google News live).
+- PR #2 merged into `kt-rewrite` (`447fdf7`). Drafts status: `drafts/README.md`.
+- Repo drift found: worktree `scripts/alex` is behind live for `90_RefAccounts.js` (10 vs 29
+  accounts) and lacks live-only modules 128–141; `127_DashSync.js` was re-synced from live. Push
+  GAS only from a fresh pull with the changed files copied over it.
 
 ## Corrections to the 2026-09-01 mobile handoff (all verified on the machine)
 

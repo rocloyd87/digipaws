@@ -1,4 +1,4 @@
-# Hermes Ecosystem — Tech Stack & IDs (2026-09-02)
+# Hermes Ecosystem — Tech Stack & IDs (2026-09-02, session 45)
 
 No secrets here. Secrets live in n8n credentials, GAS Script Properties, and `.env` files.
 
@@ -14,9 +14,9 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
 |---|---|---|
 | Chat surface | Telegram Bot API via n8n Telegram Trigger (ONE webhook per bot) | Bot `@Alexander_Hermis_Bot`; owner chat id in `Config` node |
 | Orchestration | n8n (self-hosted, VPS Hetzner 46.62.229.128, Cloudflare tunnel `n8n.rocloyd.com`); Watchtower + OmniRoute stacks | n8n MCP from desktop (`n8n-mcp`), API key credential `n8n - Alfred Alex Hermis API Key` |
-| Agent | n8n AI Agent (LangChain) + Google Gemini `models/gemini-3-flash-preview` (free tier, multimodal) | `W-HERMES — Financial Assistant` `Diz990QbM3cZYCKp` (70 nodes) |
-| Tools | `Subworkflow: Call HermesApi Tool` `AVsltr2l2KOIbSkT` → POST GAS web app `/exec` (`95_HermesApi.js` dispatcher); RAG tools direct to Postgres | 30 tools: get_kpis, get_goals, query_ledger, stage_expense, approve_staged, explain_month, remember/recall/forget, remember_payee, get_documents, update_document, get_attention, get_benchmarks, expedite, top_merchants, spend_series, subscriptions_audit, portfolio_review, dashboard_link, get_certs, get/stage/approve/reject_health, rag_search, rag_list_documents, rag_get_document, rag_query_rows |
-| Ledger engine | Google Sheets "Lloyd Transactions" + Apps Script (~120 modules, clasp 3.3) | Sheet `10YwN_15MYlGdZQgS1vO6uJgzCIKa8Ycd1Mu3IAZ7uw0`; script `1kGk9s94z2R1EbyoLpPuVEqQG3Nqjtx4FivZk7hlOidlr7KPP6mWT4L4F`; web-app deployment `AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ` (pinned @24 → repoint pending) |
+| Agent | n8n AI Agent (LangChain) + Google Gemini `models/gemini-3-flash-preview` (free tier, multimodal) | `W-HERMES — Financial Assistant` `Diz990QbM3cZYCKp` (91 nodes, session 45) |
+| Tools | `Subworkflow: Call HermesApi Tool` `AVsltr2l2KOIbSkT` → POST GAS web app `/exec` (`95_HermesApi.js` dispatcher); RAG tools direct to Postgres | 32 tools: get_kpis, get_goals, query_ledger, stage_expense, approve_staged, reject_staged, list_staged (v28), explain_month, remember/recall/forget, remember_payee, get_documents, update_document, get_attention, get_benchmarks, expedite, top_merchants, spend_series, subscriptions_audit, portfolio_review, dashboard_link, get_certs, get/stage/approve/reject_health, rag_search, rag_list_documents, rag_get_document, rag_query_rows |
+| Ledger engine | Google Sheets "Lloyd Transactions" + Apps Script (120 modules, clasp 3.3) | Sheet `10YwN_15MYlGdZQgS1vO6uJgzCIKa8Ycd1Mu3IAZ7uw0`; script `1kGk9s94z2R1EbyoLpPuVEqQG3Nqjtx4FivZk7hlOidlr7KPP6mWT4L4F`; web-app deployment `AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ` (@27 live; v28 pending) |
 | Truth ledger | MoneyMatter (budget.rocloyd.com) — REST + MCP connector (`6a4e16af…`) | 29 accounts; ids in `_DASH_SYNC_STATE` / BALANCE_CONTROL join |
 | Phone capture | Tarsi app (no API) — JSON backup round-trip via `40_TarsiSync.js` / `51_AlexExport.js` | Phone exports `tarsi-backup-<stamp>.json`; sheet exports `tarsi-backup-alex-<stamp>.json` |
 | Database | Supabase Alfred `fbtqqrpeiwhbxxkpyzdt` (ap-southeast-1, Postgres 17, pgvector 0.8) | `rag_documents`, `rag_chunks`, `rag_ingest_runs`, `alfred_build_log`, cc_*, alex_* projection tables; Metabase live |
@@ -42,7 +42,7 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
 | W-OBSIDIAN-INGEST — LifeVault to RAG Store | `mB00ab75osSH4p8E` | Nightly 02:45 |
 | WF-RAG-SEARCH — Vector Retrieval | `nmBkMnxF9psds0Nd` | rag_search backend |
 | W-HERMES-DOCS — Document Intake | `cRAd8WhX7mDzliBw` | Drive personal docs → RAG |
-| W-HERMES-NUDGE — Threshold Alerts | `vJpvLLNtSKsQ1dcL` | Nudges |
+| W-HERMES-NUDGE — Threshold Alerts | `vJpvLLNtSKsQ1dcL` | Nudges, 12:30 + 19:30 PHT (savings rules N1–N5 after v28) |
 | W-HERMES-DIGEST — Weekly Digest | `oI2aRXFBrfGjWLlb` | Weekly Telegram digest |
 | W-HERMES-ASSUMPTIONS — Monthly Recalibration | `IYIj4GaAumsDFnD0` | Goal contract recalibration |
 | W-SNAPSHOT-REFRESH — KPI Store | `GHnQn2MDIvxJgPRm` | KPI snapshot data table |
@@ -59,8 +59,15 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
 - Workflow naming `W-DOMAIN-ACTION`; GAS modules numbered `NNN_Name.js`; every GAS write goes
   through a `*Preview` → `*Apply` pair; Alex is the sole canonical writer to the sheet.
 - GAS deploys: `clasp push` from a **fresh throwaway pull** (never from the repo folder — it
-  deletes live-only files), then repoint the `/exec` deployment (`clasp deploy -i <id>`), which
-  is an owner action.
+  deletes live-only files 128–141 and would regress `90_RefAccounts.js` to 10 accounts), copying
+  only the changed modules over the pull, then repoint the `/exec` deployment
+  (`clasp deploy -i <id>`), which is an owner action.
+- n8n edits through the n8n MCP (`n8n_update_partial_workflow`) **publish immediately** on this
+  instance — `versionId === activeVersionId` right after each patch (verified 2026-09-02). There is
+  no separate "publish" step to remember, and no draft safety net either: validate first.
+- Hermes staging keys are exactly `tg-<telegram message id>` (`^tg-\d+$`), canonicalised server-side
+  (`tg-00000312` → `tg-312`). A capture dated > 90 days back or after tomorrow (Manila) is refused
+  with `date_out_of_range` until the owner confirms (`confirm_date=true`).
 - Owner balance evidence → BALANCE_CONTROL as zero-length-period rows, in BOTH the tab and the
   Drive CSV `Alfred Shared State\statement_sync\ACCOUNT_BALANCES.csv`.
 - Sessions log to `alfred_build_log` (numbered) and to the Knowledge OS vault; the vault is the
