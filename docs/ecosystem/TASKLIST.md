@@ -20,8 +20,8 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
    clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v25 session-43: safe-to-spend G2 basis + modules 128-141"
    ```
 
-2. **Delete the duplicate HENRICH row in MoneyMatter** (Cash, 2026-08-24, ₱410, the one WITHOUT
-   an `[alex:…]` tag — id `01a05bc6-d3e3-763a-a138-2467f9bf7126`). Cash then reads 6,036 = truth.
+2. ~~Delete the duplicate HENRICH row~~ **DONE 2026-09-02** (Lloyd approved in chat; agent deleted
+   `01a05bc6-d3e3-763a-a138-2467f9bf7126`; Cash verified 6,036 via `get_accounts`).
 3. **Test Hermes:** send one receipt photo (expect a one-line parsed row, no loop), then ask
    "safe to spend?" (after step 1: expect `NOT SAFE`, floor unfunded by ≈₱62,907, quoting
    `floorReserve` 464,127 — not −₱2.7M).
