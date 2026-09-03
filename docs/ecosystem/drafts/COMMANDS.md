@@ -504,3 +504,18 @@ would let `/sub` and the brief cross-check both.
 4. `/cascade` → card matches the Airbnb host calendar for today.
 5. `/sub` → card renders; compare against `subscriptions_audit` called through the agent.
 6. Add the commands in BotFather; note exec ids in `alfred_build_log`.
+
+## BotFather command list (session 46 — paste as one message after `/setcommands`, pick @Alexander_Hermis_Bot)
+
+Only routes that exist and are live are listed; `/todo` and `/cascade` are added when their credentials exist.
+
+```
+stats - Month-to-date stats card
+report - Weekly spending report
+pending - Captures waiting for your approve / reject
+sub - Subscriptions and recurring charges due
+remind - Set a Google Calendar reminder: /remind <what> <when>
+note - File a note into the vault: /note <text>
+```
+
+Approvals stay free-text (`approve tg-328`, `reject tg-333`, bare `tg-328`) so they need no entry.
