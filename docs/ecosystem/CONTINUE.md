@@ -50,9 +50,10 @@ STATE (2026-09-02 night, verified on the machine):
   WF-RAG-SEARCH empty query → empty result; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at
   12:30 + 19:30. Live-tested: /pending (20945), /sub (20946), receipt photo (20979, tg-328), bank-SMS capture
   (20995, tg-333, account via card_map) all PASS; /remind parses but Calendar insert is 403 (execs 20948,
-  21079 — still 403 after two reconnects; Google's access page shows Gmail scopes only, so the
-  Calendar grant never took. Fix = revoke rocloyd.com at myaccount.google.com/connections, then
-  Reconnect the GCalendar credential and tick both Calendar boxes; see TASKLIST §A 2). Pending staging rows: tg-328, tg-333.
+  21079). CORRECTED 2026-09-03 21:40: the brief's Calendar Today READ on the same credential is
+  also 403 (exec 20965, masked by continueRegularOutput) and the Google grant already carries the
+  full Calendar scope → the Google Calendar API is not enabled in the n8n GCP project
+  (884258367325). Fix = enable it in the Cloud console, then retest; see TASKLIST §A 2. Pending staging rows: tg-328, tg-333.
 - The session-44 "grounding failure" was a misquote (README C9) — the real trace is in
   sessions/2026-09-02-session-45.md §1.
 - Not built (credentials missing): /todo (TickTick OAuth2), /cascade (Airbnb iCal), brief-v2

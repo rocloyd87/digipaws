@@ -57,6 +57,13 @@ the claimed-write gap for real.
      Reconnect on `GCalendar - Rocloyd87@gmail.com` (fresh consent shows both Calendar boxes;
      tick both). Also confirm the Google Calendar API is enabled in the rocloyd.com GCP project.
      The `Gmail account` credential cannot be used: the node only accepts googleCalendarOAuth2Api.
+     **CORRECTION 21:40 PHT:** the brief's `Calendar Today` getAll on the SAME credential also
+     returns `Forbidden` (exec 20965, hidden by continueRegularOutput + alwaysOutputData), so this
+     is NOT a consent problem — the Google grant to the n8n project ("Untitled project", GCP
+     project 884258367325, granted 2025-10-14) already carries the full Calendar scope. Read AND
+     write 403 = **Google Calendar API not enabled in that project.** Fix (Lloyd, 1 min):
+     https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=884258367325
+     → Enable → then `/remind test ping in 5m`. Do NOT revoke anything.
    - ~~One fresh receipt photo~~ **PASSED 08:33** (TikTok order, exec 20979, key tg-328) — see 4b.
    - ~~Typed bank-SMS capture~~ **PASSED 10:02** (second attempt; the first, exec 20992, invented
      key `tg-1` and a May date because Build Text Prompt passed no message id / date — fixed live,
