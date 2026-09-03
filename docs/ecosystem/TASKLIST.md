@@ -24,6 +24,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   (copy `144` + `96` over a fresh pull), then in the editor: `categoryPass2BuildTab()` → read the
   HIGH/MED/none counts in the log → `catPass2AcceptHigh()` → `categoryPass2Preview()` →
   `categoryPass2Apply()` → re-read `get_kpis.monthPace.mtdUncategorized`.
+  **DONE 2026-09-04 05:46–05:57 PHT (v33 @33, 123 files from a fresh pull; agent drove the editor):**
+  `categoryPass2BuildTab` → `_ALEX_CategoryPass2` **421 rows: 16 HIGH (₱48,885.52), 4 MED, 401 no
+  evidence**; `catPass2AcceptHigh` {written 16}; `categoryPass2Apply` APPLY decided 16, no error;
+  re-run shows alreadyApplied 16 / pending 405. `hermesStagingInstallTrigger()` → one daily 01:30
+  PHT trigger. **Finding:** merchant-majority reaches only 16 of 421 G2 rows; the remaining 405 need
+  a DECISION by hand in `_ALEX_CategoryPass2` (col G, `EXPENSE:<label>` / `DEFER`) or a new signal.
 - **hermesStagingApply now schedulable:** `hermesStagingInstallTrigger()` (in 96, same v33) — one
   daily 01:30 PHT run before W-DASH-SYNC at 02:00. Run it once. Approve `tg-328` / `tg-333` first
   if you want them in (both are card accounts → they go `awaiting_statement`, not to Alex).
