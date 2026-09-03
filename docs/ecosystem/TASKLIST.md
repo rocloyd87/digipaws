@@ -27,16 +27,18 @@ the claimed-write gap for real.
    `/exec`: `get_kpis.freshness.fingerprint` = `v4…`, `monthPace` and `recurringDue30d` present
    (recurring due ≤30 d: ₱5,126.07 across 4 charges); approve/reject skip rejected rows.
 
-1c. **Push + deploy v31** (same pull dir; `90` and `96` copied over it): GoTyme registry account
+1c. **Push + deploy v31** (same pull dir; `90`, `96` and new `143` copied over it): GoTyme registry account
    (`GOTYME`, deposit, card 2334) and "a rejected staging key can be re-staged". One line:
 
    ```powershell
-   clasp push -f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v31 session-45c: GoTyme account; re-stage after reject"
+   clasp push -f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v31 session-45c: GoTyme account + evidence; re-stage after reject"
    ```
 
-   After it: GoTyme still needs a BALANCE_CONTROL evidence row (owner balance + date, tab and
-   `ACCOUNT_BALANCES.csv`) and a MoneyMatter account before W-DASH-SYNC can carry it — Lloyd
-   supplies the current GoTyme balance.
+   Then, in the Apps Script editor, **Run `ownerGotymeApply`** (143_OwnerGotyme.js): appends the
+   owner evidence row `GOTYME|2334|2026-09-03` (balance 0.00 as of 2026-09-03, per Lloyd) to the
+   ACCOUNT_BALANCES tab AND the Drive CSV; idempotent. Then create the **GoTyme** account in
+   MoneyMatter (budget.rocloyd.com → Accounts → deposit/checking, balance 0) so the nightly
+   W-DASH-SYNC can match it by name. Also add GoTyme to the Tarsi app if you want a tarsi leg.
 
 2. **Telegram tests (Lloyd opened Telegram web in the browser pane; the agent drove it):**
    - ~~`/pending`~~ **PASSED** (exec 20945, 15 nodes, 4.7 s, no agent) → one row `tg-jollibee-20260822`.
