@@ -63,6 +63,13 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   `_ALEX_CategoryPass2Clusters` col F:** e.g. `deposit to gsave account` → `COUNTER:CIMB Gsave`;
   InstaPay series → `EXPENSE:E1 Family Support & Repairs` if remittances, `COUNTER:<own>` if own,
   `DEFER` otherwise. Then `catPass2ClusterFill()` → `categoryPass2Preview()` → `categoryPass2Apply()`.
+- **06:26–06:33 — Google APIs + W-FMP-ALERTS:** Lloyd enabled the Sheets API in the console; the
+  agent then ran his `gcloud services enable` script on `navi-lloyd` (Workspace, Maps, AI, data
+  groups — all four operations succeeded; gcloud SDK 579 signed in as rocloyd87). W-FMP-ALERTS
+  manual test exec 21153 ran end to end and the workflow is now **ACTIVE** (05:45 / 15:45 PHT).
+  **But the US lane got `401 Invalid API KEY` from FMP** (Sheets read OK: AAPL gf_price 328.21).
+  **Lloyd:** open credential `FMP API` → parameter name must be exactly `apikey`, value = the key
+  on the FMP dashboard (free keys need the confirmation email). The PSE lane works regardless.
 
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
