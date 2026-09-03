@@ -50,6 +50,13 @@ the claimed-write gap for real.
      granted view-only. **Lloyd:** n8n → Credentials → `GCalendar - Rocloyd87@gmail.com` → Reconnect
      and on Google's consent page tick **every** Calendar checkbox (edit calendars + edit events),
      then `/remind test ping in 5m` (delete the event afterwards).
+     **21:02 PHT retest (exec 21079) STILL 403** after Lloyd re-consented; Google's
+     "rocloyd.com has this access" page lists only Gmail scopes, so the Calendar grant never
+     took. Google skips the checkbox screen on Reconnect when a grant already exists — the fix
+     is: https://myaccount.google.com/connections → **rocloyd.com → Remove access**, then n8n
+     Reconnect on `GCalendar - Rocloyd87@gmail.com` (fresh consent shows both Calendar boxes;
+     tick both). Also confirm the Google Calendar API is enabled in the rocloyd.com GCP project.
+     The `Gmail account` credential cannot be used: the node only accepts googleCalendarOAuth2Api.
    - ~~One fresh receipt photo~~ **PASSED 08:33** (TikTok order, exec 20979, key tg-328) — see 4b.
    - ~~Typed bank-SMS capture~~ **PASSED 10:02** (second attempt; the first, exec 20992, invented
      key `tg-1` and a May date because Build Text Prompt passed no message id / date — fixed live,
