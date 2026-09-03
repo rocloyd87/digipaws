@@ -51,6 +51,18 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   `_ALEX_CategoryPass2Clusters` col F → `catPass2ClusterFill()` → `categoryPass2Preview()` →
   `categoryPass2Apply()` (144). `hermesStagingMatchPreview()` (145) shows what the held captures
   would match.
+- **06:15–06:25 (v34 live, FMP credential created):** `_HERMES_WATCHLIST` created (4 seed rows);
+  FMP credential selected on `FMP EOD Light`; **test run FAILED at Read Watchlist: Forbidden → the
+  Google Sheets API is also disabled in NAVI-LLOYD.** Enable
+  https://console.cloud.google.com/apis/library/sheets.googleapis.com?project=499022057812 and say
+  so; the agent re-runs and activates. `categoryPass2ClustersBuildTab()` → **117 clusters over 405
+  rows, and the top five are transfers, not merchants:** instapay transfer transfer to (48 rows,
+  ₱518,687) · instapay transfer (27, ₱179,175) · deposit to gsave account (14, ₱177,500) · fund
+  transfer (7, ₱139,830) · manual balance adjustment (13, ₱116,455). 146 now accepts
+  `COUNTER:<own account>` (commit `00b72af`, needs a v35 push of 146). **Lloyd rules in
+  `_ALEX_CategoryPass2Clusters` col F:** e.g. `deposit to gsave account` → `COUNTER:CIMB Gsave`;
+  InstaPay series → `EXPENSE:E1 Family Support & Repairs` if remittances, `COUNTER:<own>` if own,
+  `DEFER` otherwise. Then `catPass2ClusterFill()` → `categoryPass2Preview()` → `categoryPass2Apply()`.
 
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
