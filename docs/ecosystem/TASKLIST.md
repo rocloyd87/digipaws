@@ -62,12 +62,15 @@ the claimed-write gap for real.
    ```
 
    Then in Telegram: `approve tg-312`. (The secret is the W-HERMES Config `gas_key`.)
-4. **Category rulings accept-all** (Apps Script editor, Run in this order; each logs a count):
-   `catAcceptAutofill` (135_CatAccept.js) → `categoryRulingsPreview` → `categoryRulingsApply`
-   (134_CategoryRulings.js) → `catAcceptPairApply` (135). Note: 135 encodes the 2026-09-01
-   worksheet, and many of its decisions keep rows in "G2 Review / Uncategorized" — it clears the
-   backlog of *undecided* rows; a second pass on the G2 bucket itself is still needed to move the
-   ₱112k/mo out of G2.
+4. ~~Category rulings accept-all~~ **ALREADY APPLIED — verified 2026-09-03 09:10–09:12** by running
+   the sequence in the editor: `catAcceptAutofill` {written 0, skipped 321} →
+   `categoryRulingsPreview` {decided 0, pending 30, alreadyApplied 321} → `catAcceptPairApply`
+   {fills 0, holds 0}. Only the 30 blank-category rows remain, with no suggestion. The ₱112k/mo
+   "G2 Review / Uncategorized" driver is therefore not a worksheet backlog: 135 ratified many rows
+   INTO G2. **Session 46:** build a second suggestion pass over rows currently in G2
+   (merchant-majority across the ledger + a manual worksheet for the remainder), then re-read
+   `get_kpis.monthPace.mtdUncategorized` and the brief's driver line.
+
 5. **Credentials that unblock the remaining drafts** (n8n → Credentials):
    - `TickTick OAuth2 - rocloyd87` (generic OAuth2 API; steps in `drafts/W-DAILY-BRIEF-v2.json`
      Read Me §1) → then `/todo` route + brief tasks section.

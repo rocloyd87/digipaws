@@ -70,9 +70,10 @@ B. Confirm the 12:30 / 19:30 nudge runs on 2026-09-03 did not error (first run o
    02:00 W-DASH-SYNC report (first after @28) no longer carries the −641k GCash drift line, and the
    07:00 brief shows the YESTERDAY line. Confirm the 07:00
    brief shows the YESTERDAY line. Confirm no W-ERR from WF-RAG-SEARCH.
-C. Data quality: check whether I ran the category accept-all (§A 4); if yes, re-read the
-   uncategorised share (get_kpis.monthPace.mtdUncategorized) and plan the second pass on the G2
-   bucket itself. If I said "OK detect subscriptions", run detect_subscription_candidates and
+C. Data quality: the 2026-09-01 accept-all is fully applied (verified 2026-09-03, 0 left). The
+   G2 driver needs a SECOND PASS over rows currently in G2 Review / Uncategorized: merchant-majority
+   suggestions across the ledger + a manual worksheet for the rest (134_CategoryRulings pattern),
+   preview → Lloyd accepts → apply; then re-read get_kpis.monthPace.mtdUncategorized. If I said "OK detect subscriptions", run detect_subscription_candidates and
    list candidates for me to accept/dismiss (writes need my OK per call) — note the 2026-09-02
    run found 0; only re-run if new recurring rows landed.
 D. If I created the credentials: build /todo and /cascade (drafts/COMMANDS.md §2–3), splice the
