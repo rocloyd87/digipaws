@@ -70,6 +70,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   **But the US lane got `401 Invalid API KEY` from FMP** (Sheets read OK: AAPL gf_price 328.21).
   **Lloyd:** open credential `FMP API` → parameter name must be exactly `apikey`, value = the key
   on the FMP dashboard (free keys need the confirmation email). The PSE lane works regardless.
+- **07:27 — W-FMP-ALERTS LIVE end to end, without FMP.** Every key (original, re-pasted,
+  regenerated) was rejected 401 by FMP itself (your own PowerShell call too), so the US lane now
+  reads the same GOOGLEFINANCE columns as the PSE lane (FMP nodes disabled, re-enable note on
+  `From Sheet Columns`). Test exec 21166: AAPL $328.21 above 320 fired → Telegram card (msg 346)
+  → write-back. **Lloyd:** edit or delete the seed row `AAPL above 320` in `_HERMES_WATCHLIST`
+  and add your real symbols/thresholds; FMP account issue is now FMP support's, not ours.
 
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
