@@ -80,6 +80,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   Calendar fix reached the brief; 💸 YESTERDAY ₱0 present; driver line still G2 ₱112,141 (the
   transfer clusters). Noted for later: `BUDGET LEFT ₱164,489 of ₱164,489` and `kept this month ₱39`.
 
+- **07:30–07:45 — Research watchlist LIVE (D-118).** `_HERMES_WATCHLIST` now holds VOO / QQQ /
+  SCHD / GLD (sheet lane), BTC / ETH / SOL (new **CoinGecko** lane, no key), BDO / ALI / ICT /
+  AREIT / SM (sheet lane, fires 15:45). Rows go in only through `W-WATCHLIST-UPSERT`
+  (`eQ9NlFCenQFvJ4d7`, manual) + `hermesWatchlistEnsure()`. Exec 21171 sent the first real card:
+  "📈 BTC $81,295 +5.4%" (msg 347). `Write Back` re-keyed on `row_number`. **Lloyd:** delete the
+  two AAPL rows (2–3) in the tab; the claude.ai FMP connector needs the regenerated key (or drop it).
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS

@@ -9,6 +9,7 @@
 | `NUDGE-SAVINGS.md` | **Applied in GAS** (`hermesNudgeSavingsRules_`, `get_kpis.monthPace` / `recurringDue30d`, 12/12 tests, commit `ad00d50`) — live after the v28 push; `W-HERMES-NUDGE` schedule now 12:30 + 19:30. |
 | `W-FMP-ALERTS.json` | **Imported INACTIVE** as `W-FMP-ALERTS — Price Alerts` (`X2bAv2WXOOZJ3pP6`) with GSheets + Telegram credentials set and the owner chat id filled; GAS `hermesWatchlistEnsure()` (142, v28) creates the tab. Lloyd: FMP `apikey` credential → select on `FMP EOD Light` → test-run → activate. |
 | `AWAITING-STATEMENT-MATCHER.md` | **Design only (session 46).** Enrich-only matcher for approved card captures held `awaiting_statement`; tests listed, two open questions for Lloyd. Not built. |
+| `W-WATCHLIST-UPSERT` (live, `eQ9NlFCenQFvJ4d7`) | **Created session 46.** Manual-run helper that appendOrUpdates `_HERMES_WATCHLIST` from a Code node; edit the rows there and re-run, then `hermesWatchlistEnsure()`. Matching is effectively by `symbol` only — delete stale rows by hand. |
 | `W-FEED-PROBE.json` | **Superseded** — the probe was run from the desktop (open egress) instead; verdicts in `../miniflux-homelab.md`. Keep for a re-run from the Pi/VPS if ever needed. |
 
 Original mobile-lane notes follow.
