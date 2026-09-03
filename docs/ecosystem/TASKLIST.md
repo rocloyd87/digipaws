@@ -86,6 +86,15 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   (`eQ9NlFCenQFvJ4d7`, manual) + `hermesWatchlistEnsure()`. Exec 21171 sent the first real card:
   "📈 BTC $81,295 +5.4%" (msg 347). `Write Back` re-keyed on `row_number`. **Lloyd:** delete the
   two AAPL rows (2–3) in the tab; the claude.ai FMP connector needs the regenerated key (or drop it).
+- **07:50–08:00 — deletions + Twelve Data.** AAPL rows 2–3 deleted (one-off Sheets delete step, helper
+  removed afterwards); `Write Back` keyed on `row_number` proven (exec 21174). Workflow renamed
+  **W-PRICE-ALERTS**; FMP nodes removed; US lane = `US Ids → Twelve Data Quote (batch) → From Twelve
+  Data`, with per-row GOOGLEFINANCE fallback (which carried the run: VOO 710.72 etc.; BTC +5.2% card
+  msg 348). **Twelve Data returned 401 "apikey parameter is incorrect or not specified"** although the
+  credential's Name is `apikey` — same wording as FMP. Test from PowerShell:
+  `Invoke-RestMethod "https://api.twelvedata.com/quote?symbol=VOO&apikey=PASTE_KEY"`. Rows → the n8n
+  Query Auth path is dropping the parameter (switch to a Header Auth credential `Authorization: apikey KEY`);
+  401 → the pasted Value is wrong (masked field ~48 chars vs a 32-char key).
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
