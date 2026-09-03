@@ -36,9 +36,8 @@ the claimed-write gap for real.
    clasp push -f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "v31 session-45c: GoTyme account + evidence; re-stage after reject"
    ```
 
-   Then, in the Apps Script editor, **Run `ownerGotymeApply`** (143_OwnerGotyme.js): appends the
-   owner evidence row `GOTYME|2334|2026-09-03` (balance 0.00 as of 2026-09-03, per Lloyd) to the
-   ACCOUNT_BALANCES tab AND the Drive CSV; idempotent. ~~Create the GoTyme account in MoneyMatter~~
+   ~~Run `ownerGotymeApply`~~ **DONE 2026-09-03 09:09** (agent-driven in the browser pane):
+   `{"balance_id":"GOTYME|2334|2026-09-03","tabAppended":true,"csvAppended":true}`. ~~Create the GoTyme account in MoneyMatter~~
    **DONE 2026-09-03 09:0x** through the signed-in web UI in the browser pane: `GoTyme`, Saving
    account, PHP, balance 0, id `01a064cb-0d24-72e8-a823-6acb65c3e3df` (verified with get_accounts;
    30 accounts now). Also add GoTyme to the Tarsi app if you want a tarsi leg.
