@@ -4,6 +4,34 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
 
+**SESSION 46 (2026-09-03 night) — what changed, what is yours:**
+
+- **/remind 403 — ROOT CAUSE FOUND (corrects the session-45 correction).** The n8n Google OAuth
+  client (Client ID prefix `499022057812`, read off `GCalendar - Rocloyd87@gmail.com` in the n8n
+  UI) lives in GCP project **NAVI-LLOYD**, where the Google Calendar API is **not enabled** (the
+  console shows the Enable button). Project 884258367325 is one you cannot open ("You need
+  additional access"), and Alfred-Financial-Tower (API enabled, zero traffic) is unrelated.
+  Retest 21:36 PHT (exec 21083, agent-sent) still Forbidden; nothing was created.
+  **Lloyd (1 min):** https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=499022057812
+  → Enable → `/remind test ping in 5m` → delete the event. The 07:00 brief's Calendar Today
+  node starts returning events on the same fix.
+- **G2 second pass built, not run** (`144_CategoryPass2.js`, commit `880a271` on the Hermes
+  worktree, 10/10 checks, suite 94/94). In-sheet merchant-majority (n≥2, share≥0.8; HIGH from n≥3)
+  then 119's business-type routes; marketplaces get no suggestion. **Lloyd:** push + deploy v33
+  (copy `144` + `96` over a fresh pull), then in the editor: `categoryPass2BuildTab()` → read the
+  HIGH/MED/none counts in the log → `catPass2AcceptHigh()` → `categoryPass2Preview()` →
+  `categoryPass2Apply()` → re-read `get_kpis.monthPace.mtdUncategorized`.
+- **hermesStagingApply now schedulable:** `hermesStagingInstallTrigger()` (in 96, same v33) — one
+  daily 01:30 PHT run before W-DASH-SYNC at 02:00. Run it once. Approve `tg-328` / `tg-333` first
+  if you want them in (both are card accounts → they go `awaiting_statement`, not to Alex).
+- **awaiting_statement matcher: DESIGN ONLY** — `drafts/AWAITING-STATEMENT-MATCHER.md` (exact
+  amount + account, date window [−1, +5] d, ambiguity refused, enrich-only per D-017). Two
+  questions for you inside it.
+- **W-FMP-ALERTS still blocked:** no `FMP apikey` credential exists in n8n (credential list
+  checked). Create it, then say so — the rest is 5 minutes.
+- Overnight checks: nudges 12:30 (exec 21016) + 19:30 (21066) ran clean; W-DASH-SYNC 20933/20938
+  success; no W-ERR since 20848 (2026-09-02).
+
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
