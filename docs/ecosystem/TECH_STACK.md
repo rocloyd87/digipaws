@@ -51,11 +51,12 @@ Virtual cards map to the account they draw on. Source: Lloyd's card wallet scree
 | 9646 | Gcash Visa Card | GCash |
 | 57951 | Gcash Virtual Visa Card (Amex) | GCash |
 | 4647 | BPI Main Savings | BPI Main Savings (…4647) |
-| 4231 | HSBC Visa Cash Back | **UNMAPPED — no registry account; Lloyd to say** |
-| 2334 | GoTyme Visa Card | **UNMAPPED — no GoTyme account in the registry** |
-| 5049 | MAYA NANA Visa Card | **UNMAPPED — whose card / which wallet?** |
+| 4231 | HSBC Visa Cash Back | HSBC Gold Visa (cancelled card of the same account; old receipts only) |
+| 2334 | GoTyme Visa Card (debit) | GoTyme (new deposit account, registry `GOTYME`, v31) |
+| 5049 | MAYA NANA Visa Card | Maya eWallet |
 
-Unmapped digits make the capture card say "UNKNOWN CARD (…NNNN)" and ask. Durable home for this
+All 17 identifiers are mapped (Lloyd, 2026-09-03). Unmapped digits make the capture card say
+"UNKNOWN CARD (…NNNN)" and ask. Durable home for this
 table: a `card_last4` field on `ACCOUNT_REGISTRY` (90_RefAccounts.js) — not yet done; the n8n
 Config string is the live copy.
 
