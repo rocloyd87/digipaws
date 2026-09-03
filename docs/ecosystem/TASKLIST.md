@@ -40,6 +40,17 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   checked). Create it, then say so — the rest is 5 minutes.
 - Overnight checks: nudges 12:30 (exec 21016) + 19:30 (21066) ran clean; W-DASH-SYNC 20933/20938
   success; no W-ERR since 20848 (2026-09-02).
+- **/goal proceed (06:05–06:40):** Atlas artifact republished (session 46); OmniRoute test
+  workflow **deactivated** (quiet since 08-31, nothing deleted); W-HERMES `rag_query_rows`
+  expression fixed (validates clean). **Built, suite 96/96, NOT deployed:** `145_HermesStagingMatch.js`
+  (the awaiting_statement matcher, D-116, hooked into `hermesStagingApply`) and
+  `146_CategoryPass2Clusters.js` (one ruling per merchant for the 405 rows). BotFather list in
+  `drafts/COMMANDS.md`. **Lloyd next (2 min):** from the same gas-pull folder
+  `clasp push -f` then deploy with `-d "v34 session-46b: awaiting_statement matcher + cluster rulings"`;
+  editor: `categoryPass2ClustersBuildTab()` (146) → rule the clusters in
+  `_ALEX_CategoryPass2Clusters` col F → `catPass2ClusterFill()` → `categoryPass2Preview()` →
+  `categoryPass2Apply()` (144). `hermesStagingMatchPreview()` (145) shows what the held captures
+  would match.
 
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
