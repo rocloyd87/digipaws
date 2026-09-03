@@ -76,6 +76,9 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   `From Sheet Columns`). Test exec 21166: AAPL $328.21 above 320 fired → Telegram card (msg 346)
   → write-back. **Lloyd:** edit or delete the seed row `AAPL above 320` in `_HERMES_WATCHLIST`
   and add your real symbols/thresholds; FMP account issue is now FMP support's, not ours.
+- **07:00 brief (exec 21157) VERIFIED:** 📅 TODAY lists 8 Calendar events (cal_ok true) — the
+  Calendar fix reached the brief; 💸 YESTERDAY ₱0 present; driver line still G2 ₱112,141 (the
+  transfer clusters). Noted for later: `BUDGET LEFT ₱164,489 of ₱164,489` and `kept this month ₱39`.
 
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
