@@ -12,6 +12,9 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   console shows the Enable button). Project 884258367325 is one you cannot open ("You need
   additional access"), and Alfred-Financial-Tower (API enabled, zero traffic) is unrelated.
   Retest 21:36 PHT (exec 21083, agent-sent) still Forbidden; nothing was created.
+  **RESOLVED 2026-09-04 05:42 PHT:** Lloyd enabled the API; `/remind test ping in 5m` → exec 21146,
+  event `hp1eci9v8c1sv4n6g3bi4k4na4` created ("⏰ REMINDER SET · Fri 4 Sep 05:47"), then deleted.
+  Remaining: confirm the 07:00 brief Calendar Today node returns events.
   **Lloyd (1 min):** https://console.cloud.google.com/apis/library/calendar-json.googleapis.com?project=499022057812
   → Enable → `/remind test ping in 5m` → delete the event. The 07:00 brief's Calendar Today
   node starts returning events on the same fix.
