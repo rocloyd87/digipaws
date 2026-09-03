@@ -48,9 +48,9 @@ STATE (2026-09-02 night, verified on the machine):
 - n8n LIVE: W-HERMES 91 nodes — deterministic approve|reject tg-N / bare tg-N / /pending route,
   /sub, /remind, list_staged tool, prompt rule 6 + Grounding Guard v2 (claimed-write check);
   WF-RAG-SEARCH empty query → empty result; W-DAILY-BRIEF "💸 YESTERDAY" line; W-HERMES-NUDGE at
-  12:30 + 19:30. Live-tested: /pending (exec 20945) and /sub (20946) PASS on the deterministic
-  route; /remind parses but Calendar insert is 403 until Lloyd reconnects the rocloyd87 Calendar
-  credential with full scope; the fresh-receipt test is still owed.
+  12:30 + 19:30. Live-tested: /pending (20945), /sub (20946), receipt photo (20979, tg-328), bank-SMS capture
+  (20995, tg-333, account via card_map) all PASS; /remind parses but Calendar insert is 403 (consent
+  view-only; Lloyd reconnects ticking every Calendar checkbox). Pending staging rows: tg-328, tg-333.
 - The session-44 "grounding failure" was a misquote (README C9) — the real trace is in
   sessions/2026-09-02-session-45.md §1.
 - Not built (credentials missing): /todo (TickTick OAuth2), /cascade (Airbnb iCal), brief-v2

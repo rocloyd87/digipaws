@@ -45,15 +45,18 @@ the claimed-write gap for real.
 2. **Telegram tests (Lloyd opened Telegram web in the browser pane; the agent drove it):**
    - ~~`/pending`~~ **PASSED** (exec 20945, 15 nodes, 4.7 s, no agent) → one row `tg-jollibee-20260822`.
    - ~~`/sub`~~ **PASSED** (exec 20946, 16 nodes, 9 s) → 🔁 SUBSCRIPTIONS card, stale flags shown.
-   - `/remind test ping in 5m` → parsed correctly (exec 20948) but **Calendar insert 403 Forbidden**:
-     the `GCalendar - Rocloyd87@gmail.com` credential reads (brief) but its consent is read-only;
-     the other Calendar credential is a different Google account (404). **Lloyd:** n8n →
-     Credentials → `GCalendar - Rocloyd87@gmail.com` → Reconnect, accept the full calendar scope,
-     then re-send `/remind test ping in 5m` (delete the event afterwards).
-   - **One fresh receipt photo** (phone) → the card must quote `tg-<that message id>`; then
-     `approve tg-<id>` → ✅ APPROVED via the deterministic route. Still owed.
-   - **Decide `tg-jollibee-150`** (APPROVED test row, Cash −150, 2026-08-22): reply here and the
-     agent discards it with `reject_staged` if it was not a real meal.
+   - `/remind` → parses correctly (execs 20948, 10:03 retest) but **Calendar insert still 403** even
+     after the 07:00 reconnect, while the brief reads the same calendar fine → the consent was
+     granted view-only. **Lloyd:** n8n → Credentials → `GCalendar - Rocloyd87@gmail.com` → Reconnect
+     and on Google's consent page tick **every** Calendar checkbox (edit calendars + edit events),
+     then `/remind test ping in 5m` (delete the event afterwards).
+   - ~~One fresh receipt photo~~ **PASSED 08:33** (TikTok order, exec 20979, key tg-328) — see 4b.
+   - ~~Typed bank-SMS capture~~ **PASSED 10:02** (second attempt; the first, exec 20992, invented
+     key `tg-1` and a May date because Build Text Prompt passed no message id / date — fixed live,
+     and Guard v2 correctly withheld the bad card): −₱336 Cebu Pacific, T1, BPI Credit Card via the
+     card map, dated today, key `tg-333`, pending.
+   - ~~Decide `tg-jollibee-150`~~ Lloyd: real meal → stays APPROVED; its duplicate test row
+     `tg-jollibee-20260822` rejected. Pending rows now: `tg-328` (TikTok), `tg-333` (Cebu Pacific).
 3. **Chowking receipt by hand** (−564 · Chowking Gaisano Mall Bajada · 2026-09-02 · D2). Name the
    card account first, then run (replace `ACCOUNT`):
 
