@@ -27,7 +27,9 @@ the claimed-write gap for real.
    `/exec`: `get_kpis.freshness.fingerprint` = `v4…`, `monthPace` and `recurringDue30d` present
    (recurring due ≤30 d: ₱5,126.07 across 4 charges); approve/reject skip rejected rows.
 
-1c. **Push + deploy v31** (same pull dir; `90`, `96` and new `143` copied over it): GoTyme registry account
+1c. ~~Push + deploy v31~~ **DONE 2026-09-03 08:57 PHT as @32** (verified by a fresh pull: GoTyme in the
+   registry, rejected rows re-stageable, 143 present). Remaining GoTyme steps below still owed.
+   Original instructions kept for reference: **Push + deploy v31** (same pull dir; `90`, `96` and new `143` copied over it): GoTyme registry account
    (`GOTYME`, deposit, card 2334) and "a rejected staging key can be re-staged". One line:
 
    ```powershell

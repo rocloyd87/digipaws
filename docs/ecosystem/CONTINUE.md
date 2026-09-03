@@ -38,7 +38,9 @@ ORIENT FIRST, in this order:
 3. Supabase fbtqqrpeiwhbxxkpyzdt: public.alfred_build_log rows 65+ (session 45). Log as session 46.
 
 STATE (2026-09-02 night, verified on the machine):
-- GAS is LIVE at @30 (2026-09-03 04:30 PHT): v28 + v29 fixes all served — list_staged, date guard,
+- GAS is LIVE at @32 (2026-09-03 08:57 PHT): v28/v29/v31 all served (GoTyme registry account,
+  rejected keys re-stageable, 143_OwnerGotyme evidence module — Lloyd still to Run ownerGotymeApply
+  once and create GoTyme in the MoneyMatter UI; the MM MCP has no create-account tool) — list_staged, date guard,
   key rule, reject_staged, canonical approve skipping rejected rows, get_kpis.monthPace +
   recurringDue30d (fingerprint v4). Stale staging rows 307-SOCOTECO/287/284/285 rejected; only
   tg-jollibee-20260822 pending; tg-jollibee-150 still APPROVED (test row — decide). @29 was a
