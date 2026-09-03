@@ -38,9 +38,10 @@ the claimed-write gap for real.
 
    Then, in the Apps Script editor, **Run `ownerGotymeApply`** (143_OwnerGotyme.js): appends the
    owner evidence row `GOTYME|2334|2026-09-03` (balance 0.00 as of 2026-09-03, per Lloyd) to the
-   ACCOUNT_BALANCES tab AND the Drive CSV; idempotent. Then create the **GoTyme** account in
-   MoneyMatter (budget.rocloyd.com → Accounts → deposit/checking, balance 0) so the nightly
-   W-DASH-SYNC can match it by name. Also add GoTyme to the Tarsi app if you want a tarsi leg.
+   ACCOUNT_BALANCES tab AND the Drive CSV; idempotent. ~~Create the GoTyme account in MoneyMatter~~
+   **DONE 2026-09-03 09:0x** through the signed-in web UI in the browser pane: `GoTyme`, Saving
+   account, PHP, balance 0, id `01a064cb-0d24-72e8-a823-6acb65c3e3df` (verified with get_accounts;
+   30 accounts now). Also add GoTyme to the Tarsi app if you want a tarsi leg.
 
 2. **Telegram tests (Lloyd opened Telegram web in the browser pane; the agent drove it):**
    - ~~`/pending`~~ **PASSED** (exec 20945, 15 nodes, 4.7 s, no agent) → one row `tg-jollibee-20260822`.
