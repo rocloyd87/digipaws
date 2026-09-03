@@ -28,6 +28,37 @@ verified; BALANCE_CONTROL is the evidence table) ← Tarsi (phone capture; JSON 
 | Repos | `rocloyd87/digipaws` `kt-rewrite` → `docs/ecosystem/` (this folder); CoPilot repo `C:\Users\Lloyd\Claude\Projects\CoPilot` (GAS source `scripts/alex`, Hermes worktree `hermes-wave-1-trust-94a9fb`, plans `ALFRED_V4_HERMES_PLAN.md`) | Local digipaws clone `C:\Users\Lloyd\Claude\Projects\digipaws` |
 | Memory | Knowledge OS vault `D:\ObsidianVault\20-projects\alfred-navigator\` (00-STATE, 01-FACTS, 02-DECISIONS, 04-HANDOFF, sessions/events) — captured via `kos-memory.mjs` | Separate from LifeVault |
 
+## Card identifiers → registered accounts (W-HERMES Config `card_map`, 2026-09-03)
+
+Hermes resolves the paying account of a receipt / order screenshot from the card's last 4 digits.
+Virtual cards map to the account they draw on. Source: Lloyd's card wallet screenshots, session 45.
+
+| Last 4 | Card as shown | Registered account (display name) |
+|---|---|---|
+| 1935 | BPI Mastercard | BPI Credit Card |
+| 9542 | BPI Visa Signature | BPI Credit Card (same account; 9542 replaced 1935) |
+| 7645 | BPI CHECKING Mastercard (debit) | BPI Checking |
+| 8017 | RCBC Hexagon Privilege Platinum | RCBC Hexagon MC Platinum |
+| 5745 | HSBC Visa Live+ | HSBC Gold Visa |
+| 2532 | (registry ref) | UnionBank Rewards Visa Platinum |
+| 9830 | UNIONBANK Rewards Visa Card | UnionBank Rewards Visa Platinum |
+| 2738 | UNIONBANK Online Virtual Credit Card | UnionBank Rewards Visa Platinum (virtual of the same account) |
+| 5717 | MAYA BLACK Visa Card | Maya Black |
+| 0746 | MAYA LANDERS Visa Card | Maya Landers Cashback Everywhere |
+| 8537 | MAYA Mastercard | Maya eWallet |
+| 1445 | MAYA Virtual Card | Maya eWallet |
+| 7307 | GCASH Mastercard | GCash |
+| 9646 | Gcash Visa Card | GCash |
+| 57951 | Gcash Virtual Visa Card (Amex) | GCash |
+| 4647 | BPI Main Savings | BPI Main Savings (…4647) |
+| 4231 | HSBC Visa Cash Back | **UNMAPPED — no registry account; Lloyd to say** |
+| 2334 | GoTyme Visa Card | **UNMAPPED — no GoTyme account in the registry** |
+| 5049 | MAYA NANA Visa Card | **UNMAPPED — whose card / which wallet?** |
+
+Unmapped digits make the capture card say "UNKNOWN CARD (…NNNN)" and ask. Durable home for this
+table: a `card_last4` field on `ACCOUNT_REGISTRY` (90_RefAccounts.js) — not yet done; the n8n
+Config string is the live copy.
+
 ## Active n8n workflows (19, verified 2026-09-02)
 
 | Workflow | ID | Role |
