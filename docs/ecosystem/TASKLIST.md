@@ -12,10 +12,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   disagreements, 8 expense/income institution-counters).
 - **159 split orders:** one order = two same-card AMAZON charges summing to the total (1.5 % tolerance);
   unmatched reason quotes the set window (-3..+10d). Preview on @70: 0/0, no ambiguity.
-- **Yours (2 min):** rulings for Calong Calong 23k, Bancnet P2M 807, POS Debit 455, Batch Invitation
-  1,000; keyboard gift (E1)?; the 12 reported counters if you want them paired.
-- **Next session:** apply the rulings (147 fill; the two 2024 rows need adding to the tab), watch the
-  06:30 run consume the confirmation legs once statements land.
+- **Rulings APPLIED 07:13 (174, @71-@73):** keyboard -> E1 (gift), Calong 23k noted as loaned out (G2,
+  DEFER), Bancnet / POS / Batch DEFER. Worksheet 0 pending / 22 deferred. 130 now clears a stale sub.
+- **Yours (optional):** the 12 reported counters if you want them paired.
+- **Next session:** watch the 06:30 run consume the confirmation legs once statements land.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
 
