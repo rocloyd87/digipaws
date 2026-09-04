@@ -23,6 +23,8 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 - Read-only n8n helper added: `W-G2-SET1-EVIDENCE` (`J8HmQo6kGPUw4LlK`). The auto-mode classifier
   blocked an n8n workflow that would have written worksheet DECISION cells, so the fill is GAS (147).
 
+- **13:02 — Set 1 evidence rows APPLIED** (v35 @38; fill 19 → preview decided 19 / errors 0 → apply decided 19, snapshot `20260904130234`; read-back exec 21223 confirms 18 counters + the Northfield sub-category). Remaining G2 spending: Jul 60 rows ₱81,520, Aug 45 rows ₱86,984; 110 transfer rows open. **Lloyd:** answer the Set 1 groups in the questionnaire session-47 section; check BALANCE_CONTROL after the 20:30 run (expect var 0.00 on every FULL account, as at 08:23).
+
 **SESSION 46 (2026-09-03 night) — what changed, what is yours:**
 
 - **/remind 403 — ROOT CAUSE FOUND (corrects the session-45 correction).** The n8n Google OAuth

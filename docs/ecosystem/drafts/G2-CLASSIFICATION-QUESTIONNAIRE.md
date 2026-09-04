@@ -125,3 +125,13 @@ rewrites those types.
   Cash In (TikTok BNPL 722.68 + 13,105.84; DragonPay 1,420; 500), "SAVINGS - CIMB" 28 Jun 25 ×3.
 
 ## Sets 2–5: unchanged, not yet presented. Set 5 answers can now use the `>` form directly.
+
+## Session 47, 13:02 PHT — Set 1 evidence rows APPLIED
+v35 live as @38. `set1EvidenceFillApply` {toWrite 19} → `categoryPass2Preview` {decided 19, pending 359,
+deferred 13, alreadyApplied 30, errors 0} → `categoryPass2Apply` APPLY decided 19, snapshot
+`20260904130234`. Read back (exec 21223): 18 counters set, txn_type still expense on all; the
+21,330 Northfield row is now `A1 Debt Service / Northfield Blk 4 Lot 1 and 3` — the first
+sub-category ever written by a ruling. Remaining G2/blank spending: 2026-07 = 60 rows ₱81,520,
+2026-08 = 45 rows ₱86,984 (lifetime ₱1.52M); 110 transfer-shaped rows still open = the groups
+above that are yours. BALANCE_CONTROL 08:23 (pre-apply) all FULL accounts var 0.00; the 20:30
+`alexBalanceScheduled` run is the post-apply re-check.
