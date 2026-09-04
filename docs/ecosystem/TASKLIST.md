@@ -1,6 +1,21 @@
-# Hermes Ecosystem — Task List (2026-09-04 evening, session 48)
+# Hermes Ecosystem — Task List (2026-09-05 morning, session 49)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 49 close (2026-09-05 07:00, GAS @70) - what changed, what is yours:** (`sessions/2026-09-05-session-49.md`)
+- **Balance gate PASSED twice** (06:21:50 and 06:49:58 after the write: var 0.00 on all 8 FULL accounts).
+- **Correlator audit:** the three 2026-09-04 decisions read back correctly by id; the retracted self-counter
+  now carries C2 from the buy-load rule; the 06:31 run logged 0 decisions. Found + fixed: the live run
+  dropped cardMatch/dayWindow/verdictFrom, so Amazon card matching had never run live (@69).
+- **173 counter-id backfill APPLIED:** 29 name-only legs now carry the paired leg's account id (BPI Main
+  Account), snapshot 20260905064146; 41 -> 12 name-only rows left, all 12 reported by design (4 name-vs-leg
+  disagreements, 8 expense/income institution-counters).
+- **159 split orders:** one order = two same-card AMAZON charges summing to the total (1.5 % tolerance);
+  unmatched reason quotes the set window (-3..+10d). Preview on @70: 0/0, no ambiguity.
+- **Yours (2 min):** rulings for Calong Calong 23k, Bancnet P2M 807, POS Debit 455, Batch Invitation
+  1,000; keyboard gift (E1)?; the 12 reported counters if you want them paired.
+- **Next session:** apply the rulings (147 fill; the two 2024 rows need adding to the tab), watch the
+  06:30 run consume the confirmation legs once statements land.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
 
