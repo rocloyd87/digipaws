@@ -27,6 +27,13 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   expences" plugs ≈230k → `DEFER` or `EXPENSE:E4 Capital & One-Offs`; Calong Calong 23k; Amazon /
   Taobao 15 rows); (d) `git push` of `claude/hermes-wave-1-trust-94a9fb` was refused for the agent
   (access rights) — push it from your shell.
+- **22:15 update (GAS @55):** Lelim closed (net-0 rows, balances verified), cluster 1 DEFER,
+  AUTO_APPLY on, Amazon 13 → B2 supplements, Credit-to-Cash 20 → A1 Cash Loan, buy-load 3 → C2,
+  Maya 35k leg paired. **Context mechanism live:** Hermes now asks "What was this for?" on
+  memo-less captures and stores your answer; the 12:30/19:30 nudge lists open memo-less
+  expenses; Telegram `rule: <payee> = <Category>` rulings reach open rows nightly. **Left for
+  you (25 rows):** 15 marketplace rows without a basket, 6 Payment to Merchant / Bills Payment,
+  Calong Calong 23k, 3 small — one cluster at a time in chat.
 - Known: 43 rows carry counter NAME without counter ID (source-merge EXPORT_HOLD legs) → a 133-style
   backfill next session.
 
