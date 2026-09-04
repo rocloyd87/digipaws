@@ -68,3 +68,60 @@ TikTok Shop (24 · 16,423) · Shopee (16 · 13,859) · Lazada (5 · 1,909) · Am
 
 ## SET 5 — merchants by business type — NOT YET PRESENTED (proposed sub-categories)
 Buy Load (65 · 12,464 + 3 stray) → `C2 Connectivity > Family Internet & Load - Bohol` (confirm) · cafés: Downtown Cafe 760, Native Kopi 662, Oona 580, Starbucks 575, Bos Coffee 375, Coffee Bar 140 → `B1 > Drinks & Coffee` · Jollibee 648 → `B1 > Dining Out` · Robinsons Supt 634, Gaisano S/M 2,566, Gaisano Dep 5,380 → `B1 > Groceries` (family or personal?) · Watsons 590 → `B2 > Personal Meds & Pharmacy` · Citihardware ×3 3,670, Wilcon 4,386, Handyman 1,507 → `E1 > Hardware & Repairs` · Daiso 490, Muji 365, Mumuso 558, RDS 879, Rob Dept 329, R AND C 3,300, KCC 3,420 → `D2 > Personal Effects` or `B3 > Household Supplies` (ask) · Google One 285 → `C3 > Cloud Storage` · YouTube ×2 570 → `C3 > Media & Streaming` · Hetzner 643, Google Tacit Dynamics 470 → `C3 > Ai & Productivity Tools` · PAL tickets 7,432, Pal Airy 404, Booking hotel 1,915 → `D1 > Airfare` / `E3 Contract travel`? · Dubai Duty Free 102, Seajoy SG 221, PP*CODE SG 100 → `D2 > Personal Effects` · Interest (RCBC card) 3 · 1,326 → `G1 > Card Fees & Interest` · withholding tax / tax withheld / debit memo / partner merchant fee (~50) → `G1 > Bank Transfer Fees` · POS Debit 455, Interest unaccounted 22 → `DEFER`.
+
+---
+
+# Session 47 (2026-09-04 desktop) — state after the classification map
+
+**Read first:** the classification map artifact (Alex Classification Map,
+https://claude.ai/code/artifact/cb406300-94db-48e8-b3b9-5c01a0ae9c4c): every capture path,
+where G2/blank is produced, the eleven category memories, and the one-rulings-ledger proposal.
+
+## Grammar: sub-categories are now writable (commit 35a6231, NOT yet deployed)
+`EXPENSE:<Category Label> > <Subcategory Label>` is accepted by 130 (writes
+`subcategory_id/label` next to the category) and by 146 (cluster validator). The pair is
+validated against `CAT_SUBCATEGORIES` (21); wrong parent or unknown sub is an error, never a
+guess; case/spacing-insensitive; canonical labels written. Plain `EXPENSE:<Category>` unchanged.
+Suite 98/98. **Lloyd:** copy `130`, `146`, `147` over a fresh pull → `clasp push -f` → deploy
+`-d "v35 session-47: sub-category grammar + Set 1 evidence fill"`.
+
+## Set 1 — what the ledger itself already answers (module 147, commit pending push)
+Read-only helper `W-G2-SET1-EVIDENCE` (`J8HmQo6kGPUw4LlK`, exec 21216) paired every
+transfer-shaped G2 outflow (129 rows) against opposite legs at the exact amount within ±5 days
+on another own account. Result: **8 paired, 121 unpaired.** The odd-centavo hypothesis
+(card-statement settlements) did NOT pair — no card-side leg at those amounts exists in the
+ledger, so those stay Lloyd's. Settled by evidence and written by `set1EvidenceFillApply()`
+(147; worksheet DECISION only, then `categoryPass2Preview()` → `categoryPass2Apply()`):
+
+| Rows | Decision | Evidence |
+|---|---|---|
+| 2026-04-23 20,000 | `COUNTER:CIMB DragonFi Save` | 117: CIMB history names ROCLOYD PINOS LIGASON |
+| 2026-03-27 30,000 · 04-13 20,000 · 04-29 20,000 | `COUNTER:DragonFi Cash` | 117: investment-app deposit history (2026-08-06 screenshot) |
+| PESONet 1,000 2025-10-17 · 500 11-24 · 1,000 12-02 · 2,000 2026-07-21 | `COUNTER:GCash eWallet` | GCash side already transfer, counter=BPI Main, same amount same/next day |
+| Scheduled Transfer 1,000 2026-05-28, 06-26 | `COUNTER:BPI Direct Saveup` | 131 R1 (Lloyd, 2026-09-01) |
+| Fund Transfer 21,330 2026-06-05 | `EXPENSE:A1 Debt Service > Northfield Blk 4 Lot 1 and 3` | 117 route (Jenrix) |
+| Sent GCash → BPI …4647 (5 · 54,875) | `COUNTER:BPI Main Account` | 131 R2/R3: 4647 (VYBE) = BPI Main |
+| 3 stray "Deposit to GSave" (reference-prefixed notes) | `COUNTER:CIMB Gsave` | this morning's cluster ruling |
+
+Balance-neutral by construction: 52 sums `signed_amount` per account; a counter changes a
+balance only for txn_type transfer / credit_payment / loan_payment, and the grammar never
+rewrites those types.
+
+## Set 1 — still Lloyd's (answer format unchanged)
+- **New evidence on the GCash sends:** the endings are account keys, not random. `…7727` is
+  the ending on BOTH the Maya sends (9 · 86,485) and the GrabPay sends (4 · 4,910) → it is your
+  mobile number, so both wallets are your own: proposed `COUNTER:Maya eWallet` and
+  **`COUNTER:Grab Pay`** (session 46 had proposed D1 Transport; Grab Pay is a registry account).
+  `…5788` also appears as a SENDER ("Received GCash from Union Bank … 5788") → own UB account:
+  `COUNTER:Union Bank Debit` (8 · 80,570). Odd ones left blank: Maya `…0677` (8,015, 2025-06-13)
+  and UB `…4112` (1,515, 2022-07-04). Say "confirm" and 147 gets a second block.
+- **Maya −35,000 "fund transfer" 2025-05-06** is a four-row tangle (BPI +35,000 transfer
+  ctr=Maya; BPI −35,000 F3 ctr=Grab Pay; BPI +35,000 ELINK income 05-08). Proposed `DEFER` until
+  those four are looked at together; nothing in Set 1 depends on it.
+- BPI Main InstaPay/Fund Transfer, unpaired: 25,000 ×2 · 50,000 ×4 · 35,000 ×2 · 33,000 ·
+  10,000 ×2 · 9,000 ×2 · 7,000, the 18 odd-centavo amounts, and the small round series —
+  **your call, one line per group** (`lumps = …; odd-centavo = …; small round = …`).
+- Union Bank "ONLINE FUND TRANSFER … TO OWN" 250 monthly (which own account?), Partner Merchant
+  Cash In (TikTok BNPL 722.68 + 13,105.84; DragonPay 1,420; 500), "SAVINGS - CIMB" 28 Jun 25 ×3.
+
+## Sets 2–5: unchanged, not yet presented. Set 5 answers can now use the `>` form directly.

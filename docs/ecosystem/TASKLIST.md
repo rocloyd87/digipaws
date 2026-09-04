@@ -1,8 +1,27 @@
-# Hermes Ecosystem — Task List (2026-09-02 night, session 45)
+# Hermes Ecosystem — Task List (2026-09-04 day, session 47)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
+
+**SESSION 47 (2026-09-04 day) — what changed, what is yours:**
+
+- **Classification map published:** https://claude.ai/code/artifact/cb406300-94db-48e8-b3b9-5c01a0ae9c4c
+  (every capture path -> landing -> ledger -> consumers; the five G2/blank producers; the eleven
+  category memories; a one-rulings-ledger proposal that keeps the 130 apply core and D-119).
+- **Sub-category grammar built, suite 98/98, NOT deployed** (commits `35a6231` + `c3404bb` on the
+  Hermes worktree `hermes-wave-1-trust-94a9fb`): `EXPENSE:<Category> > <Subcategory>` in 130/146.
+  **Lloyd (2 min):** fresh pull, copy `130` `146` `147` over it, `clasp push -f`, deploy
+  `-d "v35 session-47: sub-category grammar + Set 1 evidence fill"`.
+- **Set 1: 19 rows settled by the ledger's own evidence** (117 external evidence, 2026-09-01
+  rulings R1/R2/R3, exact-amount pairs from read-only exec 21216). **Lloyd, after v35:** editor ->
+  `set1EvidenceFillPreview()` -> `set1EvidenceFillApply()` (147, worksheet only) ->
+  `categoryPass2Preview()` -> `categoryPass2Apply()` (ledger, snapshot-first). Then answer the
+  rest of Set 1 in `drafts/G2-CLASSIFICATION-QUESTIONNAIRE.md` (session-47 section): the
+  `...7727 / ...5788 = own wallets` confirmation, the Maya 35k DEFER, and the BPI lumps / odd-centavo
+  / small-round groups that no evidence settles.
+- Read-only n8n helper added: `W-G2-SET1-EVIDENCE` (`J8HmQo6kGPUw4LlK`). The auto-mode classifier
+  blocked an n8n workflow that would have written worksheet DECISION cells, so the fill is GAS (147).
 
 **SESSION 46 (2026-09-03 night) — what changed, what is yours:**
 
