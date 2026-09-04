@@ -1,4 +1,4 @@
-# CONTINUE - session 49 (written 2026-09-05 06:00 by session 48)
+# CONTINUE - session 49 (written 2026-09-05 07:30 by session 48)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
@@ -6,32 +6,44 @@ Paste into a new Claude Code chat (desktop, CoPilot repo):
 Continue the Hermes/Alex classification work as desktop session 49. Boot: read
 digipaws docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-04-session-48.md
 (all sections), TASKLIST.md "SESSION 48 close", and vault 04-HANDOFF-alfred items
-17-23 + D-125..D-127. Log as session 49 in alfred_build_log (session 48 = rows
-132-141). Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and
+17-25 + D-125..D-127. Log as session 49 in alfred_build_log (session 48 = rows
+132-142). Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and
 every later transaction must keep correlating; no ledger rebuilds, merges, row
-deletions, or amount/date/account edits; category/counter/label edits only through
-the snapshot-first engines (130/144/146, 147/148-style fills, one-function runners).
-Lloyd: "don't over-engineer - finish the main tasks, then refine".
+deletions, or amount/date/account edits; category/counter/label/note edits only
+through the snapshot-first engines (130/144/146, 147/148-style fills, one-function
+runners). Lloyd: "don't over-engineer - finish the main tasks, then refine".
 Do in order: (1) read BALANCE_CONTROL for the latest alexBalanceScheduled - any FULL
 account var != 0.00 -> restore latest snapshot and stop; (2) read _ALEX_Correlator
 and the 06:30 correlatorScheduled executions since 2026-09-05 (AUTO_APPLY is ON):
-verify every applied decision, retract with correlatorRetractSelfCounters if a
-self-counter slipped through; (3) 133-style backfill of the 43 rows carrying
-counter_account_name without counter_account_id (resolve via 90/150; preview ->
-apply, snapshot-first); (4) correlator: sum-of-charges matching for split Amazon
-orders (3,124.09 = 1,301.65 + 1,822.44) and a truthful unmatched reason that quotes
-the set's own day window; (5) the 4 pending worksheet rows need Lloyd's word
-(Calong Calong 23k, Bancnet P2M 807, POS Debit 455, Batch Invitation 1,000) - ask
-once, apply via a 147 fill; (6) read-back with W-S48-READ (ZKdZVe5HDoLU1y6Z, active)
-q=composition, log, update docs/vault, capture the memory event with --session <id>.
+verify every applied decision by reading the ledger rows back, retract with
+correlatorRetractSelfCounters if a self-counter slipped through; (3) 133-style
+backfill of the 43 rows carrying counter_account_name without counter_account_id
+(resolve via 90/150; preview -> apply, snapshot-first); (4) correlator:
+sum-of-charges matching for split Amazon orders (3,124.09 = 1,301.65 + 1,822.44)
+and an unmatched reason that quotes the set's own day window; (5) the 4 pending
+worksheet rows need Lloyd's word (Calong Calong 23k, Bancnet P2M 807, POS Debit
+455, Batch Invitation 1,000) - ask once, apply via a 147 fill; (6) read-back with
+W-S48-READ (ZKdZVe5HDoLU1y6Z, active) q=composition, log, update docs/vault,
+capture the memory event with --session <id>.
+Rules of engagement: every apply step is verified by reading the affected rows
+back by amount (a reported "decided N" is a preview count, not proof); GAS runs
+from the Apps Script editor tab in the app browser (select the file, pick the
+function, Run) - the agent runs them itself; commands handed to Lloyd are one
+per block, tagged powershell, no && / cd (use git -C <path>); the kos-memory
+capture is its own final Bash call with no version-control verbs in its text.
 Deploy from C:/Users/Lloyd/gas-v35 (clasp push -f; clasp deploy -i
 AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...");
 run the harness BARE (node scripts/alex/run_tests.cjs, expect 109/109) and node
---check every changed file BEFORE clasp push; GAS runs from the editor tab in the
-app browser (select the one-function runner file, pick the function, Run).
+--check every changed file BEFORE clasp push.
 ```
 
-## State at hand-off (2026-09-05 06:00)
+## State at hand-off (2026-09-05 07:30)
+- GAS **@67** (v64) = worktree `hermes-wave-1-trust-94a9fb` HEAD `a72848e` (modules 156-172; suite
+  109/109), pushed to origin. Repo `cascadereservations-del/CoPilot` is PRIVATE.
+- Balance gate 06:21:50 PASSED (8 FULL accounts var 0.00). 170 applied for real (11 Amazon rows
+  from order evidence); 172 put "ctx: gift for Kuya Joshua" on the two keyboard rows only.
+- Everything below this line is unchanged from the 06:00 hand-off.
+
 - GAS **@66** (v63) = worktree `hermes-wave-1-trust-94a9fb` HEAD `9927ccf` (modules 156-171; suite
   109/109). Push folder `C:\Users\Lloyd\gas-v35` (= live). Origin push is Lloyd's.
 - Balance gate 05:51:31 PASSED (8 FULL accounts var 0.00). Ledger writes, all snapshot-first:
