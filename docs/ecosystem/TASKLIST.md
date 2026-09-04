@@ -100,6 +100,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   so no credential was ever sent. Fixed on the node; the keys were fine (Lloyd's PowerShell test
   passed once the clipboard was not being overwritten by the agent's clicks in the n8n tab).
   Lesson: `30-knowledge/lessons/2026-09-04-n8n-generic-auth-type-must-be-httpqueryauth.md`.
+- **08:30 — cluster rulings applied (goal):** `deposit to gsave account` → `COUNTER:CIMB Gsave`
+  (14 rows) and `manual balance adjustment` → `DEFER` (13) written to the cluster tab, `catPass2ClusterFill`
+  {2 clusters, 27 rows}, `categoryPass2Preview` {decided 14, pending 378, deferred 13} → `categoryPass2Apply`
+  decided 14, no error. HEAD already had the COUNTER-capable 146 (fresh pull verified). **Lloyd:** the
+  InstaPay / fund-transfer clusters (≈₱837k, 82 rows) are yours to rule: `EXPENSE:E1 Family Support & Repairs`
+  if remittances, `COUNTER:<own account>` if to your own bank, else `DEFER`; then fill → preview → apply.
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
