@@ -245,3 +245,30 @@ They were positive `statement_credit` rows inside the spending scope, i.e. they 
   1,915 → D1 > Airfare / E3 Career & Deployment?; Dubai Duty Free / Seajoy / PP*CODE → D2 >
   Personal Effects?; reconciliation placeholders (manual balance adjustment ×13, unaccounted plugs,
   "Edited on …", Closed Account, YNAB auto) → keep DEFER or exclude from burn?
+
+
+## Session 47 — chains 2 and 3 (20:11 PHT)
+
+- **Set 5 block 2 (149 `SET5_CLUSTER_RULES_2`)** — 16 cluster rules from Lloyd's six one-liners
+  (groceries personal unless the note says family; PAL / Booking = D1 Airfare; duty free and
+  department stores = D2 Personal Effects; Daiso / Mumuso = B3 Household Supplies). 20 rows,
+  ₱28,095.35, snapshot `20260904155513`.
+- **Reconciliation placeholders (153)** — "proceed with the optimal choice": the 21 rows whose
+  note is *Manual Balance Adjustment / Edited on June 28 / Closed Account / Entered
+  automatically by YNAB* (−₱200,527.37) were retyped `expense` → `balance_adjustment`
+  (merge_rule `|PLACEHOLDER_RETYPE_20260904`, snapshot `20260904155529`). Balance-neutral
+  (52 sums `signed_amount` for every type); 93 stops reporting them as spending. The
+  *unaccounted transactions / varioes expences* plugs are real unknown spending and stay G2.
+- **Marketplaces (154)** — "checked items per transactions as orders varies": no merchant rule.
+  `W-G2-MARKETPLACE-JOIN` (rdcYpn6jc8N4ugd3, exec 21254) read `SRC-Shopee` / `src-tiktok`
+  with header row 2 (both tabs carry a group-header row above the real header) and joined
+  62 G2 card rows to orders by exact total (`total_paid` / `computed_total` / `net_cost`)
+  within [−10, +2] days: 32 matched, every one to a single order. The decision is the export's
+  own item classification (26 item classifier / owner rulings) with its sub-category where
+  present. Snapshot `20260904201144`. The 30 unmatched (Amazon, Lazada, Taobao, and
+  Shopee/TikTok rows with no order at that total) stay G2 — there is no order source for them.
+- **Read-back (exec 21295)** — G2 rows 205: 78 expense rows = ₱526,011 lifetime (session
+  start ₱1.52M); Aug 2026 7 rows ₱31,969 (session start ₱86,984). The 127 income-side G2
+  rows are elink / inter-bank counter legs — the label is stale, not the type; clearing G2 on
+  counter/income rows is the next engine gap. Pass-2 worksheet: applied 290, pending 86,
+  deferred 13.
