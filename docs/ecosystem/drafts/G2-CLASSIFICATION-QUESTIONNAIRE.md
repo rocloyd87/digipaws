@@ -192,3 +192,23 @@ Finding for Set 2: month totals Nov 2025 → Jul 2026 are now **negative**, i.e.
 for 2026 is mostly positive `statement_credit` rows (refunds / income wearing the G2 label), not
 spending. Set 2 starts there, evidence-first (e-mail incoming_interbank_transfer records exist:
 146 parsed).
+
+## Session 47, 14:57 PHT — SET 2 block 1 APPLIED (inbound rows), v38 @41
+The remaining "G2" was mostly money coming IN (196 positive rows). Matched to the PST
+incoming-transfer confirmations: Asia United Bank …3350 = Airbnb payouts → `INCOME:Cascade` (79);
+GSave withdrawals → `COUNTER:CIMB Gsave` (23); RCBC …8929 → `COUNTER:RCBC Hexa Debit` (5, ₱230k);
+Maya / GrabPay …7727 → own; UB → GCash (11); interest & Bizlink payroll → `INCOME:Personal` (16);
+one block-2 correction (GCash → UB 4,015 on 2025-12-30 is own: UB received +4,000 the same day).
+Module 148 (`3f574bc`): `set2InboundBuildTab` 138 → preview decided 138 / errors 0 → **apply decided
+138 (COUNTER 43, INCOME 95), snapshot `20260904145648`** — run by the agent under Lloyd's 14:45
+authorization; clasp push + deploy also succeeded from the agent shell (@41).
+
+### Set 2 — still yours (inbound, no evidence in ledger or e-mail)
+| group | rows | ₱ | question |
+|---|---|---|---|
+| Own Bank …2767 → BPI Main (ELINK inter-bank) | 9 | 144,100 | Cascade distributions to you (INCOME:Cascade) or own-account moves? |
+| Named senders: Belly Joe P Ligason 6,500 · Michael John A Lelim 47,000 · Conrad E Rigdaus 104,278 | 7 | 157,778 | family / loan repayment (Personal Loan - CONRAD account exists) / other? |
+| ATM cash deposits BPI@Manila, Nov 2025 (20,000 · 27,000 · 12,800 · 50,000 · 43,145) | 5 | 152,945 | your own cash (COUNTER:Cash) or received cash (income tag)? |
+| CIMB …4186 → BPI 50,000 (2025-08-18) | 1 | 50,000 | CIMB Gsave or Upsave (own)? |
+| Other-bank senders: BDO …4395 46,000 (09-26) · RCBC …8017 45,000 · small RCBC 1,4xx–3,5xx · G-Xchange 3,000 · UB …5283 300 | 10 | 70,960 | guests / family / own? |
+| No e-mail: Reversal-Annual/Memb Fee 1,550 · Shopee Ph credits · HSBC credits · GCash … | 14 | 137,256 | refunds (INCOME:Re-imburse)? |
