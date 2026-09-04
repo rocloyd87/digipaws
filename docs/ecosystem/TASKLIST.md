@@ -1,8 +1,34 @@
-# Hermes Ecosystem — Task List (2026-09-04 day, session 47)
+# Hermes Ecosystem — Task List (2026-09-04 evening, session 48)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
+
+**SESSION 48 (2026-09-04 evening) — what changed, what is yours:** (`sessions/2026-09-04-session-48.md`)
+
+- **Balance gate PASSED** (20:31 alexBalanceScheduled: var 0.00 on all 8 FULL accounts). No restore.
+- **G2 label cleared on 114 non-spending rows** (156, runner 157, v48 @51, snapshot `20260904204420`):
+  93 paired counter legs + 21 balance_adjustment plugs. 58's export close no longer re-stamps paired
+  rows. The "127 G2 income rows" never existed (tagged income = resolved); `W-G2-SET1-EVIDENCE` fixed.
+  G2 open now = **78 unpaired expense rows, 526,011 lifetime, Aug 31,969** (unchanged: paired rows were
+  never spending).
+- **Rules ledger LIVE:** `_ALEX_Rules` seeded with 124 rules (158). **Morning correlator LIVE,
+  preview-only:** 06:30 PHT `correlatorScheduled` (159, AUTO_APPLY=false) writes decisions to
+  `_ALEX_CategoryPass2` / `_ALEX_CorrelatorInbound` and logs to `_ALEX_Correlator`. First preview: 4
+  decisions (one self-counter rejected + retracted), 0 ambiguous, 28 JOIN_ORDER, 9 e-mail legs whose
+  statements are not ingested yet.
+- **Lelim:** inflows already INCOME:Personal; 150 re-ruled (closed; outflow A1 > Personal Loan). The
+  47,000 repayment is in **no source** the system holds. **Lloyd:** which account and date paid it?
+- Marketplace join re-run: 0 new matches (30 rows have no order source).
+- **Lloyd (5 min):** (a) answer the Lelim question; (b) in the editor run `categoryPass2Preview()` →
+  `categoryPass2Apply()` to apply the 3 pending correlator decisions (2 × COUNTER:Tiktok Paylater,
+  Jake Adame 85k → A1 > Personal Loan), or wait a week and flip `CORRELATOR_CFG.AUTO_APPLY`;
+  (c) rule the 78 G2 rows in `_ALEX_CategoryPass2` col G (biggest: YNAB "Unaccounted / Varioes
+  expences" plugs ≈230k → `DEFER` or `EXPENSE:E4 Capital & One-Offs`; Calong Calong 23k; Amazon /
+  Taobao 15 rows); (d) `git push` of `claude/hermes-wave-1-trust-94a9fb` was refused for the agent
+  (access rights) — push it from your shell.
+- Known: 43 rows carry counter NAME without counter ID (source-merge EXPORT_HOLD legs) → a 133-style
+  backfill next session.
 
 **SESSION 47 (2026-09-04 day) — what changed, what is yours:**
 
