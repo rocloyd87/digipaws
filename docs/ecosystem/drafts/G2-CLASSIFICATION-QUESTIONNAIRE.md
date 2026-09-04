@@ -153,3 +153,17 @@ push + deploy v36; (3) editor: `set1EvidenceFill2Preview()` → `set1EvidenceFil
 `categoryPass2Preview()` → `categoryPass2Apply()`.
 Recipient dictionary (149 destinations, PST) is the seed for the rules ledger; 148 (standing
 e-mail-leg correlator over `BPI_Online` / `UnionBank_Online`) is the next build.
+
+## Session 47, 16:10 PHT — H1 Cascade Hideaway created (D-122)
+- **MoneyMatter (budget.rocloyd.com):** `H1 Cascade Hideaway` (top level, id `01a06b0c-35f3-7365-8e1a-d1d15d044c3a`)
+  with sub-categories Payouts, Cleaning & Supplies, Marketing, Repairs & Maintenance, Airbnb Income —
+  verified through the app's own category API (86 categories).
+- **Alex (commit `83a6175`, staged in `C:\Users\Lloyd\gas-v35`):** 21 `CAT_C.h1`, `CAT_CATEGORIES`,
+  four `CAT_SUBCATEGORIES`; 130 label map; 147 block 3 (23 Cascade rows) gated on Tarsi.
+- **Tarsi (Lloyd, phone):** create expense category **"H1 Cascade Hideaway"** with sub-categories
+  **Payouts · Cleaning & Supplies · Marketing · Repairs & Maintenance**, and an income category
+  **"H1 Cascade Hideaway"** with sub-category **Airbnb Income**; export a backup. Predicted ids:
+  `custom-h1-cascade-hideaway`, `sub-expense-custom-h1-cascade-hideaway-payouts` etc. Next session
+  runs `catSyncTaxonomy()` + `catAssertIntegrity()` on that backup; only then block 3 and any export.
+- Cascade income today: tag `INCOME:Cascade` (existing tag) on the inward AUB → …4647 rows; the
+  income category follows the Tarsi sync.
