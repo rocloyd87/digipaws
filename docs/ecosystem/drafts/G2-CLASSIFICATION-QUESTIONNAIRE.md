@@ -174,3 +174,11 @@ decided 86 (EXPENSE 45, COUNTER 41), snapshot `20260904142550`. Read-back (exec 
 G2/blank unpaired spending ₱751,666 lifetime (was ₱1.52M at 08:00); Aug 2026 = 36 rows ₱58,934
 (was ₱86,984). Open transfer-shaped rows: 24 = 23 Cascade (block 3, gated on Tarsi H1) + Maya
 35k mirror (DEFER). **Set 1 is closed apart from the Cascade block.** Sets 2–5 next, evidence-first.
+
+## Session 47, 14:40 PHT — Tarsi H1 verified, block 3 gate cleared
+`tarsi-backup-20260904-143340.json`: `custom-h1-cascade-hideaway` (+ payouts, cleaning-supplies,
+marketing, repairs-maintenance subs) and `income-custom-h1-cascade-hideaway` (+ airbnb-income) —
+identical to the predicted ids. 21/130 markers flipped to "verified", income sub added. **Lloyd:**
+push v37 from gas-v35 (21/130/147), then `set1EvidenceFill3Preview` → `Apply` → `categoryPass2Preview`
+→ `Apply` (23 Cascade rows, ₱199k → H1). Income rows (inward AUB → …4647) get `INCOME:Cascade`
+tag now; the income category id is wired for the rules ledger.
