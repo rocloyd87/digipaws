@@ -167,3 +167,10 @@ e-mail-leg correlator over `BPI_Online` / `UnionBank_Online`) is the next build.
   runs `catSyncTaxonomy()` + `catAssertIntegrity()` on that backup; only then block 3 and any export.
 - Cascade income today: tag `INCOME:Cascade` (existing tag) on the inward AUB → …4647 rows; the
   income category follows the Tarsi sync.
+
+## Session 47, 14:25 PHT — Set 1 block 2 APPLIED (v36)
+`set1EvidenceFill2Apply` 86 → `categoryPass2Preview` decided 86 / errors 0 → `categoryPass2Apply`
+decided 86 (EXPENSE 45, COUNTER 41), snapshot `20260904142550`. Read-back (exec 21234): remaining
+G2/blank unpaired spending ₱751,666 lifetime (was ₱1.52M at 08:00); Aug 2026 = 36 rows ₱58,934
+(was ₱86,984). Open transfer-shaped rows: 24 = 23 Cascade (block 3, gated on Tarsi H1) + Maya
+35k mirror (DEFER). **Set 1 is closed apart from the Cascade block.** Sets 2–5 next, evidence-first.
