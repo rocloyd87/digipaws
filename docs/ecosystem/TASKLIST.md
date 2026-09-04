@@ -95,6 +95,11 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   `Invoke-RestMethod "https://api.twelvedata.com/quote?symbol=VOO&apikey=PASTE_KEY"`. Rows → the n8n
   Query Auth path is dropping the parameter (switch to a Header Auth credential `Authorization: apikey KEY`);
   401 → the pasted Value is wrong (masked field ~48 chars vs a 32-char key).
+- **07:58 — Twelve Data lane LIVE (exec 21176, `source: twelvedata`).** Root cause of every 401 on
+  FMP and Twelve Data: the draft node had `genericAuthType: queryAuth`; n8n needs `httpQueryAuth`,
+  so no credential was ever sent. Fixed on the node; the keys were fine (Lloyd's PowerShell test
+  passed once the clipboard was not being overwritten by the agent's clicks in the n8n tab).
+  Lesson: `30-knowledge/lessons/2026-09-04-n8n-generic-auth-type-must-be-httpqueryauth.md`.
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
