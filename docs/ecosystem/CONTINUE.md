@@ -1,3 +1,49 @@
+# CONTINUE — session 48 (written 2026-09-04 20:30 by session 47)
+
+Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex classification work as desktop session 48. Boot: read
+digipaws docs/ecosystem/CONTINUE.md (this file), TASKLIST.md §Session 47, and vault
+04-HANDOFF-alfred items 14-16 + D-120..D-124. Log as session 48 in alfred_build_log
+(session 47 = rows 119-131). Lloyd has AUTHORIZED implementing the optimal option
+without asking, under the standing constraint: BALANCE_CONTROL anchors (2026-08-28)
+and every later transaction must keep correlating; no ledger rebuilds, merges, row
+deletions, or amount/date/account edits; category/counter/label edits only through
+the snapshot-first engines (130/144/146 or a 147-style fill + one-function runner).
+Do in order: (1) read BALANCE_CONTROL for the 20:30 alexBalanceScheduled result —
+any FULL account var != 0.00 -> restore latest snapshot and stop; (2) clear the
+stale "G2 Review / Uncategorized" label on rows whose txn_type is transfer /
+income / credit_payment / loan_payment (127 elink legs) — label only, module 156
+preview -> apply -> snapshot, runner 157; (3) Lelim loan is PAID (Lloyd 20:30):
+find the 47,000 repayment outflow, classify the inflow pair (2 rows) and the
+repayment as one zero-net personal-loan cycle (INCOME tag on the receipt, A1 Debt
+Service on the repayment) — no Tarsi liability account; (4) rules ledger (D-121)
+seeded from 150 REF_ACCOUNT_IDENTIFIERS + the 149/154 decisions, one ruling per
+merchant/recipient, plus a standing correlator that runs 148-style over
+BPI_Online / UnionBank_Online each morning before 59; (5) re-run
+W-G2-MARKETPLACE-JOIN (rdcYpn6jc8N4ugd3) for new rows; (6) read-back with
+W-G2-SET1-EVIDENCE (J8HmQo6kGPUw4LlK), log, update docs/vault, capture the
+memory event with --session <session id>. Deploy from C:/Users/Lloyd/gas-v35
+(clasp push -f; clasp deploy -i
+AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...");
+run GAS from the editor by selecting the one-function runner file.
+```
+
+## State at hand-off
+- GAS v47 @50. Worktree `hermes-wave-1-trust-94a9fb`, branch `claude/hermes-wave-1-trust-94a9fb`,
+  HEAD 88e0f4d (modules 147-155; suite 102/102). Push folder `C:\Users\Lloyd\gas-v35`.
+- G2 spending 526,011 lifetime / Aug 2026 31,969 (exec 21295). Pass-2 worksheet 290 applied,
+  86 pending, 13 deferred. Snapshots today: 130234, 142550, 144304, 145648, 151041, 153754,
+  153807, 155513, 155529, 201144.
+- Open: 20:30 balance check unread; 127 income-side rows carry a stale G2 label; 30 marketplace
+  rows without an order tab (Amazon/Lazada/Taobao); Lelim loan paid — pair the legs; rules
+  ledger + standing e-mail correlator not built.
+- Gotchas: order tabs SRC-Shopee/src-tiktok have a group-header row (read at header row 2);
+  kos-memory capture needs `--session <session id>`; one runner file = one function.
+
+---
+
 # Continuation prompt — paste into a new chat (rewritten 2026-09-04 12:05, end of desktop session 46)
 
 ## Mobile / remote lane (away from the desktop)
