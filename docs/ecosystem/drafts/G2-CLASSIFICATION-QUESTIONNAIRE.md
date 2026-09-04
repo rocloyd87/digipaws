@@ -182,3 +182,13 @@ identical to the predicted ids. 21/130 markers flipped to "verified", income sub
 push v37 from gas-v35 (21/130/147), then `set1EvidenceFill3Preview` → `Apply` → `categoryPass2Preview`
 → `Apply` (23 Cascade rows, ₱199k → H1). Income rows (inward AUB → …4647) get `INCOME:Cascade`
 tag now; the income category id is wired for the rules ledger.
+
+## Session 47, 14:43 PHT — block 3 APPLIED · SET 1 CLOSED
+v37. `set1EvidenceFill3Apply` 23 → `categoryPass2Preview` decided 23 / errors 0 → `categoryPass2Apply`
+decided 23 (EXPENSE 23, H1 Cascade Hideaway with subs), snapshot `20260904144304`. Read-back
+(exec 21237): G2/blank unpaired spending **₱550,084 lifetime** (₱1,520,358 at 08:00 today);
+Aug 2026 33 rows ₱52,384; transfer-shaped rows open = 1 (Maya 35k mirror, DEFER).
+Finding for Set 2: month totals Nov 2025 → Jul 2026 are now **negative**, i.e. what is left in G2
+for 2026 is mostly positive `statement_credit` rows (refunds / income wearing the G2 label), not
+spending. Set 2 starts there, evidence-first (e-mail incoming_interbank_transfer records exist:
+146 parsed).
