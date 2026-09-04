@@ -135,3 +135,21 @@ sub-category ever written by a ruling. Remaining G2/blank spending: 2026-07 = 60
 2026-08 = 45 rows ₱86,984 (lifetime ₱1.52M); 110 transfer-shaped rows still open = the groups
 above that are yours. BALANCE_CONTROL 08:23 (pre-apply) all FULL accounts var 0.00; the 20:30
 `alexBalanceScheduled` run is the post-apply re-check.
+
+## Session 47, 15:30 PHT — Set 1 closed by e-mail correlation + Lloyd's seven answers
+PST correlation (1,545 confirmations) named the recipient of 75 of the 110 open rows. Lloyd's
+answers (2026-09-04): Own Bank …200000324 "Cascade payout" = **expense**, and a **new category
+H1 Cascade Hideaway** (plus the existing `Cascade` tag for income: inward AUB transfers to …4647)
+isolates the business; Cascade running costs go there too; named persons = one-time D2; HC
+residences / Birch Tower = Airbnb stays (D2 > Entertainment & Leisure); TikTok BNPL cash-ins =
+`COUNTER:Tiktok Paylater`; DragonPay 1,420 and the 500 = one-time TikTok payments; UB ₱250
+"pag ibig" = family support; unknown GCash endings = family; CIMB closures with no leg = one-time
+expense (F3; DragonFi balance must not move).
+**Block 2 in 147 (commit `fa473c7`): 86 rows.** Held: 23 Cascade rows (wait for H1) and the
+Maya −35,000 mirror leg (DEFER). **Lloyd:** (1) in the Tarsi app create expense category
+**"H1 Cascade Hideaway"** (sub-categories suggested: Payouts, Cleaning & Supplies, Marketing,
+Repairs), export a backup so the id can be synced into 21/130; (2) from `C:\Users\Lloyd\gas-v35`
+push + deploy v36; (3) editor: `set1EvidenceFill2Preview()` → `set1EvidenceFill2Apply()` →
+`categoryPass2Preview()` → `categoryPass2Apply()`.
+Recipient dictionary (149 destinations, PST) is the seed for the rules ledger; 148 (standing
+e-mail-leg correlator over `BPI_Online` / `UnionBank_Online`) is the next build.
