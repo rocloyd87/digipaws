@@ -212,3 +212,9 @@ authorization; clasp push + deploy also succeeded from the agent shell (@41).
 | CIMB …4186 → BPI 50,000 (2025-08-18) | 1 | 50,000 | CIMB Gsave or Upsave (own)? |
 | Other-bank senders: BDO …4395 46,000 (09-26) · RCBC …8017 45,000 · small RCBC 1,4xx–3,5xx · G-Xchange 3,000 · UB …5283 300 | 10 | 70,960 | guests / family / own? |
 | No e-mail: Reversal-Annual/Memb Fee 1,550 · Shopee Ph credits · HSBC credits · GCash … | 14 | 137,256 | refunds (INCOME:Re-imburse)? |
+
+## Session 47, 15:10 PHT — Set 2 block 2 APPLIED (v39 @42)
+The 11 UB Debit "Received from ROCLOYD PINOS LIGASON" credits (₱262k) now carry counters
+(10 × `COUNTER:BPI Main Account`, 1 × `COUNTER:GCash eWallet`); snapshot `20260904151041`.
+They were positive `statement_credit` rows inside the spending scope, i.e. they had been
+*reducing* reported spending. Their EXPORT_HOLD stamps stay.
