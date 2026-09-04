@@ -1,6 +1,60 @@
-# CONTINUE — session 49 (written 2026-09-04 21:10 by session 48)
+# CONTINUE - session 49 (written 2026-09-05 06:00 by session 48)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex classification work as desktop session 49. Boot: read
+digipaws docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-04-session-48.md
+(all sections), TASKLIST.md "SESSION 48 close", and vault 04-HANDOFF-alfred items
+17-23 + D-125..D-127. Log as session 49 in alfred_build_log (session 48 = rows
+132-141). Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and
+every later transaction must keep correlating; no ledger rebuilds, merges, row
+deletions, or amount/date/account edits; category/counter/label edits only through
+the snapshot-first engines (130/144/146, 147/148-style fills, one-function runners).
+Lloyd: "don't over-engineer - finish the main tasks, then refine".
+Do in order: (1) read BALANCE_CONTROL for the latest alexBalanceScheduled - any FULL
+account var != 0.00 -> restore latest snapshot and stop; (2) read _ALEX_Correlator
+and the 06:30 correlatorScheduled executions since 2026-09-05 (AUTO_APPLY is ON):
+verify every applied decision, retract with correlatorRetractSelfCounters if a
+self-counter slipped through; (3) 133-style backfill of the 43 rows carrying
+counter_account_name without counter_account_id (resolve via 90/150; preview ->
+apply, snapshot-first); (4) correlator: sum-of-charges matching for split Amazon
+orders (3,124.09 = 1,301.65 + 1,822.44) and a truthful unmatched reason that quotes
+the set's own day window; (5) the 4 pending worksheet rows need Lloyd's word
+(Calong Calong 23k, Bancnet P2M 807, POS Debit 455, Batch Invitation 1,000) - ask
+once, apply via a 147 fill; (6) read-back with W-S48-READ (ZKdZVe5HDoLU1y6Z, active)
+q=composition, log, update docs/vault, capture the memory event with --session <id>.
+Deploy from C:/Users/Lloyd/gas-v35 (clasp push -f; clasp deploy -i
+AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...");
+run the harness BARE (node scripts/alex/run_tests.cjs, expect 109/109) and node
+--check every changed file BEFORE clasp push; GAS runs from the editor tab in the
+app browser (select the one-function runner file, pick the function, Run).
+```
+
+## State at hand-off (2026-09-05 06:00)
+- GAS **@66** (v63) = worktree `hermes-wave-1-trust-94a9fb` HEAD `9927ccf` (modules 156-171; suite
+  109/109). Push folder `C:\Users\Lloyd\gas-v35` (= live). Origin push is Lloyd's.
+- Balance gate 05:51:31 PASSED (8 FULL accounts var 0.00). Ledger writes, all snapshot-first:
+  `20260904204420` (156), `..213307` (pass-2), `..214233` (Lelim), `..220232` (Amazon default),
+  `..221005` (precedents), `..223422` (marketplace), 170 run (Lloyd), `20260905054858` (cluster 4),
+  `20260905055038` (label clear re-run).
+- `_ALEX_Rules` 127 rules. `correlatorScheduled` 06:30 PHT, **AUTO_APPLY=true**, log `_ALEX_Correlator`.
+  `Amazon_Orders` 20 orders (169; Outlook forwards rocloyd87@live.com -> Gmail; ingest every 15 min).
+- G2 open: **22** unpaired expense rows. Worksheet: 4 pending, 18 deferred (13 YNAB plugs + 5
+  Payment-to-Merchant).
+- Read-only helper `W-S48-READ` ZKdZVe5HDoLU1y6Z is ACTIVE (paths s48-read-balance-9f3c1d,
+  s48-read-alex-7b2e4a q=composition|g2label|g2clear|find|amounts|..., s48-read-tab-c41d9e
+  tab=&cols=&limit=). `W-G2-SET1-EVIDENCE` / `W-G2-MARKETPLACE-JOIN` deactivated.
+- Open for Lloyd: was the Marifel keyboard a gift (E1)? rulings for the 4 pending rows; make the
+  CoPilot repo private; push the worktree.
+- Gotchas: 78_AlexEmailIngest is hand-patched (its generator build-email-ingest.mjs drifted);
+  `alexEmailIngestResetSeenThreads` resets ALL sources - use `amazonOrdersResetSeen`; BPI card posts
+  Amazon totals +1.0 %; never pipe the test gate inside a deploy chain; kos-memory capture needs
+  `--session <id>` and the event must be the last operation.
+
+---
+
+# Previous prompt (session 49 v1, 2026-09-04 21:10, superseded)
 
 ```text
 Continue the Hermes/Alex classification work as desktop session 49. Boot: read
@@ -32,7 +86,8 @@ every changed file BEFORE clasp push; run GAS from the editor by selecting the
 one-function runner file.
 ```
 
-## State at hand-off (2026-09-04 21:10)
+
+## State at hand-off (2026-09-04 21:10, superseded)
 - GAS **@52** = worktree `hermes-wave-1-trust-94a9fb` HEAD `f7873ff` (modules 156-159 + 58/150
   patches; suite 105/105). Push folder `C:\Users\Lloyd\gas-v35` (= live). `git push` to origin was
   refused for the agent — Lloyd pushes.

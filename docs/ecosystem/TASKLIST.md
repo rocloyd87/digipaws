@@ -4,6 +4,16 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 ## A — Lloyd's one-tap actions (≈15 min total, session 45)
 
+**SESSION 48 close (2026-09-05 06:00) - additions:**
+- **Amazon feed complete:** 16 mails forwarded, 20 orders in `Amazon_Orders`; 170 re-ruled 11 Amazon
+  rows from order evidence (keyboard -> D2 Gadgets, ship-to Ma -> B2 Family Meds, 2025 rows -> B2/D2
+  Clothing). Say "E1" if the Marifel keyboard was a family gift.
+- **Cluster 4 done:** Bills Payment -> C1; five Payment-to-Merchant DEFER. G2 open 22; worksheet 4
+  pending: Calong Calong 23k (siblings say debt), Bancnet P2M 807, POS Debit 455, Batch Invitation 1,000.
+- **Yours:** `git push` on `hermes-wave-1-trust-94a9fb`; make `cascadereservations-del/CoPilot` private.
+- **Next session:** 133-style backfill of the 43 name-only counter rows; correlator sum-of-charges
+  match for split Amazon orders + fix the misleading unmatched reason; reconcile 78 vs its generator.
+
 **SESSION 48 (2026-09-04 evening) — what changed, what is yours:** (`sessions/2026-09-04-session-48.md`)
 
 - **Balance gate PASSED** (20:31 alexBalanceScheduled: var 0.00 on all 8 FULL accounts). No restore.
