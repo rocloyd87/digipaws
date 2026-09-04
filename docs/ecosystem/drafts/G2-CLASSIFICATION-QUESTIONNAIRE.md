@@ -218,3 +218,30 @@ The 11 UB Debit "Received from ROCLOYD PINOS LIGASON" credits (₱262k) now carr
 (10 × `COUNTER:BPI Main Account`, 1 × `COUNTER:GCash eWallet`); snapshot `20260904151041`.
 They were positive `statement_credit` rows inside the spending scope, i.e. they had been
 *reducing* reported spending. Their EXPORT_HOLD stamps stay.
+
+## Session 47, 15:38 PHT — Set 2 block 3 + Set 5 owner rules APPLIED (runner 151, v44 @47)
+- **Set 2 block 3** (Lloyd's six answers): 44 rows — INCOME 28 (Cascade: Own Bank …2767 + guests;
+  Family: Belly Joe; Re-imburse: no-e-mail credits), COUNTER 16 (Cash deposits, Conrad loan
+  account, CIMB Gsave, RCBC senders, BDO …4395 → Other Accounts). Snapshot `20260904153754`.
+  Lelim loan (2 rows, 47,000) left DEFER until a liability account exists.
+- **Set 5 owner rules** (149): 29 clusters → 112 rows (₱31,190.68): cafés → B1 > Drinks & Coffee;
+  Jollibee → B1 > Dining Out & Ordered Food; hardware → E1 > Hardware & Repairs; Hetzner / Google
+  Tacit → C3 > Ai & Productivity Tools; Google One → C3 > Cloud Storage; YouTube / Prime → C3 >
+  Media & Streaming; buy-load (66) → C2 > Family Internet & Load - Bohol; Watsons → B2 > Personal
+  Meds, Supplements & Pharmacy; card interest → G1 > Card Fees & Interest; withholding tax / debit
+  memo / partner fee → G1 > Bank Transfer Fees; UBE Express → D1 > Public Transport.
+  `categoryPass2Apply` decided 112, snapshot `20260904153807`.
+- **Identifier index** (150, D-123): 40 rows mirrored to `_REF_AccountIdentifiers` — own accounts
+  (UB 5788, RCBC 045868929, Maya/Grab 7727, GCash 8982, BPI 647/815/524, CIMB 4186/7523/5764, Own
+  Bank 1871/3726, BDO 4395 closed, Bybit, Tiktok Paylater), family (627 Nanay, 5980, 3952 Papang,
+  4850 Ate Kris, 142 Marif, Belly Joe), Cascade (AUB 3350 payouts, Own Bank 2767 owner,
+  200000324 payout account, Honey, printing, Bria), counterparties (Northfield 069, Jake 639,
+  Flordeth 591, Tumulak 334, Conrad, Lelim, Airbnb hosts).
+- Pass-2 worksheet: applied 158 · pending 138 · deferred 13. **Still yours (one line each):**
+  marketplaces default (TikTok 23 · Shopee 16 · Lazada 5 · Amazon 12 · Taobao 2 → D2 > Personal
+  Effects or DEFER?); groceries (Robinsons Supt, Gaisano S/M, Gaisano Dep → Groceries - Family or
+  - Personal?); department stores (Daiso, Muji, Mumuso, RDS, Rob Dept, R AND C, KCC → D2 >
+  Personal Effects or B3 > Household Supplies?); PAL tickets 7,432 / Pal Airy 404 / Booking hotel
+  1,915 → D1 > Airfare / E3 Career & Deployment?; Dubai Duty Free / Seajoy / PP*CODE → D2 >
+  Personal Effects?; reconciliation placeholders (manual balance adjustment ×13, unaccounted plugs,
+  "Edited on …", Closed Account, YNAB auto) → keep DEFER or exclude from burn?

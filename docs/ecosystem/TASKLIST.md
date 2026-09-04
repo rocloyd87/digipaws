@@ -25,6 +25,8 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
 - **13:02 — Set 1 evidence rows APPLIED** (v35 @38; fill 19 → preview decided 19 / errors 0 → apply decided 19, snapshot `20260904130234`; read-back exec 21223 confirms 18 counters + the Northfield sub-category). Remaining G2 spending: Jul 60 rows ₱81,520, Aug 45 rows ₱86,984; 110 transfer rows open. **Lloyd:** answer the Set 1 groups in the questionnaire session-47 section; check BALANCE_CONTROL after the 20:30 run (expect var 0.00 on every FULL account, as at 08:23).
 
+- **15:40 — Sets 1, 2 and the owner-stated Set 5 rules are APPLIED** (v44 @47, runner 151; agent-run under the 14:45 authorization). Today: 19 + 86 + 23 (Set 1) · 138 + 11 + 44 (Set 2) · 112 (Set 5) rows classified through the 130 engine, every apply snapshotted. G2 spending ₱1.52M → ~₱0.77M lifetime (read-back pending). New reference: `_REF_AccountIdentifiers` (150, D-123). **Lloyd:** the six one-liners in the questionnaire (marketplaces, groceries, dept stores, airfare, duty free, placeholders); 20:30 BALANCE_CONTROL check.
+
 **SESSION 46 (2026-09-03 night) — what changed, what is yours:**
 
 - **/remind 403 — ROOT CAUSE FOUND (corrects the session-45 correction).** The n8n Google OAuth
