@@ -1,4 +1,4 @@
-# Continuation prompt — paste into a new chat (rewritten 2026-09-04 08:40, end of desktop session 46)
+# Continuation prompt — paste into a new chat (rewritten 2026-09-04 12:05, end of desktop session 46)
 
 ## Mobile / remote lane (away from the desktop)
 
@@ -17,7 +17,31 @@ GAS test suites, or verify anything "on the machine" — mark such claims UNVERI
 **Quote Hermes verbatim** (copy the Telegram text) — session 44 recorded a paraphrase as a
 quote and the desktop spent its first hour disproving a "grounding failure" that never happened.
 
-## Desktop prompt
+## Short prompt for session 47 (paste this)
+
+```
+Continue the Hermes Ecosystem project. I am Lloyd, desktop session 47, Claude Code.
+Read first: digipaws docs/ecosystem/drafts/G2-CLASSIFICATION-QUESTIONNAIRE.md, then
+TASKLIST.md §A (session-46 blocks), then the vault 04-HANDOFF item 6. Build log rows 88–118 =
+session 46; log as session 47.
+
+FIRST TASK: create an HTML page (artifact) with a table/diagram that shows how the system
+classifies each transaction today — every path from statement/CSV/email/Telegram capture through
+22_CatEngine / 27_UnifiedCategorize / 119 merchant routes / 117 payee routing / 134-146 rulings
+/ Hermes staging — and where G2 Review / Uncategorized gets produced. Then a thorough analysis
+and a proposal for a more efficient and accurate classification system (recipient-aware,
+sub-category-aware, one ruling per merchant/recipient, no second source of truth).
+
+HARD CONSTRAINT: balances as verified on 2026-08-28 (BALANCE_CONTROL anchors) plus every
+transaction after that date must keep correlating. No ledger rebuilds, no merges re-run, no row
+deletions, no amount/date/account edits; category and counter edits only through the
+snapshot-first engines (130/144/146). Do not create confusion or damage the current databases.
+
+Then resume the questionnaire at Set 1 (my answers), extend the grammar for sub-categories, and
+apply set by set with preview → apply.
+```
+
+## Desktop prompt (long form)
 
 ```
 Continue the Hermes Ecosystem project (Hermes/Alfred/Alex/Tarsi/MoneyMatter personal OS).
@@ -51,6 +75,9 @@ STATE (2026-09-04 08:40, verified on the machine):
   /todo, /cascade, brief-v2 TickTick section still unbuilt (no credentials).
 
 DO NEXT, in order:
+0. FIRST TASK for session 47: the classification-pipeline HTML (table/diagram) + analysis +
+   redesign proposal, under the 2026-08-28 balance-correlation guard-rail (see the short prompt
+   above and drafts/G2-CLASSIFICATION-QUESTIONNAIRE.md). Then the questionnaire from Set 1.
 A. Read the scheduled runs since 2026-09-04 08:40: W-PRICE-ALERTS 15:45 (PSE lane, first real
    PSE prices) and 05:45 (Twelve Data lane), hermesStagingApply 01:30 (with matcher result in
    the return value), the 07:00 brief driver line (G2 should have dropped after the GSave

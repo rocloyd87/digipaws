@@ -106,6 +106,14 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   decided 14, no error. HEAD already had the COUNTER-capable 146 (fresh pull verified). **Lloyd:** the
   InstaPay / fund-transfer clusters (≈₱837k, 82 rows) are yours to rule: `EXPENSE:E1 Family Support & Repairs`
   if remittances, `COUNTER:<own account>` if to your own bank, else `DEFER`; then fill → preview → apply.
+- **10:30–12:00 — G2 questionnaire started.** Lloyd's rules: own account → own account = transfer
+  (`COUNTER:`); everything else categorised by recipient/notes down to sub-category (Anthropic →
+  C3 AI tools, coffee → B1 Drinks & Coffee, hardware → E1 Hardware & Repairs). Full 115-cluster
+  list dumped (read-only helpers `qTHp0UBpEDGppSiB`, `ju31Ptw9i3iYNk0r`); five sets drafted in
+  `drafts/G2-CLASSIFICATION-QUESTIONNAIRE.md`; **Set 1 (transfer rails, ₱1.13M) presented with
+  row-level detail, answers pending.** Sub-category grammar not yet writable (extend 130/144/146).
+  Session 47 starts with a classification-pipeline HTML + redesign, under the 2026-08-28
+  balance-correlation guard-rail.
 **CORRECTION (session 45, verified on the machine):** the session-44 "GROUNDING FAILURE" did not
 happen as recorded. No W-HERMES execution ever sent "staged tg-00000312, awaiting approval". The
 real trace (execs 20825 / 20841 / 20853, `sessions/2026-09-02-session-45.md` §1): the live GAS
