@@ -24,14 +24,14 @@ Continue the Hermes Ecosystem project (Hermes/Alfred/Alex/Tarsi/MoneyMatter pers
 I am Lloyd. Desktop session, Claude Code. Local clones: rocloyd87/digipaws at
 C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; merge docs/2026-09-03-session-46
 first if still open) and CoPilot at C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source in
-scripts/alex; Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 880a271).
+scripts/alex; Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 00b72af).
 
 ORIENT FIRST, in this order:
 1. git fetch; kt-rewrite. Read docs/ecosystem/TASKLIST.md §A (the SESSION 46 block on top, then
    what I did / did not do), sessions/2026-09-03-session-46.md, drafts/README.md (disposition
    table), drafts/AWAITING-STATEMENT-MATCHER.md.
 2. Knowledge OS vault D:\ObsidianVault\20-projects\alfred-navigator\ — 04-HANDOFF (session 46
-   block on top), 00-STATE, 02-DECISIONS (D-114, D-115 latest).
+   block on top), 00-STATE, 02-DECISIONS (D-114..D-118 latest).
 3. Supabase fbtqqrpeiwhbxxkpyzdt: public.alfred_build_log rows 88+ (session 46). Log as session 47.
 
 STATE (2026-09-04 08:40, verified on the machine):
