@@ -28,9 +28,11 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   /opt/miniflux/.env on the VPS).
   (5) `git -C C:\Users\Lloyd\Claude\Projects\CoPilot\.claude\worktrees\hermes-wave-1-trust-94a9fb push` (b22a4d7) and
   `git -C C:\Users\Lloyd\Claude\Projects\digipaws push origin kt-rewrite`.
-- **The 22 DEFER rows, cluster 1 (say what these were for, or "skip"):** five BPI Main `Payment to Merchant` debits -
-  2025-10-13 3,633.75 · 2025-10-30 4,381.75 · 2025-12-01 1,517.90 · 2025-12-26 2,053.00 · 2026-05-29 5,165.70. Cluster 2 next
-  session: the YNAB "Unaccounted" plugs (9 rows, ~230k).
+- **DEFER cluster 1 - CLOSED as DEFER (Lloyd 14:50: "if no further context or correlation found, then defer"):** the five
+  BPI Main `Payment to Merchant` debits (2025-10-13 3,633.75 · 2025-10-30 4,381.75 · 2025-12-01 1,517.90 · 2025-12-26
+  2,053.00 · 2026-05-29 5,165.70). Evidence pass: no same-amount row on any account within 45 d, no order / bank e-mail
+  source, no rule pattern; the label is BPI's generic app bills/merchant payment. Stay DEFER; do not re-ask. Cluster 2 next
+  session: the YNAB "Unaccounted" plugs (9 rows, ~230k) - same rule applies unless a source appears.
 - **Next session:** watch the 03:30 guardian and the Sunday 18:00 mail; once the September statements land (~12-18 Sep) the
   06:30 correlator consumes the confirmation legs and 145 the 4 held captures; then the HSBC September refresh.
 
