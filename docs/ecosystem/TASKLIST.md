@@ -2,6 +2,13 @@
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
+**SESSION 56 part 2 (2026-09-06 ~05:45, GAS @76 unchanged) - morning-after, first three checkpoints:** (`sessions/2026-09-06-session-56.md`)
+- 03:30 guardian PASS (humanized, nothing critical). 03:00 weekly backup FAILED: published version still had the
+  pre-rotation GAS key (draft had the fix) -> published, hardened (retry, timeouts, verdict fallback), D-135.
+  03:40 verifier FAILED: gviz read broke when the sheet went Restricted -> Drive OAuth credential, re-run clean (21741).
+- Persona-menus PRD presented (artifact a92079fe...), nothing built; four decisions are Lloyd's.
+- **Yours:** answer the PRD's four questions; the rest of the 09-06 checkpoints are read after 20:05.
+
 **SESSION 55 close (2026-09-05 20:50, GAS @75 -> @76) - what changed, what is yours:** (`sessions/2026-09-05-session-55.md`)
 - **Balance gate PASSED** (20:28, var 0.00 on all 8 FULL). No ledger write. Real clock 20:27 at boot; every report
   checkpoint (09-06 03:30 / 07:00 / 11:06 / 12:30 / 18:00 / 20:00, 09-07 08:00) is STILL ahead - session 56 checks them.
