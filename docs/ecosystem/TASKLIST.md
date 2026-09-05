@@ -391,7 +391,7 @@ the claimed-write gap for real.
       transcribe → same text chain), inline OK/Undo buttons (Telegram Trigger now listens to
       `callback_query`; `Is Callback` lane in W-HERMES), undo = Drive trash of the note, RAG
       indexing of `00 Inbox` + `Journal/2026` via the re-activated `W-RAG-INGEST` (`2WnJBAj1XGJ7hgHI`).
-- [ ] Live test (Lloyd): send a voice note; send `/note test` and tap Undo; check the note is in Drive trash.
+- [x] Live test DONE 2026-09-05 12:11 (exec 21508 voice transcribed; 21505/21513 Undo trashed the notes).
 - [ ] If LifeVault becomes the target: verify `livesync-bridge` bidirectionality on the VPS,
       then re-point the folder map in `Build Note`.
 
@@ -422,7 +422,8 @@ the claimed-write gap for real.
       `Cu6opCPfQPHJMKRJ`. News top 5 waits for Miniflux.
 - [ ] Data-quality flag from the first brief: top burn driver is **"G2 Review / Uncategorized"
       ₱112k/mo** — the category worksheet backlog is now the biggest distortion in every KPI.
-- [ ] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade`
+- [x] Commands: `/brief /spend /log /note /remind /todo /sub /networth /goals /cascade` — **`/todo` and `/cascade` LIVE and
+      verified 2026-09-05 (exec 21514 TickTick task created; exec 21518 Cascade card sent).** Older text kept below for history:
       (`/stats`, `/report` exist; route new ones in `Is Stats Command`-style IF nodes before the
       agent, one tool call each). **Session 45: `/sub` and `/remind` BUILT live** in W-HERMES
       (validated, awaiting one Telegram test each); `approve|reject tg-N`, bare `tg-N`, `/pending`
@@ -436,7 +437,8 @@ the claimed-write gap for real.
       N1–N5 in `98_HermesNudges.js` with 12/12 tests, `get_kpis.monthPace` + `recurringDue30d`
       in `93_Metrics.js`; `W-HERMES-NUDGE` schedule now 12:30 + 19:30 PHT. First N4 run only seeds
       the milestone state. Draft: `drafts/NUDGE-SAVINGS.md`.
-- [ ] FMP price/breakout alerts (watchlist tab in the Alfred sheet; template #7701 pattern).
+- [x] FMP price/breakout alerts — shipped as `W-PRICE-ALERTS` (`X2bAv2WXOOZJ3pP6`, ACTIVE; Twelve Data · GOOGLEFINANCE ·
+      CoinGecko; `FMP API` credential exists). Older text kept below for history:
       **IMPORTED INACTIVE (session 45) as `W-FMP-ALERTS — Price Alerts` `X2bAv2WXOOZJ3pP6`**, with
       the GSheets + Telegram credentials set; needs the FMP apikey credential and one
       `hermesWatchlistEnsure()` run (§A 5) before activation. Draft: `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
