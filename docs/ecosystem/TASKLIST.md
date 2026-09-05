@@ -1,6 +1,21 @@
-# Hermes Ecosystem — Task List (2026-09-05 evening, session 54)
+# Hermes Ecosystem — Task List (2026-09-05 night, session 55)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 55 close (2026-09-05 20:50, GAS @75 -> @76) - what changed, what is yours:** (`sessions/2026-09-05-session-55.md`)
+- **Balance gate PASSED** (20:28, var 0.00 on all 8 FULL). No ledger write. Real clock 20:27 at boot; every report
+  checkpoint (09-06 03:30 / 07:00 / 11:06 / 12:30 / 18:00 / 20:00, 09-07 08:00) is STILL ahead - session 56 checks them.
+- **D-133 PROVEN on the last two:** W-SENTINEL exec 21646 Run Checks `ok:true` (4/4 green, no message by design);
+  W-API-MONITOR exec 21648 Read Usage `ok:true` (946 calls / 10 d, 94/day vs ceiling 500). Temp webhooks removed, 6 / 6.
+- **FIXED live (D-134, GAS @76): the nudge's "1,648,653 below the runway floor".** Liquid (401,220.44) was correct -
+  GCash enters at its 380.10 statement balance, the -641k computed figure is never read. The nudge priced its OWN floor
+  at 12 x 0.9 x median total month (2,049,873) while get_kpis prices it on the G2 basis (12 x median essential month =
+  976,726). 98_HermesNudges.js now takes `tier1.floorReserve`; live read-back says **"Liquid is P575,506 below the
+  runway floor."** Harness 111/111; worktree `hermes-wave-1-trust-94a9fb` 2b40854 = live @76.
+- **Heads-up:** my read-only `get_nudges` probe used the last two slots of this week's nudge cap (4/4), so Sunday's
+  12:30 / 19:30 nudges may say `deferred`. Resets Monday. Not a defect.
+- **Statements / Drive fallback / G2:** unchanged. Read-back identical to sessions 51-54 (5,347 rows, G2 22 = 309,457, name-only 7).
+- **Yours (1 min):** `git -C D:\ObsidianVault push` after this session's vault commit.
 
 **SESSION 54 close (2026-09-05 20:15, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-54.md`)
 - **Balance gate PASSED** (19:52, var 0.00 on all 8 FULL). No GAS change, no ledger write. Real clock 19:51 at boot;
