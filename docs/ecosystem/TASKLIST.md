@@ -1,6 +1,27 @@
-# Hermes Ecosystem — Task List (2026-09-05 afternoon, session 51)
+# Hermes Ecosystem — Task List (2026-09-05 afternoon, session 52)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 52 close (2026-09-05 15:20, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-52.md`)
+- **Balance gate PASSED** (14:50, var 0.00 on all 8 FULL). No GAS change, no ledger write.
+- **Reports: nothing has fired yet** - every session-51 schedule's first run is after this session. Today's
+  `[Alfred Statements] SUCCESS` (11:06) and Gmail Guardian (07:53) mails pre-date the @75 deploy. First real
+  checkpoints: 09-06 03:30 guardian, 07:00 brief (TASKS / NEWS), 11:06 no SUCCESS mail, 18:00 Sunday card +
+  "Your week in money", 09-07 08:00 digest. Session 53 checks them.
+- **Your taps were already done** (mount verified via docker inspect, sharing Restricted, Watchtower healthy,
+  both repos at origin). Drive stays the capture fallback until ~09-12.
+- **DEFER cluster 2 CLOSED as DEFER** under your 14:50 rule: the 8 YNAB "Unaccounted" plugs (128,367.86) have no
+  same-amount correlate anywhere and no possible source. 16 worksheet rows remain DEFER; 6 other open G2 ledger
+  rows never reached the worksheet - 5 are the same plug class (84,248.84 RCBC / 22,347 GCash / 19,733.08 Maya /
+  2,263.32 BPI / 455 RCBC POS), 1 has a handle (see (d) below).
+- **Yours (one question per row, answer in chat or "skip"):** cluster 3 - (a) 2025-03-11 -23,000 "Calong Calong
+  and Ann Rey Cerillo Paid / loaned to Calo": money you LENT (E1 Family Support) or something else? (b) 2025-06-28
+  -10,485 RCBC Hexa Debit "SAVINGS - RCBC Hexa": a move into your RCBC savings (transfer) or an investment (F3)?
+  (c) 2025-12-30 -807 GCash "Payment to Bancnet P2M Send": remember the merchant? (d) 2024-02-26 -1,000 GCash
+  "Batch Invitation Payment": what was it?
+- **Polish done:** `/spend` caption now says "your typical month per category, from the months it appeared in over
+  the last 6"; philstar was already out of Miniflux (10 feeds, 0 errors).
+- **Next session:** the report checkpoints above, the 6 off-worksheet G2 rows, cluster 3, statements ~12-18 Sep.
 
 **SESSION 51 close (2026-09-05 14:05, GAS @75) - what changed, what is yours:** (`sessions/2026-09-05-session-51.md`)
 - **Balance gate PASSED** (08:24:04, var 0.00 on all 8 FULL; re-read after the 177 apply). Directives 1-4 DONE, 5 built and

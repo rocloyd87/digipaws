@@ -1,4 +1,77 @@
-# CONTINUE - session 52 (written 2026-09-05 14:05 by session 51)
+# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52)
+
+Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 53. REPO PATHS (absolute): digipaws docs clone =
+C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pull origin kt-rewrite first);
+CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND
+live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator.
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-52.md, TASKLIST.md
+"SESSION 52 close", vault 04-HANDOFF item 30. Log as session 53 in alfred_build_log (session 52 = row 159).
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
+correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
+note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
+refine"; authorized (2026-09-05 12:45) to use all MCPs, integrations, connectors, terminal, web.
+FIRST verify against the live system (D-129): n8n executions since 2026-09-05 15:20, Gmail, the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) FIRST REAL CHECK of the session-51 reports (none had fired by session 52): W-GUARDIAN PFS3bVKzTwyJNmxm
+    09-06 03:30 exec (Telegram only if something fired; Gmail only if critical); 07:00 brief 09-06 exec with
+    TASKS / NEWS TOP 5; NO "[Alfred Statements] SUCCESS" mail at 09-06 11:06 (a failure mail is fine); Sunday
+    09-06 18:00 W-SCORECARD card + "Your week in money" mail; Gmail Guardian mail on Sunday only; Monday 09-07
+    08:00 digest in the humanized shape. Fix what did not fire or came out in the old shape.
+(2) Six open G2 ledger rows are NOT on the _ALEX_CategoryPass2 worksheet (22 ledger G2 vs 16 DEFER): five are
+    the same YNAB plug class as cluster 2 (alx-aac03725 2025-02-27 84,248.84 RCBC Hexa Debit "Unaccounted
+    Transactions"; alx-95f52fa2 2025-02-27 22,347 GCash "Varioes Expences"; alx-3625371d 2025-02-27 19,733.08
+    Maya "eWallet - Maya Savings" unnamed row; alx-fcdef2a7 2024-08-13 2,263.32 BPI Main "Entered automatically
+    by YNAB - UNACCOUNTED"; alx-5af703fc 2024-03-14 455 RCBC "POS Debit") -> DEFER by the owner rule, no write;
+    one has a handle (alx-f7b78037 2024-02-26 1,000 GCash "Batch Invitation Payment") -> ask with cluster 3.
+    Optional: append the six to the worksheet as DEFER through a 147-style fill so the tab and the ledger agree.
+(3) DEFER cluster 3 (the last rows with any context) - ask Lloyd ONE question per row, never a list:
+    alx-fb093433 2025-03-11 -23,000 "Calong Calong and Ann Rey Cerillo Paid | loaned to Calo..." (loan given ->
+    E1, or receivable?); alx-9f54c023 2025-06-28 -10,485 RCBC Hexa Debit "SAVINGS - RCBC Hexa" (F3, or transfer
+    to savings?); gcash-491eed77 2025-12-30 -807 GCash "Payment to Bancnet P2M Send"; alx-f7b78037 above.
+    Everything else stays DEFER.
+(4) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions
+    and HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 is stale); HSBC September refresh.
+(5) ~2026-09-12: one week of LifeVault captures -> decide with Lloyd whether Drive stops being the fallback in
+    W-INBOX-FILE (EDfBh8vqrQjthY7C); Undo currently trashes the Drive copy only.
+(6) Read-back with W-S48-READ q=composition|nameonly|g2rows, log, update docs/vault, kos-memory capture with
+    --session <id> as the final Bash call.
+Rules of engagement: every apply step is verified by reading the affected rows back by id/amount; GAS runs from
+the Apps Script editor tab in the app browser (select file, pick function, CONFIRM the toolbar label, Run);
+agent-side GAS tool calls go through a temporary GET webhook -> HTTP node on W-S48-READ ZKdZVe5HDoLU1y6Z,
+removed at close (direct curl to /exec is 405); commands handed to Lloyd are one per block, tagged powershell,
+no && / cd (git -C <path>); the Bash tool unescapes backslashes in heredocs - write source files with the Write
+tool; deploy from a fresh clasp pull (copy changed modules over it; clasp push -f; clasp deploy -i
+AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "..."); run the harness BARE
+(node scripts/alex/run_tests.cjs from the worktree root, expect 111/111) and node --check every changed file
+BEFORE clasp push. n8n patches publish immediately - validateOnly first.
+```
+
+## State at hand-off (2026-09-05 15:20)
+- GAS **@75** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `b22a4d7` (modules 01-177; suite 111/111).
+  No GAS change and no ledger write in session 52.
+- Balance gate 14:50 PASSED (8 FULL var 0.00, verified 08:24:04). Name-only 7. G2 open 22 (309,457) of which
+  16 are worksheet DEFER (clusters 1 + 2 closed under the owner rule; cluster 3 = 3 rows with context) and 6
+  never reached the worksheet (5 plugs + 1 with a handle).
+- n8n: `/spend` caption fixed in W-HERMES `Format Stats` (present-month basis wording). All 26 workflows active;
+  the session-51 schedules had not fired yet - first checkpoints 09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00.
+- VPS: n8n mounts `/opt/lifevault/files -> /lifevault` (verified); Watchtower Up healthy (first run 09-06 04:00);
+  Miniflux 10 feeds, 0 parse errors (philstar already gone).
+- Pushes: digipaws and the Hermes worktree are both at origin. Waiting on Lloyd: DEFER cluster 3 (4 rows),
+  the Drive-fallback decision (~09-12), September statements.
+
+---
+
+# Previous prompt (session 52, 2026-09-05 by session 51) - DONE
+
+Outcome: gate passed; schedules had not fired yet (checkpoints recorded); cluster 2 closed DEFER; /spend caption fixed. See `sessions/2026-09-05-session-52.md`.
+
+## Session-52 prompt as issued
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
