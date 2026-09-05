@@ -20,7 +20,11 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   POS 455, Batch Invitation 1,000 = DEFER in the same batch. Every DEFER row now has an owner ruling. DO NOT RE-ASK ANY OF THEM.
 - **Polish done:** `/spend` caption now says "your typical month per category, from the months it appeared in over
   the last 6"; philstar was already out of Miniflux (10 feeds, 0 errors).
-- **Next session:** the report checkpoints above, the 6 off-worksheet G2 rows, cluster 3, statements ~12-18 Sep.
+- **Vault backed up (16:30):** D:\ObsidianVault origin was a dead cascadereservations-del URL; now rocloyd87/Alfred branch
+  `vault` (origin/vault = 9980455, push.default upstream). Atlas artifact republished (version "Session 52").
+- **Next session:** the report checkpoints above (09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00), the 6 off-worksheet G2
+  plug rows (DEFER by rule, optional worksheet mirror), statements ~12-18 Sep, Drive-fallback decision ~09-12. NO owner
+  questions on the DEFER worksheet.
 
 **SESSION 51 close (2026-09-05 14:05, GAS @75) - what changed, what is yours:** (`sessions/2026-09-05-session-51.md`)
 - **Balance gate PASSED** (08:24:04, var 0.00 on all 8 FULL; re-read after the 177 apply). Directives 1-4 DONE, 5 built and

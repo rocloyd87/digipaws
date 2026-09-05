@@ -1,4 +1,4 @@
-# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52, refreshed 16:00)
+# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52, final 16:40)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
@@ -10,7 +10,7 @@ hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\L
 live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator.
 Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-52.md (incl. the 15:35 post-close),
 TASKLIST.md "SESSION 52 close", vault 04-HANDOFF item 30 + 01-FACTS "DEFER worksheet rulings are final".
-Log as session 53 in alfred_build_log (session 52 = rows 159-160). Memory file alex-defer-worksheet-is-closed-do-not-reask
+Log as session 53 in alfred_build_log (session 52 = rows 159-161). Memory file alex-defer-worksheet-is-closed-do-not-reask
 applies: NEVER ask Lloyd about any existing G2/DEFER row (Calong Calong 23k = lent+repaid, note only, final).
 Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
 correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
@@ -64,9 +64,10 @@ BEFORE clasp push. n8n patches publish immediately - validateOnly first.
 - VPS: n8n mounts `/opt/lifevault/files -> /lifevault` (verified); Watchtower Up healthy (first run 09-06 04:00);
   Miniflux 10 feeds, 0 parse errors (philstar already gone).
 - Atlas artifact republished 15:45 at the same URL (version "Session 52"); update via Artifact url, never a new page.
-- Pushes: digipaws (70c737c) and the Hermes worktree are at origin; the vault origin now = https://github.com/rocloyd87/Alfred.git branch
-  `vault` (Alfred main is the old Phase-1 GAS project - never push over it); first push is Lloyd's command, verify with
-  git -C D:\ObsidianVault status -sb before assuming it landed. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
+- Pushes: digipaws and the Hermes worktree are at origin. VAULT IS NOW BACKED UP: origin = https://github.com/rocloyd87/Alfred.git
+  branch `vault` (Alfred main is the old Phase-1 GAS project - never push over it); origin/vault = 9980455 verified;
+  push.default=upstream so `git -C D:\ObsidianVault push` works. The classifier blocks the agent from pushing the vault -
+  end every session by handing Lloyd that one command and verifying with git status -sb afterwards. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
 
 ---
 
