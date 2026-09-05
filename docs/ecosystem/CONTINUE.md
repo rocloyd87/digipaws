@@ -28,13 +28,12 @@ Do in order:
     Transactions"; alx-95f52fa2 2025-02-27 22,347 GCash "Varioes Expences"; alx-3625371d 2025-02-27 19,733.08
     Maya "eWallet - Maya Savings" unnamed row; alx-fcdef2a7 2024-08-13 2,263.32 BPI Main "Entered automatically
     by YNAB - UNACCOUNTED"; alx-5af703fc 2024-03-14 455 RCBC "POS Debit") -> DEFER by the owner rule, no write;
-    one has a handle (alx-f7b78037 2024-02-26 1,000 GCash "Batch Invitation Payment") -> ask with cluster 3.
+    alx-f7b78037 2024-02-26 1,000 GCash "Batch Invitation Payment" was already ruled DEFER (174, 09-05 07:13).
     Optional: append the six to the worksheet as DEFER through a 147-style fill so the tab and the ledger agree.
-(3) DEFER cluster 3 (the last rows with any context) - ask Lloyd ONE question per row, never a list:
-    alx-fb093433 2025-03-11 -23,000 "Calong Calong and Ann Rey Cerillo Paid | loaned to Calo..." (loan given ->
-    E1, or receivable?); alx-9f54c023 2025-06-28 -10,485 RCBC Hexa Debit "SAVINGS - RCBC Hexa" (F3, or transfer
-    to savings?); gcash-491eed77 2025-12-30 -807 GCash "Payment to Bancnet P2M Send"; alx-f7b78037 above.
-    Everything else stays DEFER.
+(3) DEFER worksheet is CLOSED: every DEFER row has an owner ruling (Calong Calong 23k = lent and repaid, note only,
+    G2/DEFER, no balance effect - ruled 09-05 07:13 via 174 and reaffirmed 15:30; Bancnet/POS/Batch DEFER; plugs DEFER).
+    Never re-ask about them. Only G2 rows created AFTER 2026-09-05 may be asked, one at a time, after reading the
+    row note (q=raw&s=<id>) and grepping TASKLIST for the amount.
 (4) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions
     and HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 is stale); HSBC September refresh.
 (5) ~2026-09-12: one week of LifeVault captures -> decide with Lloyd whether Drive stops being the fallback in
@@ -62,8 +61,7 @@ BEFORE clasp push. n8n patches publish immediately - validateOnly first.
   the session-51 schedules had not fired yet - first checkpoints 09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00.
 - VPS: n8n mounts `/opt/lifevault/files -> /lifevault` (verified); Watchtower Up healthy (first run 09-06 04:00);
   Miniflux 10 feeds, 0 parse errors (philstar already gone).
-- Pushes: digipaws and the Hermes worktree are both at origin. Waiting on Lloyd: DEFER cluster 3 (4 rows),
-  the Drive-fallback decision (~09-12), September statements.
+- Pushes: digipaws and the Hermes worktree are both at origin. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
 
 ---
 

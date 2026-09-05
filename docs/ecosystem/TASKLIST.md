@@ -14,11 +14,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   same-amount correlate anywhere and no possible source. 16 worksheet rows remain DEFER; 6 other open G2 ledger
   rows never reached the worksheet - 5 are the same plug class (84,248.84 RCBC / 22,347 GCash / 19,733.08 Maya /
   2,263.32 BPI / 455 RCBC POS), 1 has a handle (see (d) below).
-- **Yours (one question per row, answer in chat or "skip"):** cluster 3 - (a) 2025-03-11 -23,000 "Calong Calong
-  and Ann Rey Cerillo Paid / loaned to Calo": money you LENT (E1 Family Support) or something else? (b) 2025-06-28
-  -10,485 RCBC Hexa Debit "SAVINGS - RCBC Hexa": a move into your RCBC savings (transfer) or an investment (F3)?
-  (c) 2025-12-30 -807 GCash "Payment to Bancnet P2M Send": remember the merchant? (d) 2024-02-26 -1,000 GCash
-  "Batch Invitation Payment": what was it?
+- **DEFER worksheet CLOSED - nothing left to ask (15:35):** cluster 3 was ALREADY RULED on 09-05 07:13 (174): Calong Calong
+  23k = money Lloyd LENT, already repaid, note only on the row ("ctx: loaned to Calong Calong and Ann Rey Cerillo"), G2/DEFER,
+  no balance effect (Lloyd 15:30: "answered numerous times - put only notes, not to affect the current balance"); Bancnet 807,
+  POS 455, Batch Invitation 1,000 = DEFER in the same batch. Every DEFER row now has an owner ruling. DO NOT RE-ASK ANY OF THEM.
 - **Polish done:** `/spend` caption now says "your typical month per category, from the months it appeared in over
   the last 6"; philstar was already out of Miniflux (10 feeds, 0 errors).
 - **Next session:** the report checkpoints above, the 6 off-worksheet G2 rows, cluster 3, statements ~12-18 Sep.
