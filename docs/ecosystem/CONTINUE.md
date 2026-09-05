@@ -64,8 +64,9 @@ BEFORE clasp push. n8n patches publish immediately - validateOnly first.
 - VPS: n8n mounts `/opt/lifevault/files -> /lifevault` (verified); Watchtower Up healthy (first run 09-06 04:00);
   Miniflux 10 feeds, 0 parse errors (philstar already gone).
 - Atlas artifact republished 15:45 at the same URL (version "Session 52"); update via Artifact url, never a new page.
-- Pushes: digipaws (70c737c) and the Hermes worktree are at origin; the vault repo has NO git remote (see session-52
-  post-close) - local commits only, HEAD e8bb0e1. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
+- Pushes: digipaws (70c737c) and the Hermes worktree are at origin; the vault origin now = https://github.com/rocloyd87/Alfred.git branch
+  `vault` (Alfred main is the old Phase-1 GAS project - never push over it); first push is Lloyd's command, verify with
+  git -C D:\ObsidianVault status -sb before assuming it landed. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
 
 ---
 
