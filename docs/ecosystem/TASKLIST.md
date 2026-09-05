@@ -1,6 +1,27 @@
-# Hermes Ecosystem — Task List (2026-09-05 morning, session 49)
+# Hermes Ecosystem — Task List (2026-09-05 midday, session 50)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 50 close (2026-09-05 11:50, GAS @73 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-50.md`)
+- **Balance gate PASSED** (08:24:04, var 0.00 on all 8 FULL accounts). Correlator: no run since 06:31; nothing to retract.
+  Worksheet 0 pending / 22 deferred; 12 name-only counters left as reported. September statements not issued yet.
+- **Stale list corrected:** the awaiting_statement matcher (145) was already LIVE (ran 01:33 today; 3 captures held);
+  FMP credential + price alerts already exist (`W-PRICE-ALERTS` active). HSBC ruling recorded: **Gold Visa = old
+  cancelled card, Live+ replaced it** (vault FACTS + memory). The Jul-21 2,000 is one correctly paired transfer in Alex.
+- **Capture lane v2 BUILT (n8n, validated):** voice notes (Gemini transcribe -> same text chain), inline OK/Undo buttons
+  on W-INBOX-FILE cards, undo handler (Drive trash) in W-HERMES, `/todo` and `/cascade` routes, W-RAG-INGEST re-activated
+  over `00 Inbox` + `Journal/2026`. W-HERMES 91 -> 112 nodes.
+- **Later items:** `W-HEALTH-INGEST` (`sS5kebHIWMO3p41s`) and `W-SCORECARD` (`b6Qno1SMLMHG8tvj`) ACTIVE; P2C island
+  webhooks removed (33 nodes); Uptime Kuma on the Pi DEFERRED (Lloyd); script cleanup inventoried (only the duplicate
+  `128_` prefix; nothing removed).
+- **Yours (about 8 min, one tap each):** (1) TickTick: developer.ticktick.com -> new app -> paste client id/secret into
+  n8n credential `TickTick OAuth2 - rocloyd87` -> Connect -> send `/todo test task #ecosystem`. (2) Airbnb: Calendar ->
+  Export calendar -> put the `s=` token into credential `Airbnb iCal - Cascade` and the listing id into W-HERMES node
+  `Fetch Airbnb iCal` -> send `/cascade`. (3) Send Hermes a voice note. (4) Send `/note test` and tap **Undo**.
+  (5) Point a phone exporter at `POST https://n8n.rocloyd.com/webhook/health-connect` with header `X-HC-Token`
+  (value: W-HEALTH-INGEST Config). (6) `approve tg-333` (Cebu Pacific 336) if real.
+- **Next session:** watch the 06:30 correlator once the BPI / HSBC / UB September statements land (~12-18 Sep) - the
+  9+ confirmation legs and the 3 `awaiting_statement` captures should be consumed; HSBC September refresh then.
 
 **SESSION 49 close (2026-09-05 07:00, GAS @70) - what changed, what is yours:** (`sessions/2026-09-05-session-49.md`)
 - **Balance gate PASSED twice** (06:21:50 and 06:49:58 after the write: var 0.00 on all 8 FULL accounts).
@@ -279,7 +300,11 @@ the claimed-write gap for real.
    (merchant-majority across the ledger + a manual worksheet for the remainder), then re-read
    `get_kpis.monthPace.mtdUncategorized` and the brief's driver line.
 
-5. **Credentials that unblock the remaining drafts** (n8n → Credentials):
+5. **Credentials that unblock the remaining drafts** (n8n → Credentials) — **SESSION 50: shells created;
+   FMP already existed.** `TickTick OAuth2 - rocloyd87` (`TVu3QTaHN9dWC2Xy`) and `Airbnb iCal - Cascade`
+   (`Ijb693H90z3qT1Np`) exist with placeholder values; `/todo` and `/cascade` routes are BUILT and wait
+   only for the real values (see SESSION 50 close "Yours"). `FMP API` (`wk2ToB3n5OZ7Eukl`) already existed
+   and `W-PRICE-ALERTS` (`X2bAv2WXOOZJ3pP6`) is ACTIVE.
    - `TickTick OAuth2 - rocloyd87` (generic OAuth2 API; steps in `drafts/W-DAILY-BRIEF-v2.json`
      Read Me §1) → then `/todo` route + brief tasks section.
    - `FMP apikey` (Query Auth, parameter `apikey`) → select it on `FMP EOD Light` in
@@ -291,7 +316,8 @@ the claimed-write gap for real.
    authorization):** `detect_subscription_candidates` → **0 candidates** (fresh run, not cached).
    MoneyMatter's detector finds no recurring pattern in the mirrored rows, so `/sub` and the
    brief's subscriptions section stay ledger-only until subscriptions are created by hand.
-7. Q4 HSBC name ("HSBC Live+" = "HSBC Gold Visa"?) is still open.
+7. ~~Q4 HSBC name~~ **ANSWERED (Lloyd, session 50): HSBC Gold Visa is the old CANCELLED card; HSBC Live+ replaced
+   it — one account lineage. Recorded in vault 01-FACTS and memory; do not ask again.**
 
 0. **PowerShell users:** run each block below as its own command (`&&` is not valid in
    Windows PowerShell 5.1). First push + deploy were done → **@26**. A SECOND push + deploy is
@@ -361,10 +387,11 @@ the claimed-write gap for real.
 - [x] Wired in W-HERMES: `Is Inbox Note` (`/note …`) → `File Note to Inbox`; `Upload Photo
       Evidence` → `File Photo to Inbox`; `Upload Document Evidence` → `File Document to Inbox`
       (all `waitForSubWorkflow: false`, parallel to the receipt/PDF lanes).
-- [ ] Live test (Lloyd, §A step 3). Then: voice notes (transcribe via Gemini audio), inline
-      OK/Undo buttons (needs the Telegram Trigger to also listen to `callback_query`), undo =
-      trash the Drive note, and RAG indexing of `00 Inbox` (extend `W-HERMES-DOCS` folder
-      watch or add a second Drive trigger).
+- [x] **v2 BUILT (session 50, n8n, validated; phone test is Lloyd's):** voice notes (Gemini
+      transcribe → same text chain), inline OK/Undo buttons (Telegram Trigger now listens to
+      `callback_query`; `Is Callback` lane in W-HERMES), undo = Drive trash of the note, RAG
+      indexing of `00 Inbox` + `Journal/2026` via the re-activated `W-RAG-INGEST` (`2WnJBAj1XGJ7hgHI`).
+- [ ] Live test (Lloyd): send a voice note; send `/note test` and tap Undo; check the note is in Drive trash.
 - [ ] If LifeVault becomes the target: verify `livesync-bridge` bidirectionality on the VPS,
       then re-point the folder map in `Build Note`.
 
@@ -372,7 +399,7 @@ the claimed-write gap for real.
 
 - [x] `remember/recall/forget` (doc_class=memory), Chat Memory 20 turns.
 - [x] LifeVault → RAG nightly (`W-OBSIDIAN-INGEST`), `rag_search` journal recall proven.
-- [ ] After C: inbox-lane notes indexed the next night (no new tables).
+- [x] After C: inbox-lane notes are indexed within ~30-45 min by `W-RAG-INGEST` (session 50; no new tables).
 
 ## E — Proactive layer — IN PROGRESS
 
@@ -415,19 +442,22 @@ the claimed-write gap for real.
       `hermesWatchlistEnsure()` run (§A 5) before activation. Draft: `drafts/W-FMP-ALERTS.json`. Constraint found: FMP `quote`
       endpoints are Premium-gated on this plan and PSE tickers are not on FMP, so the draft is
       end-of-day (FMP EOD light for US, GOOGLEFINANCE columns for PSE).
-- [ ] Remove the P2C "island" webhooks from `TEST - OmniRoute gateway` after a quiet week
-      (created 2026-08-31 → earliest 2026-09-07; untouched in session 45).
+- [x] P2C "island" webhooks REMOVED from `TEST - OmniRoute gateway` (session 50: 33 `p2c-*` nodes, 113 → 80;
+      the workflow has been inactive since 09-03).
 
 ## F — LATER
 
-- [ ] Health Connect webhook → n8n → `stage_health` (tools exist).
-- [ ] Uptime Kuma on the Pi (n8n, MoneyMatter, HA → Telegram).
-- [ ] Monthly scorecard; Sunday briefing.
+- [x] Health Connect webhook → n8n → `stage_health`: `W-HEALTH-INGEST` (`sS5kebHIWMO3p41s`) ACTIVE (session 50).
+      Lloyd: point the phone exporter at `POST /webhook/health-connect` with header `X-HC-Token`.
+- [ ] ~~Uptime Kuma on the Pi~~ DEFERRED (Lloyd, session 50: the VPS Uptime Kuma already covers it).
+- [x] Monthly scorecard + Sunday briefing: `W-SCORECARD` (`b6Qno1SMLMHG8tvj`) ACTIVE (session 50): Sunday 18:00
+      weekly review, 1st 08:30 monthly scorecard, owner hook `GET /webhook/scorecard-run?mode=weekly|monthly`.
 - [x] ~~Wire real `essential_prefixes`~~ **DONE 2026-09-02 (`37bf844`):** `metricsKpis` uses
       `metricsEssentialMedian_` over `GOAL_CONTRACT.essential_prefixes`; the 0.9 approximation is
       only the fallback when no essential-coded rows exist.
 - [x] Upstream account-feed fix **CODED (session 45, `ad00d50`, live after v28):**
       `dashSyncAccountsRead_` prefers `tarsi_balance` unless `coverage === 'FULL'`; the phantom
       −641k GCash line disappears from the 02:00 report the first night after the deploy (verify).
-- [ ] Carried Alex items: 30 blank category rows; sheet script cleanup; HSBC September statement
-      refresh; small-account confirmations; sheet link-sharing decision.
+- [ ] Carried Alex items: 30 blank category rows; sheet script cleanup (session 50: inventoried, only the
+      duplicate `128_` prefix found, nothing removed); HSBC September statement refresh (waits for the
+      statement, due ~13 Sep); small-account confirmations; sheet link-sharing decision.

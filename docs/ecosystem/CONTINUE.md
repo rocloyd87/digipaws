@@ -1,71 +1,84 @@
-# CONTINUE - session 50 (written 2026-09-05 07:00 by session 49)
+# CONTINUE - session 51 (written 2026-09-05 11:50 by session 50)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
 ```text
-Continue the Hermes/Alex classification work as desktop session 50. Boot: read
-digipaws docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-49.md
-(all sections), TASKLIST.md "SESSION 49 close", and vault 04-HANDOFF-alfred item 26
-+ D-128. Log as session 50 in alfred_build_log (session 49 = rows 143-147). Standing
-constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction
-must keep correlating; no ledger rebuilds, merges, row deletions, or
-amount/date/account edits; category/counter/label/note edits only through the
-snapshot-first engines (130/144/146, 147/148-style fills, one-function runners).
+Continue the Hermes/Alex work as desktop session 51. Boot: read digipaws
+docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-50.md (all sections),
+TASKLIST.md "SESSION 50 close", and vault 04-HANDOFF-alfred item 27 + D-129. Log as session 51
+in alfred_build_log (session 50 = rows 148-150). Standing constraint unchanged: BALANCE_CONTROL
+anchors (2026-08-28) and every later transaction must keep correlating; no ledger rebuilds,
+merges, row deletions, or amount/date/account edits; category/counter/label/note edits only
+through the snapshot-first engines (130/144/146, 147/148-style fills, one-function runners).
 Lloyd: "don't over-engineer - finish the main tasks, then refine".
-Do in order: (1) read BALANCE_CONTROL for the latest alexBalanceScheduled - any FULL
-account var != 0.00 -> restore latest snapshot and stop; (2) read _ALEX_Correlator
-and the 06:30 correlatorScheduled executions since 2026-09-06 (AUTO_APPLY is ON, @70
-carries split-order matching): verify every applied decision by reading the ledger
-rows back, retract with correlatorRetractSelfCounters if a self-counter slipped
-through; (3) the worksheet is 0 pending / 22 deferred after Lloyd's 07:10 rulings (174) -
-only new candidates need a word; (4) the 12 reported name-only counters (173 preview lists them: 4
-name-vs-leg disagreements, 8 expense/income institution-counters) - Lloyd's word or
-leave; (5) statements: when the BPI / UB e-statements for Aug-Sep land, the 06:30
-run should consume the 9+ unmatched confirmation legs - verify by reading
-_ALEX_Correlator; (6) read-back with W-S48-READ (ZKdZVe5HDoLU1y6Z, active)
-q=composition|nameonly|g2rows, log, update docs/vault, capture the memory event
-with --session <id>.
-Rules of engagement: every apply step is verified by reading the affected rows
-back by id/amount (a reported "decided N" is a preview count, not proof); GAS runs
-from the Apps Script editor tab in the app browser (select the file, pick the
-function, CONFIRM the toolbar label, Run) - the agent runs them itself; commands
-handed to Lloyd are one per block, tagged powershell, no && / cd (use git -C
-<path>); the kos-memory capture is its own final Bash call with no version-control
-verbs in its text. Deploy from C:/Users/Lloyd/gas-v35 (clasp push -f; clasp deploy
--i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d
-"..."); run the harness BARE (node scripts/alex/run_tests.cjs from the worktree
-root, expect 110/110) and node --check every changed file BEFORE clasp push.
+FIRST: verify every item below against the live system (worktree, gas-v35, n8n credential list,
+n8n workflow list, the sheet tab) before building - session 50 found two "not built" items
+already live (D-129).
+Do in order: (1) read BALANCE_CONTROL for the latest alexBalanceScheduled - any FULL account
+var != 0.00 -> restore latest snapshot and stop; (2) read _ALEX_Correlator and every 06:30
+correlatorScheduled execution since 2026-09-06 (AUTO_APPLY is ON, @73 carries split-order
+matching): verify every applied decision by reading the ledger rows back, retract with
+correlatorRetractSelfCounters if a self-counter slipped through; (3) statements: when the BPI
+(~12 Sep), HSBC (~13 Sep) and UB (~17 Sep) September e-statements land, the 06:30 run should
+consume the 9+ unmatched confirmation legs and 145 should enrich the 3 awaiting_statement
+captures (tg-00000307 SOCOTECO 2,702 BPI Main; tg-328 546.86 UB Visa; tg-351 406 RCBC, dated
+2026-04-09 -> will go stale) - verify by reading _ALEX_Correlator and HERMES_STAGING merged_at;
+then the HSBC September refresh; (4) capture lane v2 live check: read the W-HERMES executions
+for a callback_query (Is Callback lane), a voice note (Transcribe Voice output shape -> fix
+Voice as Text if the transcript field differs), /todo and /cascade; read W-RAG-INGEST
+executions (2WnJBAj1XGJ7hgHI) for the first inbox-note embeddings and W-SCORECARD
+(b6Qno1SMLMHG8tvj) for the Sunday 18:00 card; (5) the worksheet is 0 pending / 22 deferred and
+12 name-only counters are reported by design - only new candidates need a word; (6) read-back
+with W-S48-READ (ZKdZVe5HDoLU1y6Z, active) q=composition|nameonly|g2rows, log, update
+docs/vault, capture the memory event with --session <id>.
+Rules of engagement: every apply step is verified by reading the affected rows back by
+id/amount (a reported "decided N" is a preview count, not proof); GAS runs from the Apps Script
+editor tab in the app browser (select the file, pick the function, CONFIRM the toolbar label,
+Run) - the agent runs them itself; commands handed to Lloyd are one per block, tagged
+powershell, no && / cd (use git -C <path>); the kos-memory capture is its own final Bash call
+with no version-control verbs in its text. Deploy from C:/Users/Lloyd/gas-v35 (clasp push -f;
+clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d
+"..."); run the harness BARE (node scripts/alex/run_tests.cjs from the worktree root, expect
+110/110) and node --check every changed file BEFORE clasp push.
 ```
 
-## State at hand-off (2026-09-05 07:00)
-- GAS **@73** (v70) = worktree `hermes-wave-1-trust-94a9fb` HEAD `1c807a4` (modules 156-174;
-  suite 110/110). Push folder `C:\Users\Lloyd\gas-v35` (= live, verified by a scratch `clasp pull`).
-- Balance gate 07:15:05 PASSED (8 FULL accounts var 0.00) after the day's writes: snapshot
-  `20260905064146` (173, 29 counter ids) and the 174 snapshots (keyboard -> E1, Calong note, sub clear).
-- `_ALEX_Correlator`: 4 rows (the 2026-09-04 preview); 06:31 run logged 0 decisions. `correlatorPreview`
-  on @70: 0/0, ambiguous [], unmatched = BPI/UB confirmation legs only.
-- Name-only counters 41 -> 12 (all 12 reported by design). Composition: transfer|blank|counter 406,
-  transfer|blank|nocounter 5, expense|G2|nocounter 22 (309,457 lifetime), income|blank 127 (tagged).
-- Worksheet: 0 pending, 22 deferred (Lloyd 07:10: Calong = loaned out, noted; Bancnet / POS / Batch
-  DEFER; keyboard = gift -> E1). G2 open still 22 (DEFER keeps rows open by design).
-- Read-only helper `W-S48-READ` ZKdZVe5HDoLU1y6Z is ACTIVE (paths s48-read-balance-9f3c1d,
-  s48-read-alex-7b2e4a q=composition|g2rows|nameonly|find&s=|amounts&list=|raw, s48-read-tab-c41d9e
-  tab=&cols=&limit=).
-- Open for Lloyd: the 12 reported counters (optional).
-- Gotchas: the live correlator never ran card-side matching before @69 (`correlatorRun_` dropped the
-  set config - fixed by `correlatorSet_`); the editor's function dropdown keeps a previous
-  selection - read the toolbar label before Run; 78_AlexEmailIngest is hand-patched;
-  `alexEmailIngestResetSeenThreads` resets ALL sources - use `amazonOrdersResetSeen`; BPI card posts
-  Amazon totals +1.0 %; never pipe the test gate inside a deploy chain; kos-memory capture needs
+## State at hand-off (2026-09-05 11:50)
+- GAS **@73** (v70) = worktree `hermes-wave-1-trust-94a9fb` HEAD `1c807a4` (modules 01-174; suite
+  110/110). **No GAS change in session 50.** Push folder `C:\Users\Lloyd\gas-v35` (= live).
+- Balance gate 08:24:04 PASSED (8 FULL accounts var 0.00). Correlator idle since 06:31 (4 Sep-4 preview
+  rows only). Worksheet 0 pending / 22 deferred. Name-only 12 (reported by design). G2 open 22 (309,457).
+- **September statements not issued yet** (latest: HSBC 08-13, BPI 08-14, UB 08-18). Nothing for the
+  correlator or the 145 matcher to consume until they land.
+- n8n (all validated, 0 errors): W-HERMES `Diz990QbM3cZYCKp` 112 nodes (callback lane, voice lane, /todo,
+  /cascade); W-INBOX-FILE `EDfBh8vqrQjthY7C` OK/Undo buttons; W-RAG-INGEST `2WnJBAj1XGJ7hgHI` ACTIVE
+  (roots + `00 Inbox`, `Journal/2026`); W-HEALTH-INGEST `sS5kebHIWMO3p41s` ACTIVE (POST
+  /webhook/health-connect, header X-HC-Token = Config.hc_token); W-SCORECARD `b6Qno1SMLMHG8tvj` ACTIVE
+  (Sun 18:00, 1st 08:30, GET /webhook/scorecard-run?mode=weekly|monthly); TEST - OmniRoute gateway
+  `XLmn6yZP5CusIJ8E` 80 nodes (P2C islands gone). Read-only helper `W-S48-READ` `ZKdZVe5HDoLU1y6Z` ACTIVE.
+- Credential shells (placeholders): `TickTick OAuth2 - rocloyd87` `TVu3QTaHN9dWC2Xy`, `Airbnb iCal -
+  Cascade` `Ijb693H90z3qT1Np`. `FMP API` `wk2ToB3n5OZ7Eukl` real; `W-PRICE-ALERTS` `X2bAv2WXOOZJ3pP6` ACTIVE.
+- **Lloyd's taps (TASKLIST "SESSION 50 close"):** TickTick client id/secret + Connect; Airbnb `s=` token
+  into the credential + listing id into node `Fetch Airbnb iCal`; a voice note; `/note test` + Undo; point
+  the phone Health Connect exporter at the webhook; `approve tg-333` if real.
+- Gotchas: callback_query updates have no top-level `message` - keep the `Is Callback` branch ahead of
+  Config/Owner Allowlist; changing Telegram Trigger `updates` needs a deactivate/activate cycle; the
+  Gemini transcribe node's output field is UNVERIFIED (Voice as Text accepts text / content / candidates /
+  output - read the first live execution); n8n `noOp` needs `parameters: {}`; the editor's function
+  dropdown keeps a previous selection - read the toolbar label before Run; 78_AlexEmailIngest is
+  hand-patched; `alexEmailIngestResetSeenThreads` resets ALL sources - use `amazonOrdersResetSeen`; BPI
+  card posts Amazon totals +1.0 %; never pipe the test gate inside a deploy chain; kos-memory capture needs
   `--session <id>` (the transcript file name under ~/.claude/projects/<cwd-slug>/) and the event's
   source_commit must equal the vault HEAD at capture time.
+- Deferred by Lloyd: Uptime Kuma on the Pi (VPS instance covers it). Script cleanup: only the duplicate
+  `128_` prefix found; rename at the next real GAS change.
 
 ---
 
-# Previous prompt (session 49 v2, 2026-09-05 by session 48) - DONE
+# Previous prompt (session 50, 2026-09-05 by session 49) - DONE
 
-Outcome: all six steps done (rulings applied 07:13) - see
-`sessions/2026-09-05-session-49.md`.
+Outcome: steps 1-6 done; the "remaining tasks" list was checked live first (matcher 145 and FMP alerts
+already existed; HSBC already answered); capture lane v2, Health Connect ingest, weekly review + monthly
+scorecard built in n8n; P2C islands removed. See `sessions/2026-09-05-session-50.md`.
 
 ## Mobile / remote lane (away from the desktop)
 
