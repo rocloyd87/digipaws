@@ -2,6 +2,22 @@
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
+**SESSION 50 final - Lloyd's directives (2026-09-05 12:45) - the session-51 work order:** (full prompt in `CONTINUE.md`)
+1. **Reports:** one weekly e-mail summary instead of several per morning; same-day e-mail only for critical
+   items (gate failure, failed import, W-ERR). **Humanize every report** (Telegram + e-mail): title, blank
+   line, one sentence of context, then figures; blank lines between groups; ADHD-friendly, lead with what
+   changed and what to do. Optimize the statement -> correlator -> 145 pipeline where slow or noisy.
+2. **Brief v2:** add TickTick open tasks + Subscriptions sections to the 07:00 brief in the humanized shape.
+3. **Miniflux on the VPS (not the Pi)**, then the news digest. **KPI data quality:** fix the budgetOutlook
+   basis (B3 74/mo, E4 82/mo), add nightly data guardians/verifiers reporting through the critical channel.
+   Owner context still needed: only the 22 DEFER rows, one cluster at a time in chat.
+4. **Housekeeping, authorized:** 30 blank-category rows via 144/146 -> 130; the 4 name-vs-leg counters take
+   the leg's account, the 8 institution-counters stay reported; rename `128_Own28SignFix` -> `175_`;
+   small-account confirmations (list the evidence needed); sheet sharing -> Restricted.
+5. **LifeVault as the capture target:** verify livesync-bridge both ways on the VPS, re-point W-INBOX-FILE
+   and the RAG roots, keep Drive as fallback for a week.
+Deferred (Lloyd): Uptime Kuma on the Pi, Huawei Health ingest.
+
 **SESSION 50 close (2026-09-05 11:50, GAS @73 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-50.md`)
 - **Balance gate PASSED** (08:24:04, var 0.00 on all 8 FULL accounts). Correlator: no run since 06:31; nothing to retract.
   Worksheet 0 pending / 22 deferred; 12 name-only counters left as reported. September statements not issued yet.
