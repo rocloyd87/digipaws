@@ -1,0 +1,55 @@
+Continue the Hermes/Alex work as desktop session 55 (TONIGHT variant, 2026-09-05 evening). REPO PATHS (absolute):
+digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pull origin
+kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND live -
+always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
+(origin = https://github.com/rocloyd87/Alfred.git branch vault, origin/vault = 928a32e; never push over Alfred main;
+pushes are Lloyd's).
+Boot: read docs/ecosystem/CONTINUE.md, sessions/2026-09-05-session-54.md, TASKLIST.md "SESSION 54 close",
+vault 04-HANDOFF item 32 + D-133 + 01-FACTS "GAS shared secret".
+Log as session 55 in alfred_build_log (Supabase fbtqqrpeiwhbxxkpyzdt, session 54 = rows 164-165).
+Memory alex-defer-worksheet-is-closed-do-not-reask applies: NEVER ask Lloyd about any existing G2/DEFER row.
+Memory gas-key-rotation-leaves-n8n-config-nodes-stale applies: an {ok:false} body inside a SUCCESS execution is a failure.
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
+correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
+note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
+refine"; authorized to use all MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions. If the clock is still before 2026-09-06 03:30, NONE of the
+session-51 report checkpoints has fired - do not try to check them, record that, and do the tonight list below.
+Then verify against the live system (D-129): executions since 2026-09-05 20:15 INCLUDING the error list of every
+active workflow, and for every SUCCESS run of a GAS-calling workflow read the reply body for {ok:false}; Gmail.
+TONIGHT, in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) Prove the D-133 key fix on the two workflows not yet exercised: W-SENTINEL lo18YAo7HdBdUF7g (Run Checks must
+    return ok:true) and W-API-MONITOR kEdUcpzRtuhlP3a8 (Read Usage must return ok:true; its 20:00 run 21636 today was
+    still unauthorized because it fired 4 min before the patch). Method: add a temporary GET webhook node wired to
+    Config, fire it with n8n_test_workflow method=trigger (the classifier blocks a curl), read the execution, remove
+    the node, confirm node counts back to 6 / 6. Telegram output is fine (sentinel sends only on failures).
+(2) The nudge figure "Liquid is 1,648,653 below the runway floor" (Telegram message 381, 20:06): call get_kpis through
+    W-S48-READ (add a temporary ?tool= GET webhook -> HTTP node on ZKdZVe5HDoLU1y6Z if none exists, remove at close)
+    and read tier1.liquid, tier1.floorReserve, tier1.floorBasis. Decide whether GCash PARTIAL (-641,280.68,
+    COMPUTED_PARTIAL) is inside liquid. If it is, that is a basis defect: liquid must sum FULL-verified accounts only
+    (or treat a PARTIAL negative e-wallet as 0), fixed in GAS 93_Metrics.js (metricsKpis* / floor code) via the normal
+    path: edit in the worktree, node --check, harness BARE (node scripts/alex/run_tests.cjs, expect 111/111, add a
+    test for the PARTIAL exclusion), fresh clasp pull into a throwaway folder, copy the changed module over, clasp
+    push -f, clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...",
+    then re-read get_kpis and re-run the nudge test webhook to read the corrected text. Commit the worktree; GAS
+    version becomes @76 - record it everywhere @75 is written. If liquid is correct as-is, write that down and stop.
+(3) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e; expect 5,347 rows, G2 22 = 309,457, name-only 7), log, update docs (sessions/2026-09-05-
+    session-55.md, TASKLIST "SESSION 55 close", CONTINUE.md session-56 prompt = the morning checklist below), vault
+    (00-STATE, 04-HANDOFF item 33, D-134 only if (2) changed the basis, 01-FACTS if a fact changed), kos-memory
+    capture with --session <id> as the final Bash call (node D:\ObsidianVault\90-assets\knowledge-os\kos-memory.mjs
+    capture --session <id> --event <json>; source_commit must equal the vault HEAD after your commit); hand Lloyd
+    `git -C D:\ObsidianVault push` and verify with status -sb.
+MORNING CHECKLIST (put into the session-56 prompt, after 09-06 20:00): W-GUARDIAN PFS3bVKzTwyJNmxm 03:30 exec
+(Telegram only if something fired; Gmail only if critical); 07:00 brief with TASKS / NEWS TOP 5; NO "[Alfred
+Statements] SUCCESS" mail at 11:06; nudges 12:30 / 19:30 Evaluate Rules ok:true; Sunday 18:00 W-SCORECARD card +
+"Your week in money" mail + W-SENTINEL ok:true; 20:00 W-API-MONITOR ok:true; Gmail Guardian mail Sunday only;
+Monday 09-07 08:00 W-HERMES-DIGEST humanized (message 380 = reference). Statements ~12-18 Sep; Drive-fallback ~09-12.
+Rules of engagement: every apply step is verified by reading the affected rows back by id/amount; GAS runs from the
+Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); commands handed to Lloyd are
+one per block, tagged powershell, no && / cd (git -C <path>); the Bash tool unescapes backslashes in heredocs -
+write source files with the Write tool; n8n patches publish immediately - validateOnly first; read a row's note
+(q=raw&s=<id>) before asking the owner anything.
