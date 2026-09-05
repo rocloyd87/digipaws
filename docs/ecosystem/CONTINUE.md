@@ -1,4 +1,4 @@
-# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52)
+# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52, refreshed 16:00)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
@@ -8,8 +8,10 @@ C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pul
 CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
 hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND
 live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator.
-Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-52.md, TASKLIST.md
-"SESSION 52 close", vault 04-HANDOFF item 30. Log as session 53 in alfred_build_log (session 52 = row 159).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-52.md (incl. the 15:35 post-close),
+TASKLIST.md "SESSION 52 close", vault 04-HANDOFF item 30 + 01-FACTS "DEFER worksheet rulings are final".
+Log as session 53 in alfred_build_log (session 52 = rows 159-160). Memory file alex-defer-worksheet-is-closed-do-not-reask
+applies: NEVER ask Lloyd about any existing G2/DEFER row (Calong Calong 23k = lent+repaid, note only, final).
 Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
 correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
 note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
@@ -61,7 +63,9 @@ BEFORE clasp push. n8n patches publish immediately - validateOnly first.
   the session-51 schedules had not fired yet - first checkpoints 09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00.
 - VPS: n8n mounts `/opt/lifevault/files -> /lifevault` (verified); Watchtower Up healthy (first run 09-06 04:00);
   Miniflux 10 feeds, 0 parse errors (philstar already gone).
-- Pushes: digipaws and the Hermes worktree are both at origin. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
+- Atlas artifact republished 15:45 at the same URL (version "Session 52"); update via Artifact url, never a new page.
+- Pushes: digipaws (70c737c) and the Hermes worktree are at origin; the vault repo has NO git remote (see session-52
+  post-close) - local commits only, HEAD e8bb0e1. Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
 
 ---
 
