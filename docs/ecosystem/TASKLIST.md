@@ -1,6 +1,39 @@
-# Hermes Ecosystem — Task List (2026-09-05 midday, session 50)
+# Hermes Ecosystem — Task List (2026-09-05 afternoon, session 51)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 51 close (2026-09-05 14:05, GAS @75) - what changed, what is yours:** (`sessions/2026-09-05-session-51.md`)
+- **Balance gate PASSED** (08:24:04, var 0.00 on all 8 FULL; re-read after the 177 apply). Directives 1-4 DONE, 5 built and
+  waiting on one mount, 6 waits for the September statements.
+- **Reports (D-130 #1):** the two daily mails are gone - `[Alfred Statements] SUCCESS` no longer sends (32 records the run;
+  a failure still mails) and the Gmail Guardian digest is Sunday-only (weekday mail only on failures). ONE weekly e-mail:
+  W-SCORECARD Sunday 18:00 -> "Your week in money" (test received 13:27). Critical channel: W-ERR now also e-mails; NEW
+  W-GUARDIAN `PFS3bVKzTwyJNmxm` 03:30 (kpi_guardian: balance gate, sync, ingest, budget vs burn, G2 share, blanks, stale
+  statements; GET /webhook/guardian-run). Digest, nudges, brief, weekly/monthly cards, dash-sync report, verifier, watchdog
+  and W-ERR all in the title / sentence / groups shape - each read back live.
+- **Brief v2 (D-130 #2) LIVE:** TickTick tasks (overdue / today / soon), ledger subscriptions in DUE <= 7 d, NEWS TOP 5 from
+  Miniflux via Gemini. **Miniflux (D-130 #3) LIVE on alfred-brain** (/opt/miniflux, 10 feeds, 571 entries, credential
+  `Miniflux API - alfred-brain`). **budgetOutlook fixed** (present-month median, 3-of-6 gate; B3 273/mo gone; 165k = 79 % of
+  burn). 128 -> 175 renamed; 177 filled the 5 leg-disagreement counters (name-only 12 -> 7); 0 blank-category spending rows exist.
+- **Yours (about 6 min):**
+  (1) n8n LifeVault mount (the classifier blocked this compose edit). First look:
+  `ssh alfred "cat /opt/alfred/deploy/docker-compose.override.yml"`. If no `n8n:` service is in it, append one:
+  `ssh alfred "cd /opt/alfred/deploy; printf '  n8n:\n    volumes:\n      - /opt/lifevault/files:/lifevault\n' >> docker-compose.override.yml; docker compose up -d n8n"`
+  (if an `n8n:` block already exists, add the `- /opt/lifevault/files:/lifevault` line under its `volumes:` instead). Then
+  `/note lifevault test` on Telegram and look for `00-inbox/<date> lifevault-test.md` in Obsidian.
+  (2) Drive: open the folder that holds Lloyd Transactions -> Share -> General access -> Restricted (the anyone-link is
+  inherited from the folder; the file-level delete returns 403).
+  (3) Portainer -> watchtower stack -> add env `DOCKER_API_VERSION=1.44` -> redeploy (restart-looping on Docker 29 since at
+  least 09-05, so no container has auto-updated).
+  (4) Optional: Zero Trust tunnel route miniflux.rocloyd.com -> http://localhost:8085 (admin `lloyd`, password in
+  /opt/miniflux/.env on the VPS).
+  (5) `git -C C:\Users\Lloyd\Claude\Projects\CoPilot\.claude\worktrees\hermes-wave-1-trust-94a9fb push` (b22a4d7) and
+  `git -C C:\Users\Lloyd\Claude\Projects\digipaws push origin kt-rewrite`.
+- **The 22 DEFER rows, cluster 1 (say what these were for, or "skip"):** five BPI Main `Payment to Merchant` debits -
+  2025-10-13 3,633.75 · 2025-10-30 4,381.75 · 2025-12-01 1,517.90 · 2025-12-26 2,053.00 · 2026-05-29 5,165.70. Cluster 2 next
+  session: the YNAB "Unaccounted" plugs (9 rows, ~230k).
+- **Next session:** watch the 03:30 guardian and the Sunday 18:00 mail; once the September statements land (~12-18 Sep) the
+  06:30 correlator consumes the confirmation legs and 145 the 4 held captures; then the HSBC September refresh.
 
 **SESSION 50 final - Lloyd's directives (2026-09-05 12:45) - the session-51 work order:** (full prompt in `CONTINUE.md`)
 1. **Reports:** one weekly e-mail summary instead of several per morning; same-day e-mail only for critical

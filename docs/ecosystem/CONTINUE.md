@@ -1,4 +1,71 @@
-# CONTINUE - session 51 (written 2026-09-05 12:50 by session 50, v2 with Lloyd's directives)
+# CONTINUE - session 52 (written 2026-09-05 14:05 by session 51)
+
+Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 52. REPO PATHS (absolute): digipaws docs clone =
+C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pull origin kt-rewrite first);
+CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND
+live (session 51 pushed from a fresh pull) - always clasp pull into a throwaway folder first.
+Vault = D:\ObsidianVault\20-projects\alfred-navigator. Boot: read docs/ecosystem/CONTINUE.md (this file),
+sessions/2026-09-05-session-51.md, TASKLIST.md "SESSION 51 close", vault 04-HANDOFF item 29 + D-131.
+Log as session 52 in alfred_build_log (session 51 = rows 153-155). Standing constraint unchanged:
+BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep correlating; no ledger rebuilds,
+merges, row deletions, or amount/date/account edits; category/counter/label/note edits only through the
+snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then refine"; authorized
+(2026-09-05 12:45) to use all MCPs, integrations, connectors, terminal, web and to implement the optimal options.
+FIRST verify against the live system (D-129): n8n workflow list (W-GUARDIAN PFS3bVKzTwyJNmxm, W-SCORECARD,
+W-DAILY-BRIEF 13 nodes, W-INBOX-FILE 10 nodes, W-ERR 4 nodes), executions since 2026-09-05 14:00, gas-v35,
+the sheet tabs. Agent-side GAS tool calls: add a temporary GET webhook -> HTTP POST node on W-S48-READ
+ZKdZVe5HDoLU1y6Z (?tool=&params=), remove it at close; direct curl to /exec is 405.
+Do in order:
+(0) Balance gate via GET /webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 -> restore latest snapshot and stop.
+(1) Verify the new reports actually ran on schedule: W-GUARDIAN 03:30 (Telegram only if something fired;
+    e-mail only when critical), Sunday 18:00 W-SCORECARD card + "Your week in money" e-mail (Sunday 09-06),
+    Monday 08:00 digest in the humanized shape, 07:00 brief with TASKS / NEWS TOP 5, no "[Alfred Statements]
+    SUCCESS" mail after 09-05 11:06, Gmail Guardian mail only on Sunday. Fix what did not.
+(2) Lloyd's taps (TASKLIST "SESSION 51 close" Yours): if the n8n LifeVault mount exists (docker inspect n8n
+    shows /lifevault), send /note and verify the file lands in /opt/lifevault/files/00-inbox and in Obsidian;
+    then decide with Lloyd when Drive stops being the fallback. If the folder sharing is Restricted, note it.
+(3) DEFER cluster 1 answer (five BPI Main Payment to Merchant rows) -> rule through a 147-style worksheet fill
+    -> categoryPass2Preview/Apply (144) -> read back by id; then present cluster 2 (YNAB Unaccounted plugs).
+(4) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions
+    and HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 is stale); HSBC September refresh.
+(5) Small polish carried: W-HERMES /spend caption still says "6-mo category medians" (basis is now
+    present-month median, 3-of-6); Watchtower restart loop (DOCKER_API_VERSION=1.44) if Lloyd has not fixed it;
+    philstar feed blocked by Cloudflare (drop or replace); tunnel route for miniflux.rocloyd.com is optional.
+(6) Read-back with W-S48-READ q=composition|nameonly|g2rows, log, update docs/vault, kos-memory capture with
+    --session <id> as the final Bash call.
+Rules of engagement: every apply step is verified by reading the affected rows back by id/amount; GAS runs from
+the Apps Script editor tab in the app browser (select file, pick function, CONFIRM the toolbar label, Run);
+commands handed to Lloyd are one per block, tagged powershell, no && / cd (git -C <path>); the Bash tool
+unescapes backslashes in heredocs - write source files with the Write tool; deploy from a fresh clasp pull
+(copy changed modules over it; clasp push -f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...");
+run the harness BARE (node scripts/alex/run_tests.cjs from the worktree root, expect 111/111) and node --check
+every changed file BEFORE clasp push.
+```
+
+## State at hand-off (2026-09-05 14:05)
+- GAS **@75** = worktree `hermes-wave-1-trust-94a9fb` HEAD `b22a4d7` (modules 01-177; suite 111/111). New tools:
+  `kpi_guardian`, `ops_status`. Success e-mail off in 32; budgetOutlook present-month basis in 93; 176 guardian;
+  177 leg fix applied (snapshot 20260905133855). Gmail Guardian project pushed (weekly digest).
+- Balance gate 08:24:04 PASSED (8 FULL var 0.00). Name-only 7 (institution counters, by design). G2 open 22
+  (309,457). Blank-category spending rows 0. September statements not issued yet.
+- n8n: NEW W-GUARDIAN `PFS3bVKzTwyJNmxm` ACTIVE 03:30; W-SCORECARD `b6Qno1SMLMHG8tvj` 15 nodes (weekly e-mail);
+  W-DAILY-BRIEF `Cu6opCPfQPHJMKRJ` 13 nodes (TickTick, subscriptions, Miniflux news); W-ERR 4 nodes (Gmail);
+  W-INBOX-FILE 10 nodes (LifeVault write, needs the mount); W-DASH-SYNC / W-WATCHDOG humanized. Credential
+  `Miniflux API - alfred-brain` 6bWNG8kDuaNBtW2v. W-S48-READ back to 10 nodes.
+- VPS: Miniflux at /opt/miniflux (127.0.0.1:8085, alfred_internal, admin lloyd, .env); Watchtower restart-looping.
+- Waiting on Lloyd: n8n LifeVault bind mount, folder sharing Restricted, Watchtower env, git pushes, DEFER cluster 1.
+
+---
+
+# Previous prompt (session 51, 2026-09-05 by session 50) - DONE
+
+Outcome: directives 1-4 done, 5 built (mount pending), 6 waits on statements. See `sessions/2026-09-05-session-51.md`.
+
+## Session-51 prompt as issued (written 2026-09-05 12:50 by session 50, v2 with Lloyd's directives)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
