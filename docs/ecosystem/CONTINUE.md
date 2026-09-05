@@ -1,10 +1,20 @@
 # CONTINUE - session 51 (written 2026-09-05 12:50 by session 50, v2 with Lloyd's directives)
 
-Paste into a new Claude Code chat (desktop, CoPilot repo):
+Paste into a new Claude Code chat (desktop). Start the chat in the CoPilot repo if you like, but
+every docs/ecosystem path below lives in the **digipaws clone at
+`C:\Users\Lloyd\Claude\Projects\digipaws`** (branch kt-rewrite) - the agent must open it by that
+absolute path, never search for it from the CoPilot working directory. If the folder is missing:
+`git clone -b kt-rewrite https://github.com/rocloyd87/digipaws.git C:\Users\Lloyd\Claude\Projects\digipaws`.
+If it exists but is stale: `git -C C:\Users\Lloyd\Claude\Projects\digipaws pull origin kt-rewrite`.
 
 ```text
-Continue the Hermes/Alex work as desktop session 51. Boot: read digipaws
-docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-50.md (all sections),
+Continue the Hermes/Alex work as desktop session 51.
+REPO PATHS (absolute - do not search): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws
+(branch kt-rewrite; if missing: git clone -b kt-rewrite https://github.com/rocloyd87/digipaws.git
+C:\Users\Lloyd\Claude\Projects\digipaws ; if present: git -C that path pull origin kt-rewrite first).
+CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb). Vault = D:\ObsidianVault\20-projects\alfred-navigator.
+Boot: read C:\Users\Lloyd\Claude\Projects\digipaws\docs\ecosystem\CONTINUE.md (this file), sessions/2026-09-05-session-50.md (all sections),
 TASKLIST.md "SESSION 50 close" + "SESSION 50 final - Lloyd's directives", and vault
 04-HANDOFF-alfred items 27-28 + D-129/D-130. Log as session 51 in alfred_build_log
 (session 50 = rows 148-152). Standing constraint unchanged: BALANCE_CONTROL anchors
