@@ -18,10 +18,12 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 - **Yours (about 6 min):**
   (1) ~~n8n LifeVault mount~~ **DONE 14:35** (mount + `N8N_RESTRICT_FILE_ACCESS_TO=/lifevault` in the override; `/note lifevault
   test 2` landed in `/opt/lifevault/files/00-inbox` and CouchDB within 1 s). Drive fallback until ~2026-09-12.
-  (2) Drive: open the folder that holds Lloyd Transactions -> Share -> General access -> Restricted (the anyone-link is
-  inherited from the folder; the file-level delete returns 403).
-  (3) Portainer -> watchtower stack -> add env `DOCKER_API_VERSION=1.44` -> redeploy (restart-looping on Docker 29 since at
-  least 09-05, so no container has auto-updated).
+  (2) ~~Drive folder Restricted~~ **DONE 14:28 (agent, in-app browser):** the anyone-link lived on the root folder `Alfred
+  Shared State` (which also holds statement_sync and alfred_doc_passwords.md); set to Restricted, Drive API now lists only
+  the owner on both the folder and the sheet.
+  (3) ~~Watchtower env~~ **DONE 14:33 (Lloyd, ssh):** `DOCKER_API_VERSION=1.44` added to the Portainer stack JSON
+  (`/var/lib/docker/volumes/infra_portainer_data/_data/compose/3/docker-compose.yml`, via `ssh --% alfred "python3 -c ..."`
+  because PowerShell mangles sed quoting); container Up, first run scheduled 2026-09-06 04:00 PHT.
   (4) Optional: Zero Trust tunnel route miniflux.rocloyd.com -> http://localhost:8085 (admin `lloyd`, password in
   /opt/miniflux/.env on the VPS).
   (5) `git -C C:\Users\Lloyd\Claude\Projects\CoPilot\.claude\worktrees\hermes-wave-1-trust-94a9fb push` (b22a4d7) and
