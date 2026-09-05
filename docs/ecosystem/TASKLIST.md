@@ -1,6 +1,23 @@
-# Hermes Ecosystem — Task List (2026-09-05 afternoon, session 52)
+# Hermes Ecosystem — Task List (2026-09-05 late afternoon, session 53)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 53 close (2026-09-05 16:25, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-53.md`)
+- **Balance gate PASSED** (16:05, var 0.00 on all 8 FULL). No GAS change, no ledger write.
+- **Real clock:** it was 16:06 PHT at boot (n8n agrees), so the session-52 "16:40" stamp was ahead of the clock. Every
+  report checkpoint is STILL ahead: 09-06 03:30 guardian, 07:00 brief (TASKS / NEWS), 11:06 no SUCCESS mail, 18:00 Sunday
+  card + "Your week in money", 09-07 08:00 digest. Session 54 checks them for real.
+- **FIXED live: W-SNAPSHOT-REFRESH failure alert (D-132).** GAS /exec answers ~5x/day with a Google HTML page; the alert
+  put that HTML into a parse_mode=HTML Telegram message, so the alert node failed too (10 error execs 09-03..09-05, none
+  reached you). `Fetch Failed` now skips the alert on a transient HTML page (harmless: live-GAS fallback) and escapes/
+  truncates any real error. validateOnly -> apply -> active version read back 16:10. W-ERR was never attached, no mail noise.
+- **Six off-worksheet G2 rows: DEFER by rule, no write, nothing to ask** (5 YNAB plugs + Batch Invitation 1,000 already
+  ruled by 174). Worksheet mirror NOT done (needs a GAS append module + deploy for a cosmetic agreement) - LATER.
+- **Statements:** none issued; correlator and held captures unchanged. Drive-fallback decision still ~09-12.
+- **Read-back identical** to sessions 51-52 (5,347 rows, G2 22 = 309,457, name-only 7). W-S48-READ untouched (10 nodes).
+- **Yours (1 min):** `git -C D:\ObsidianVault push` after this session's vault commit (classifier blocks the agent).
+- **Next session:** the report checkpoints above; statements ~12-18 Sep; Drive-fallback ~09-12. NO owner questions on the
+  DEFER worksheet.
 
 **SESSION 52 close (2026-09-05 15:20, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-52.md`)
 - **Balance gate PASSED** (14:50, var 0.00 on all 8 FULL). No GAS change, no ledger write.

@@ -1,4 +1,73 @@
-# CONTINUE - session 53 (written 2026-09-05 15:20 by session 52, final 16:40)
+# CONTINUE - session 54 (written 2026-09-05 16:25 by session 53)
+
+Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 54. REPO PATHS (absolute): digipaws docs clone =
+C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pull origin kt-rewrite first);
+CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND
+live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
+(origin = https://github.com/rocloyd87/Alfred.git branch vault; never push over Alfred main; pushes are Lloyd's).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-53.md, TASKLIST.md "SESSION 53 close",
+vault 04-HANDOFF item 31 + D-132 + 01-FACTS "DEFER worksheet rulings are final".
+Log as session 54 in alfred_build_log (session 53 = rows 162-163). Memory alex-defer-worksheet-is-closed-do-not-reask
+applies: NEVER ask Lloyd about any existing G2/DEFER row (Calong Calong 23k = lent+repaid, note only, final; the six
+off-worksheet plug rows are DEFER by rule too).
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
+correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
+note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
+refine"; authorized to use all MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions - the hand-off stamps have been ahead of the real clock. Then
+verify against the live system (D-129): n8n executions since 2026-09-05 16:25 INCLUDING the error list of every
+active workflow (session 53 found a two-day-old silent alert failure that way), Gmail, the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) FIRST REAL CHECK of the session-51 reports (still unfired at 16:25 on 09-05): W-GUARDIAN PFS3bVKzTwyJNmxm
+    09-06 03:30 exec (Telegram only if something fired; Gmail only if critical); 07:00 brief 09-06 with TASKS / NEWS
+    TOP 5; NO "[Alfred Statements] SUCCESS" mail at 09-06 11:06; Sunday 09-06 18:00 W-SCORECARD card + "Your week in
+    money" mail; Gmail Guardian mail on Sunday only; Monday 09-07 08:00 digest humanized. Fix what did not fire or
+    came out in the old shape. Also confirm W-SNAPSHOT-REFRESH GHnQn2MDIvxJgPRm error executions after 16:10 09-05
+    are gone (the Fetch Failed fix, D-132) and that no transient-HTML alert reached Telegram.
+(2) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
+    HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh.
+(3) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C.
+(4) LATER, only if Lloyd asks: mirror the six off-worksheet G2 plug rows onto _ALEX_CategoryPass2 as DEFER
+    (needs a GAS append module + deploy; cosmetic).
+(5) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e), log, update docs/vault, kos-memory capture with --session <id> as the final Bash call;
+    hand Lloyd `git -C D:\ObsidianVault push` and verify with status -sb.
+Rules of engagement: every apply step is verified by reading the affected rows back by id/amount; GAS runs from
+the Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); agent-side GAS tool calls
+go through a temporary GET webhook -> HTTP node on W-S48-READ ZKdZVe5HDoLU1y6Z, removed at close; commands
+handed to Lloyd are one per block, tagged powershell, no && / cd (git -C <path>); the Bash tool unescapes
+backslashes in heredocs - write source files with the Write tool; deploy from a fresh clasp pull (clasp push -f;
+clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "..."); harness
+BARE (node scripts/alex/run_tests.cjs, expect 111/111) and node --check before clasp push. n8n patches publish
+immediately - validateOnly first. Read a row's note (q=raw&s=<id>) before asking the owner anything.
+```
+
+## State at hand-off (2026-09-05 16:25, real clock)
+- GAS **@75** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `b22a4d7` (modules 01-177; suite 111/111).
+  No GAS change and no ledger write in session 53.
+- Balance gate 16:05 PASSED (8 FULL var 0.00, verified 08:24:04). Name-only 7. G2 open 22 (309,457): 16 worksheet
+  DEFER + 6 off-worksheet DEFER-by-rule. The DEFER worksheet is closed; no owner question is pending on it.
+- n8n: W-SNAPSHOT-REFRESH `Fetch Failed` patched (D-132) - transient GAS HTML pages no longer produce a failing
+  Telegram alert; real errors alert with escaped text. 26 workflows active; nothing scheduled by session 51 has fired
+  yet - first checkpoints 09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00.
+- Pushes: digipaws at origin after this close. Vault commit local until Lloyd runs `git -C D:\ObsidianVault push`.
+  Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
+
+---
+
+# Previous prompt (session 53, 2026-09-05 by session 52) - DONE
+
+Outcome: gate passed; real clock showed every checkpoint still ahead; W-SNAPSHOT-REFRESH alert fixed (D-132); six
+off-worksheet G2 rows DEFER by rule. See `sessions/2026-09-05-session-53.md`.
+
+## Session-53 prompt as issued
+
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
@@ -53,7 +122,7 @@ AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "...
 BEFORE clasp push. n8n patches publish immediately - validateOnly first.
 ```
 
-## State at hand-off (2026-09-05 15:20)
+## State at hand-off (2026-09-05 15:20, session 52)
 - GAS **@75** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `b22a4d7` (modules 01-177; suite 111/111).
   No GAS change and no ledger write in session 52.
 - Balance gate 14:50 PASSED (8 FULL var 0.00, verified 08:24:04). Name-only 7. G2 open 22 (309,457) of which
