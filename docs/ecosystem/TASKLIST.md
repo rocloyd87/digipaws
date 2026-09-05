@@ -16,11 +16,8 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   `Miniflux API - alfred-brain`). **budgetOutlook fixed** (present-month median, 3-of-6 gate; B3 273/mo gone; 165k = 79 % of
   burn). 128 -> 175 renamed; 177 filled the 5 leg-disagreement counters (name-only 12 -> 7); 0 blank-category spending rows exist.
 - **Yours (about 6 min):**
-  (1) n8n LifeVault mount (the classifier blocked this compose edit). First look:
-  `ssh alfred "cat /opt/alfred/deploy/docker-compose.override.yml"`. If no `n8n:` service is in it, append one:
-  `ssh alfred "cd /opt/alfred/deploy; printf '  n8n:\n    volumes:\n      - /opt/lifevault/files:/lifevault\n' >> docker-compose.override.yml; docker compose up -d n8n"`
-  (if an `n8n:` block already exists, add the `- /opt/lifevault/files:/lifevault` line under its `volumes:` instead). Then
-  `/note lifevault test` on Telegram and look for `00-inbox/<date> lifevault-test.md` in Obsidian.
+  (1) ~~n8n LifeVault mount~~ **DONE 14:35** (mount + `N8N_RESTRICT_FILE_ACCESS_TO=/lifevault` in the override; `/note lifevault
+  test 2` landed in `/opt/lifevault/files/00-inbox` and CouchDB within 1 s). Drive fallback until ~2026-09-12.
   (2) Drive: open the folder that holds Lloyd Transactions -> Share -> General access -> Restricted (the anyone-link is
   inherited from the folder; the file-level delete returns 403).
   (3) Portainer -> watchtower stack -> add env `DOCKER_API_VERSION=1.44` -> redeploy (restart-looping on Docker 29 since at
