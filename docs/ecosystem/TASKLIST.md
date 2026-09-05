@@ -1,6 +1,24 @@
-# Hermes Ecosystem — Task List (2026-09-05 late afternoon, session 53)
+# Hermes Ecosystem — Task List (2026-09-05 evening, session 54)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 54 close (2026-09-05 20:15, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-54.md`)
+- **Balance gate PASSED** (19:52, var 0.00 on all 8 FULL). No GAS change, no ledger write. Real clock 19:51 at boot;
+  every report checkpoint is STILL ahead (09-06 03:30 / 07:00 / 11:06 / 18:00, 09-07 08:00) - session 55 checks them.
+- **D-132 confirmed live:** refresh exec 21618 got an HTML page, no alert, no error execution since 21587.
+- **FIXED live (D-133): five workflows carried a stale GAS shared secret** since the 08-30/31 rotation and reported
+  SUCCESS while GAS answered `unauthorized`: W-HERMES-NUDGE (every 12:30/19:30 nudge silently empty since 08-31),
+  W-HERMES-DIGEST (08-31 Monday digest crashed on empty text), W-SENTINEL, W-API-MONITOR, W-HERMES-ASSUMPTIONS. All
+  five Config nodes now match W-HERMES. Verified: digest test sent you the humanized Monday card (message 380) and the
+  nudge test sent a real 2-finding nudge (message 381) at 20:06. Sentinel (Sun 18:00) and API monitor (daily 20:00)
+  prove themselves on their next runs.
+- **FIXED live: W-HERMES-ASSUMPTIONS** - Gemini had retired `gemini-2.5-flash` (09-01 run failed); now on the brief's
+  `gemini-3-flash-preview`. The test also exposed 4-x Gemini calls and raw-JSON cards on an all-OK month (the 19:58
+  card you saw); now one call, the goal contract reaches the prompt, and a card goes out only on a `review` verdict,
+  a quarter month, or an unreadable reply. Next real run 2026-10-01 09:00.
+- **Check next session:** the nudge's "liquid ₱1,648,653 below the runway floor" figure (GCash PARTIAL may drag it).
+- **Statements / Drive fallback / G2:** unchanged. Read-back identical to sessions 51-53.
+- **Yours (1 min):** `git -C D:\ObsidianVault push` after this session's vault commit.
 
 **SESSION 53 close (2026-09-05 16:25, GAS @75 unchanged) - what changed, what is yours:** (`sessions/2026-09-05-session-53.md`)
 - **Balance gate PASSED** (16:05, var 0.00 on all 8 FULL). No GAS change, no ledger write.

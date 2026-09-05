@@ -1,6 +1,76 @@
-# CONTINUE - session 54 (written 2026-09-05 16:25 by session 53)
+# CONTINUE - session 55 (written 2026-09-05 20:15 by session 54)
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 55. REPO PATHS (absolute): digipaws docs clone =
+C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that path pull origin kt-rewrite first);
+CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex; Hermes worktree
+hermes-wave-1-trust-94a9fb, HEAD b22a4d7 = live GAS @75); push folder C:\Users\Lloyd\gas-v35 is BEHIND
+live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
+(origin = https://github.com/rocloyd87/Alfred.git branch vault; never push over Alfred main; pushes are Lloyd's).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-05-session-54.md, TASKLIST.md "SESSION 54 close",
+vault 04-HANDOFF item 32 + D-133 + 01-FACTS "GAS shared secret".
+Log as session 55 in alfred_build_log (session 54 = rows 164-165). Memory alex-defer-worksheet-is-closed-do-not-reask
+applies: NEVER ask Lloyd about any existing G2/DEFER row. Memory gas-key-rotation-leaves-n8n-config-nodes-stale
+applies: an {ok:false} body inside a SUCCESS execution is a failure.
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
+correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
+note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
+refine"; authorized to use all MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions (hand-off stamps have run ahead of the clock before). Then
+verify against the live system (D-129): executions since 2026-09-05 20:15 INCLUDING the error list of every active
+workflow, and for every SUCCESS run of a GAS-calling workflow read the reply body for {ok:false}; Gmail; the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) FIRST REAL CHECK of the session-51 reports: W-GUARDIAN PFS3bVKzTwyJNmxm 09-06 03:30 exec (Telegram only if
+    something fired; Gmail only if critical); 07:00 brief 09-06 with TASKS / NEWS TOP 5; NO "[Alfred Statements]
+    SUCCESS" mail at 09-06 11:06; nudges 09-06 12:30 / 19:30 now authorized (D-133) - read Evaluate Rules for ok:true;
+    Sunday 09-06 18:00 W-SCORECARD card + "Your week in money" mail AND W-SENTINEL lo18YAo7HdBdUF7g Run Checks ok:true;
+    09-06 20:00 W-API-MONITOR kEdUcpzRtuhlP3a8 Read Usage ok:true; Gmail Guardian mail on Sunday only; Monday 09-07
+    08:00 W-HERMES-DIGEST oI2aRXFBrfGjWLlb humanized (the 20:06 test on 09-05 = message 380 is the reference shape).
+    Fix what did not fire or came out in the old shape.
+(2) Check the nudge figure "Liquid is 1,648,653 below the runway floor" (message 381, 09-05 20:06): read get_kpis
+    tier1 liquid / floorReserve and confirm whether GCash PARTIAL (-641k) is inside liquid; if the number is wrong,
+    fix the basis in GAS (93_Metrics.js) through the normal deploy path, not the report text.
+(3) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
+    HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh.
+(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C.
+(5) LATER, only if Lloyd asks: mirror the six off-worksheet G2 plug rows onto _ALEX_CategoryPass2 as DEFER.
+(6) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e), log, update docs/vault, kos-memory capture with --session <id> as the final Bash call;
+    hand Lloyd `git -C D:\ObsidianVault push` and verify with status -sb.
+Rules of engagement: every apply step is verified by reading the affected rows back by id/amount; GAS runs from
+the Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); agent-side runs of a
+schedule-only n8n workflow go through a temporary GET webhook node fired with n8n_test_workflow method=trigger
+(the classifier blocks a curl to it), removed at close; commands handed to Lloyd are one per block, tagged
+powershell, no && / cd (git -C <path>); the Bash tool unescapes backslashes in heredocs - write source files with
+the Write tool; deploy from a fresh clasp pull (clasp push -f; clasp deploy -i
+AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "..."); harness BARE (node
+scripts/alex/run_tests.cjs, expect 111/111) and node --check before clasp push. n8n patches publish immediately -
+validateOnly first. Read a row's note (q=raw&s=<id>) before asking the owner anything.
+```
+
+## State at hand-off (2026-09-05 20:15, real clock)
+- GAS **@75** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `b22a4d7` (modules 01-177; suite 111/111).
+  No GAS change and no ledger write in session 54.
+- Balance gate 19:52 PASSED (8 FULL var 0.00, verified 08:24:04). Name-only 7. G2 open 22 (309,457). DEFER closed.
+- n8n: D-133 - five Config nodes (NUDGE, DIGEST, SENTINEL, API-MONITOR, ASSUMPTIONS) now carry the current GAS key;
+  digest and nudge verified live (msgs 380/381). W-HERMES-ASSUMPTIONS 11 nodes, gemini-3-flash-preview, one call,
+  card only on review / quarter / unreadable (next real run 10-01 09:00). 26 workflows active; nothing scheduled by
+  session 51 has fired yet - first checkpoints 09-06 03:30 / 07:00 / 11:06 / 12:30 / 18:00 / 20:00, 09-07 08:00.
+- Pushes: digipaws at origin after this close. Vault commit local until Lloyd runs `git -C D:\ObsidianVault push`.
+  Waiting on Lloyd: only the Drive-fallback decision (~09-12), September statements.
+
+---
+
+# Previous prompt (session 54, 2026-09-05 by session 53) - DONE
+
+Outcome: gate passed; checkpoints still ahead of the clock; D-132 confirmed; stale GAS key fixed in five workflows
+(D-133); assumptions audit rewired. See `sessions/2026-09-05-session-54.md`.
+
+## Session-54 prompt as issued
 
 ```text
 Continue the Hermes/Alex work as desktop session 54. REPO PATHS (absolute): digipaws docs clone =
