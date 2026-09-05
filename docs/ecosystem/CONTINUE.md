@@ -1,6 +1,88 @@
-# CONTINUE - session 56 (written 2026-09-05 20:50 by session 55) - run AFTER 2026-09-06 20:00
+# CONTINUE - session 57 (written 2026-09-06 07:45 by session 56) - run AFTER 2026-09-06 20:05
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 57 (read back tonight's checkpoints, then BUILD persona phase 0).
+REPO PATHS (absolute): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that
+path pull origin kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex;
+Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 2b40854 = live GAS @76); push folder C:\Users\Lloyd\gas-v35 is
+BEHIND live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
+(origin = https://github.com/rocloyd87/Alfred.git branch vault; the agent pushes it itself and verifies with
+git status -sb - the old "classifier blocks the vault push" claim was stale, see memory vault-push-works-from-the-agent).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-56.md (all parts), TASKLIST.md
+"SESSION 56 close", vault 04-HANDOFF item 36 + D-135..D-138 + 01-FACTS, and the PRD artifact "Hermes Persona Menus"
+https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635 (v3.1 = the approved plan; update it via
+Artifact url, never a new page). Log as session 57 in alfred_build_log (session 56 = next rows after 167).
+Memories that apply: alex-defer-worksheet-is-closed-do-not-reask; gas-key-rotation-leaves-n8n-config-nodes-stale
+({ok:false} inside SUCCESS is a failure); draft-is-not-the-published-version (verify n8n fixes with mode=active or
+versionId == activeVersionId).
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep
+correlating; no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/
+note edits only through the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then
+refine"; authorized to use all MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions. Then verify against the live system (D-129): executions
+since 2026-09-06 07:45 INCLUDING the error list of every active workflow; for every SUCCESS run of a GAS-calling
+workflow read the reply body for {ok:false}; Gmail; the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) CHECKPOINTS still unread from the session-51 list (read the GAS reply body, not the status): NO "[Alfred
+    Statements] SUCCESS" mail at 09-06 11:06; nudges 12:30 / 19:30 W-HERMES-NUDGE vJpvLLNtSKsQ1dcL Evaluate Rules
+    ok:true (may report deferred - W36 cap; any floor line must read P575,506); Sunday 18:00 W-SCORECARD
+    b6Qno1SMLMHG8tvj card + "Your week in money" mail AND W-SENTINEL lo18YAo7HdBdUF7g Run Checks ok:true; 20:00
+    W-API-MONITOR kEdUcpzRtuhlP3a8 Read Usage ok:true; Gmail Guardian mail on Sunday only; Monday 09-07 08:00
+    W-HERMES-DIGEST oI2aRXFBrfGjWLlb (msg 380 shape). Already PASSED on 09-06: 03:30 guardian (21724), 07:00 brief v2
+    (21762). Fixed on 09-06: weekly backup (published key, D-135; sealed 58/58 in 21746), verifier credential (21741).
+    Watch item: budget total moved 146,533 -> 165,318 on the month roll; confirm it is the present-month median
+    recomputation, not a data change.
+(2) BUILD PERSONA PHASE 0 per PRD v3.1 "Build order" (about 3 h, no GAS change): (a) one shared narrow formatter
+    (n8n Code node: kv/peso/alias, 32-char lines, k-rounding, <pre> blocks max 4 rows) and the four-block shape
+    POINT / CAUSE / IF NOTHING CHANGES / DO applied to W-DAILY-BRIEF Format Brief, W-SCORECARD Format Card,
+    W-HERMES-DIGEST (GAS get_digest text is reshaped in an n8n Code node, not in GAS), W-HERMES-NUDGE, W-HERMES
+    Format Stats; detail (goals, merchants, subscriptions) moves behind inline buttons; (b) sentinel check: no sent
+    line > 32 chars outside <pre>; (c) Telegram setMyCommands with /home /alfred /alexa /robert /pending /undo
+    (/lexa if Lloyd renames); (d) Persona Router code node between Owner Allowlist and Is Stats Command (keyword
+    table -> persona chip on line 1); (e) /home meter card via a read-only sub-workflow (list_staged count,
+    get_attention memo-less, last journal date, unchecked habits, unrouted captures; each source try/catch);
+    (f) /status = ops_status card. Test every new output through its manual hook or a temporary GET webhook
+    fired with n8n_test_workflow method=trigger, read the SENT text back from the execution, remove temp hooks.
+    validateOnly first on every patch; MCP patches publish immediately.
+(3) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
+    HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh.
+(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C.
+(5) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e; expect 5,347 rows, G2 22 = 309,457, name-only 7), log, update docs/vault (push the vault
+    yourself), kos-memory capture with --session <id> as the final Bash call, write the session-58 CONTINUE with
+    phase 1 (get_fire, subscription lifecycle, budget variance, persona menus + Hermes Filed-as card) as the build item.
+Rules of engagement: every apply step is verified by reading the affected rows or the sent message back; GAS runs
+from the Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); a get_nudges call
+counts against the weekly nudge cap; commands handed to Lloyd are one per block, tagged powershell, no && / cd;
+the Bash tool unescapes backslashes in heredocs - write source files with the Write tool; deploy from a fresh clasp
+pull (clasp push -f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ
+-d "..."); harness BARE (node scripts/alex/run_tests.cjs, expect 111/111) and node --check before clasp push.
+Read a row's note (q=raw&s=<id>) before asking the owner anything.
+```
+
+## State at hand-off (2026-09-06 07:45, real clock)
+- GAS **@76** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `2b40854`. No ledger write in session 56.
+- Balance gate 21:44 (09-05) PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
+- n8n changes this session (all published, verified by re-run): W-BACKUP-N8N key published + hardened (D-135),
+  W-DASH-SYNC VF State CSV on the Drive credential. Temp hooks removed. 26 workflows active.
+- Checkpoints PASSED: 03:30 guardian, 07:00 brief v2. Remaining: 11:06, 12:30/19:30, 18:00 x2, 20:00, Mon 08:00.
+- PRD v3.1 approved with D-136..D-138; phase 0 = style + skeleton is the build item for session 57.
+- Pushes: digipaws and vault at origin after this close (the agent pushes the vault). Waiting on Lloyd: only the
+  Drive-fallback decision (~09-12) and September statements.
+
+---
+
+# Previous prompt (session 56, 2026-09-05 by session 55) - DONE
+
+Outcome: pre-check 09-05 21:44 (gate passed, checkpoints ahead); morning after 09-06: guardian PASS, backup and
+verifier fixed live (D-135), brief v2 PASS; persona-menus PRD v1 -> v3.1 with Lloyd's decisions (D-136..D-138).
+See `sessions/2026-09-06-session-56.md`.
+
+## Session-56 prompt as issued
 
 ```text
 Continue the Hermes/Alex work as desktop session 56 (morning-after checklist; run after 2026-09-06 20:00 so every

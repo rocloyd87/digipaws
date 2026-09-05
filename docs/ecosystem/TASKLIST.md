@@ -2,6 +2,17 @@
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
+**SESSION 56 close (2026-09-06 07:45, GAS @76 unchanged) - what changed, what is yours:** (`sessions/2026-09-06-session-56.md`)
+- Checkpoints PASS: 03:30 guardian, 07:00 brief v2 (15 overdue TickTick tasks surfaced). Fixed live: weekly
+  backup (published version had the old GAS key, D-135; sealed 58/58), verifier gviz read -> Drive credential.
+- PRD "Hermes Persona Menus" v3.1 approved: D-136 (names, Robert one stacked habit, journal defaults, investment
+  card holdings + watchlist), D-137 (narrow house style + four-block shape first, 12-KPI set, Alfred Wealth desk,
+  Alexa coach + escalation gate, W-RAG-HYGIENE, QuickChart lane, subscription lifecycle), D-138 (4% withdrawal
+  reviewed quarterly vs inflation, essentials FI basis 24.4M, 6% real return, 70/30, Alexa consequence = insight).
+- Session 57 (after 20:05): remaining checkpoints, then BUILD phase 0 (formatter, four-block templates, sentinel
+  width check, setMyCommands, persona router + chip, /home, /status).
+- **Yours:** nothing blocking. Optional: rename Alexa -> Lexa before phase 0 sets the command list.
+
 **SESSION 56 part 2 (2026-09-06 ~05:45, GAS @76 unchanged) - morning-after, first three checkpoints:** (`sessions/2026-09-06-session-56.md`)
 - 03:30 guardian PASS (humanized, nothing critical). 03:00 weekly backup FAILED: published version still had the
   pre-rotation GAS key (draft had the fix) -> published, hardened (retry, timeouts, verdict fallback), D-135.
