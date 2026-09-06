@@ -1,6 +1,18 @@
-# Hermes Ecosystem — Task List (2026-09-05 night, session 55)
+# Hermes Ecosystem — Task List (2026-09-06, session 57)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 57 close (2026-09-06 09:20, GAS @76 unchanged) - what changed, what is yours:** (`sessions/2026-09-06-session-57.md`)
+- Gate PASSED. Persona PHASE 0 BUILT and live in n8n: shared formatter W-FMT-NARROW (width 38, width log data table),
+  brief / weekly / monthly / digest / nudge / stats in the four-block shape, sentinel width check, setMyCommands,
+  Persona Router + chip, /home, /status, /alexa /robert /undo cards, detail buttons (Goals, Merchants, Subs, Trend).
+  Every surface verified from the SENT text (msgs 384-396). No GAS change, no ledger write.
+- Your 08:45 feedback applied: width 38, the arrow legend and the "not net-positive" lines rewritten.
+- **Yours (2 min):** send Hermes one ordinary text question (e.g. "how is my runway?") - the reply must start with a
+  persona chip line (💰 ALFRED). Tap a detail button on the next digest or weekly card. Optional: rename Alexa -> Lexa
+  before phase 1 sets the menus.
+- Session 58 (after Mon 08:10): read the remaining checkpoints, then phase 1 (get_fire, subscription lifecycle,
+  budget variance, persona menus + Filed-as card).
 
 **SESSION 56 close (2026-09-06 07:45, GAS @76 unchanged) - what changed, what is yours:** (`sessions/2026-09-06-session-56.md`)
 - Checkpoints PASS: 03:30 guardian, 07:00 brief v2 (15 overdue TickTick tasks surfaced). Fixed live: weekly
