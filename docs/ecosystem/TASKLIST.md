@@ -15,6 +15,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   google workspace, mindanao, paypal jaycastil); send /alfred once to see the menu.
 - 13:50: the bottom keyboard is now the persona bar (Alfred · Hermes / Alexa · Robert / Home · Status); a tap opens
   that persona's menu. The old Stats / Report buttons are gone (use /stats, /report or the Alfred menu).
+- 14:30: PHASE 2 BUILT (no GAS change): Trend button = chart photo; Robert 21:00 check (tap = push-ups logged);
+  Alexa Monday targets + Friday check-in + crisis gate; Custodian memory hygiene Sun 04:00; /status memory line;
+  brief lines no longer cut. **Yours tonight:** tap "Push-ups done" on the 21:00 card (first real health write).
+  Monday 07:30: tap Take both / Easier / Skip on the WEEK TARGETS card.
 - Session 59 (after Mon 08:10): read the checkpoints (12:30/19:30, 18:00 x2, 20:00, Mon 07:00/08:00), then phase 2
   (Alexa coach, Robert streak, W-RAG-HYGIENE, QuickChart trend chart).
 
