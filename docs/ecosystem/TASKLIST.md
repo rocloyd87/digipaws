@@ -13,6 +13,8 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 - **Yours (1 min each):** tap Accept / Keep / Later on the BUDGET CHECK card for H1 Cascade Hideaway (₱22.2k -> ₱33.1k
   proposed; the first real `_REF_Budget` write); tap Ended or Active on the /sub VERIFY rows (mansueto aircon,
   google workspace, mindanao, paypal jaycastil); send /alfred once to see the menu.
+- 13:50: the bottom keyboard is now the persona bar (Alfred · Hermes / Alexa · Robert / Home · Status); a tap opens
+  that persona's menu. The old Stats / Report buttons are gone (use /stats, /report or the Alfred menu).
 - Session 59 (after Mon 08:10): read the checkpoints (12:30/19:30, 18:00 x2, 20:00, Mon 07:00/08:00), then phase 2
   (Alexa coach, Robert streak, W-RAG-HYGIENE, QuickChart trend chart).
 
