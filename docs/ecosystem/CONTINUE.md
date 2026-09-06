@@ -77,8 +77,10 @@ note (q=raw&s=<id>) before asking the owner anything.
 ## State at hand-off (2026-09-06 22:00, real clock)
 - GAS **@83** = worktree `hermes-wave-1-trust-94a9fb` HEAD `246e0e0` (origin contains HEAD, verified). One change in
   session 60: 178 budgetRuleValidate_ + 95 brKnown dedupe (Lloyd's first Accept on H1 was refused as ambiguous because
-  the label sat in both the outlook and the proposals). No n8n change, no ledger write. `_REF_Budget` is created by
-  the first successful Accept - read it at boot.
+  the label sat in both the outlook and the proposals). n8n: W-SCORECARD `?mode=variance` (26 nodes), W-HERMES
+  `Ruled OK?` + `Send Rule Error` (184 nodes). No ledger write. `_REF_Budget` EXISTS: row 1 = H1 Cascade Hideaway ·
+  accept · 33,095 (22:51:15, exec 22094) - the Monday brief / next get_kpis must show the H1 line as an override.
+  W-RAG-INGEST 22086 (22:30) timed out on its Record Run insert (transient; check the 23:00+ runs at boot).
 - Balance gate 20:31:30 PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
 - Checkpoints PASSED from the sent text: 18:00 scorecard (msgs 441-442 + mail), sentinel (0 width violations), 19:30
   nudge (msg 443, act bypasses the cap), 20:00 API monitor (silent), 21:00 Robert (silent by rule; pre-empted by the
