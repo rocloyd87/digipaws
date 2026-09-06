@@ -1,6 +1,20 @@
-# Hermes Ecosystem — Task List (2026-09-06, session 58)
+# Hermes Ecosystem — Task List (2026-09-06, session 59)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 59 close (2026-09-06 ~17:00, GAS @81 -> @82) - what changed, what is yours:** (`sessions/2026-09-06-session-59.md`)
+- Gate PASSED. 12:30 nudge PASS (msg 413). Sweep since 15:00 clean. No taps from you since 15:00 (no Accept on the
+  H1 budget card yet, no Ended / Active on /sub). Session 58's last three GAS commits were not on origin - pushed.
+- Open item (a) DONE, GAS @82: the forecast now uses each card's own median payment from the ledger (BPI 57k / RCBC 66k
+  / UB Visa 8k / Maya Black 2.9k a month, from the statements' payment lines) instead of interest + 2 %; debt-free
+  date 2029-03. Open items (b)(d) DONE in W-INBOX-FILE: every capture note records the classifier's confidence and
+  says "guessed" under 60 %; a three-line journal /note (what / one feeling word / one thing tomorrow) lands as
+  three frontmatter fields. Verified from msgs 439-440 (test cards; their buttons point at trashed test notes).
+- **Yours (1 min each, unchanged):** tap Accept / Keep / Later on the BUDGET CHECK card (tonight's 18:00 sends a fresh
+  one); tap Ended or Active on the /sub VERIFY rows; tap "Push-ups done" on the 21:00 Robert card; Monday 07:30 tap
+  Take both / Easier / Skip. Try a journal: `/note` + three lines.
+- Session 60 (after Mon 08:10): read the checkpoints (18:00 x2, 19:30, 20:00, 21:00, Mon 07:00 / 07:30 / 08:00) and
+  your taps; (c) LifeVault-first Change lane after the ~09-12 Drive decision; (e) Robert's second habit at 14 days.
 
 **SESSION 58 close (2026-09-06 ~12:20, GAS @76 -> @78) - what changed, what is yours:** (`sessions/2026-09-06-session-58.md`)
 - Gate PASSED. Chip on a real reply VERIFIED (your "how is my runway" -> 💰 ALFRED). 11:06 no-SUCCESS-mail PASS.
