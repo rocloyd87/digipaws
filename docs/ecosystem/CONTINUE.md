@@ -8,11 +8,12 @@ a/b/d are built and Sunday's checkpoints all passed in session 60, so the sessio
 only if their gates have opened).
 REPO PATHS (absolute): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that
 path pull origin kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex;
-Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 8f40138 = live GAS @82; verify origin contains HEAD with
+Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 246e0e0 = live GAS @83; verify origin contains HEAD with
 git branch -r --contains); push folder C:\Users\Lloyd\gas-v35 is BEHIND live - always clasp pull into a throwaway
 folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator (origin = https://github.com/rocloyd87/Alfred.git
 branch vault; the agent pushes it itself, verify with git status -sb).
-Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-60.md, sessions/2026-09-06-session-59.md,
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-60.md (incl. the 21:55 addendum: Lloyd's
+first Accept was refused as "ambiguous", fixed in @83 - check _REF_Budget for his re-tap), sessions/2026-09-06-session-59.md,
 TASKLIST.md "SESSION 60 close", vault 04-HANDOFF item 43 + 01-FACTS "Session 60" + D-144, and the PRD artifact
 "Hermes Persona Menus" https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635 (v3.6; update it via
 Artifact url, never a new page). Log as session 61 in alfred_build_log (session 60 = row 175).
@@ -73,9 +74,11 @@ unescapes backslashes in heredocs - write source files with the Write tool; depl
 note (q=raw&s=<id>) before asking the owner anything.
 ```
 
-## State at hand-off (2026-09-06 21:30, real clock)
-- GAS **@82** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `8f40138` (origin contains HEAD, verified at boot).
-  No GAS change, no n8n change, no ledger write in session 60.
+## State at hand-off (2026-09-06 22:00, real clock)
+- GAS **@83** = worktree `hermes-wave-1-trust-94a9fb` HEAD `246e0e0` (origin contains HEAD, verified). One change in
+  session 60: 178 budgetRuleValidate_ + 95 brKnown dedupe (Lloyd's first Accept on H1 was refused as ambiguous because
+  the label sat in both the outlook and the proposals). No n8n change, no ledger write. `_REF_Budget` is created by
+  the first successful Accept - read it at boot.
 - Balance gate 20:31:30 PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
 - Checkpoints PASSED from the sent text: 18:00 scorecard (msgs 441-442 + mail), sentinel (0 width violations), 19:30
   nudge (msg 443, act bypasses the cap), 20:00 API monitor (silent), 21:00 Robert (silent by rule; pre-empted by the

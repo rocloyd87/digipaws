@@ -2,7 +2,10 @@
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
 
-**SESSION 60 close (2026-09-06 ~21:30, GAS @82 unchanged) - Sunday-evening checkpoint read:** (`sessions/2026-09-06-session-60.md`)
+**SESSION 60 close (2026-09-06 ~22:00, GAS @82 -> @83) - Sunday-evening checkpoint read + Accept fix:** (`sessions/2026-09-06-session-60.md`)
+- 21:55: your Accept on the BUDGET CHECK card was refused ("H1 is ambiguous: H1 Cascade Hideaway | H1 Cascade Hideaway").
+  The validator saw the same label twice (it is listed in both the outlook and the proposals) and called it two
+  categories. Fixed in GAS @83 (worktree 246e0e0). **Tap Accept on msg 442 again** - same card, it now saves.
 - Gate PASSED (20:31:30). Every checkpoint tonight PASSED from the sent text: 18:00 weekly card (msg 441, Trend · Budget)
   + BUDGET CHECK (msg 442, H1 ₱22.2k -> ₱33.1k, Accept / Keep / Later) + weekly mail 18:00:56; sentinel green, 0 width
   violations; 19:30 nudge sent (msg 443 - an `act` floor breach bypasses the weekly cap by design, so "4 of 4" is
