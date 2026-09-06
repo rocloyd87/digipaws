@@ -23,7 +23,10 @@ Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
   Allocation pie, Budget chart, Q4 checklist); type "what if 150k in nov" for a verdict; a staged receipt >= 20k gets a
   BIG TICKET card on its own. Your Q4 tap (asset list: done) is recorded. **Yours:** nothing new; the refine pass
   (session 59) fixes the UnionBank loan payment join and adds the watchlist card.
-- Session 59 (after Mon 08:10): read the checkpoints (12:30/19:30, 18:00 x2, 20:00, 21:00 Robert, Mon 07:00/07:30/08:00), then the refine pass
+- 15:25: REFINE PASS DONE (GAS @81): the loan's contractual installment now drives the forecast (debt-free 2029-04);
+  Wealth menu has a Watchlist card (levels as of the last close, consider language); journal prompts researched;
+  Robert's stack line unlocks at 14 days; the monthly scorecard sends a trend photo. Every PRD phase is live.
+- Session 59 (after Mon 08:10): read the checkpoints (12:30/19:30, 18:00 x2, 20:00, 21:00 Robert, Mon 07:00/07:30/08:00) and your taps, then the open items in CONTINUE
   (phase 4: forecast debt join, FMP watchlist card, Filed-as for receipts, journal research, Robert stacked habit).
 
 **SESSION 57 close (2026-09-06 09:20, GAS @76 unchanged) - what changed, what is yours:** (`sessions/2026-09-06-session-57.md`)

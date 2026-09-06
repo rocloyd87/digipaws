@@ -1,29 +1,30 @@
-# CONTINUE - session 59 (written 2026-09-06 15:00 by session 58) - run AFTER 2026-09-07 08:10
+# CONTINUE - session 59 (written 2026-09-06 15:25 by session 58) - run AFTER 2026-09-07 08:10
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
 
 ```text
-Continue the Hermes/Alex work as desktop session 59 (read back the checkpoints and Lloyd's taps, then the REFINE
-pass = phase 4 of the persona PRD).
+Continue the Hermes/Alex work as desktop session 59 (read back the checkpoints and Lloyd's taps; the persona PRD is
+fully built, so the session is verification first, then the open items below).
 REPO PATHS (absolute): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that
 path pull origin kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex;
-Hermes worktree hermes-wave-1-trust-94a9fb, HEAD fa3e3c3 = live GAS @79); push folder C:\Users\Lloyd\gas-v35 is
+Hermes worktree hermes-wave-1-trust-94a9fb, HEAD be1146d = live GAS @81); push folder C:\Users\Lloyd\gas-v35 is
 BEHIND live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
 (origin = https://github.com/rocloyd87/Alfred.git branch vault; the agent pushes it itself, verify with git status -sb).
 Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-58.md (all addenda), TASKLIST.md
-"SESSION 58 close", vault 04-HANDOFF items 38-40 + D-140..D-142 + 01-FACTS "Phase 1 rule tabs", "Phase 2 tables",
-"Phase 3", and the PRD artifact "Hermes Persona Menus" https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635
-(v3.5; update it via Artifact url, never a new page). Log as session 59 in alfred_build_log (session 58 = rows 170-172).
+"SESSION 58 close", vault 04-HANDOFF items 38-41 + D-140..D-143 + 01-FACTS "Phase 1 rule tabs", "Phase 2 tables",
+"Phase 3", "Refine pass", and the PRD artifact "Hermes Persona Menus"
+https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635 (v3.6; update it via Artifact url, never a new
+page). Log as session 59 in alfred_build_log (session 58 = rows 170-173).
 Memories: alex-defer-worksheet-is-closed-do-not-reask; gas-key-rotation-leaves-n8n-config-nodes-stale ({ok:false}
 inside SUCCESS is a failure); piped-test-in-deploy-chain-hides-failure (harness BARE, quote the exit code);
 n8n-mcp-connection-ops-use-sourceindex; n8n-datatable-update-one-condition (match on id);
-telegram-inline-keyboard-needs-static-rows (pad with noop).
+telegram-inline-keyboard-needs-static-rows (pad with noop); a get_kpis SHAPE change needs a metricsFingerprint_ bump.
 Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep correlating;
 no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/note edits only through
 the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then refine"; authorized to use all
 MCPs, integrations, connectors, terminal, web.
 FIRST: run `date` and list the newest n8n executions. Verify against the live system (D-129): executions since
-2026-09-06 15:00 INCLUDING the error list of every active workflow (32 active); for every SUCCESS run of a GAS-calling
+2026-09-06 15:25 INCLUDING the error list of every active workflow (32 active); for every SUCCESS run of a GAS-calling
 workflow read the reply body for {ok:false}; Gmail; the sheet tabs.
 Do in order:
 (0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
@@ -31,33 +32,28 @@ Do in order:
 (1) CHECKPOINTS (read the SENT text, not the status): 09-06 12:30 / 19:30 W-HERMES-NUDGE vJpvLLNtSKsQ1dcL; Sunday
     18:00 W-SCORECARD b6Qno1SMLMHG8tvj weekly card (buttons Trend · Budget) + mail + BUDGET CHECK card + W-SENTINEL
     lo18YAo7HdBdUF7g Run Checks ok:true, Width Check 0 violations; 20:00 W-API-MONITOR kEdUcpzRtuhlP3a8; 21:00 W-ROBERT
-    cLzZJELbHhanaioA (card only if nothing logged; if Lloyd tapped Push-ups done read the Rule Then lane in W-HERMES
-    Diz990QbM3cZYCKp and the health sheet); Monday 07:00 brief (ROBERT block, full-length task and calendar lines,
-    wrapped headlines); 07:30 W-ALEXA-COACH xfOR7xURSuvwMK3L proposal for week 2026-09-07 (rows in hermes_week_targets
-    6dAaJE09HFUIOzFB); 08:00 W-HERMES-DIGEST oI2aRXFBrfGjWLlb. Lloyd's taps: _REF_Budget, _HERMES_SubRules (row 1 is a
-    probe), hermes_checklist v3J2lrXo7g3tuhCH (row 1 = Lloyd's real "assetlist done"), Edit Card executions. The first
-    real BIG TICKET card fires on a staged receipt >= 20k (Grounding Guard -> Big Ticket?); read it when it happens.
-    Width log hermes_fmt_width QFztSrySawucMmrh every row width_ok true.
-(2) REFINE PASS (phase 4, ~3 h; GAS deploy only if (a) needs it): (a) get_forecast debt payments: the UnionBank loan's
-    recurring key does not match digestMatchDebtPayment_ on live data (the loan pays as "cash loan"?) - read
-    get_kpis.recurring keys vs debts names, fix the join in 180_HermesForecast forecastInputsFromKpis_ (harness first),
-    redeploy; (b) watchlist analysis card (D-136): W-PRICE-ALERTS tickers + FMP quotes (the FMP MCP / existing n8n
-    credential) -> price vs 50/200-day, distance from alert level, cash under the runway rule, consider language, behind
-    the Wealth menu (replace the noop pad); (c) Hermes classify step: every capture (receipt, PDF, voice) gets the same
-    "Filed as X · Change · Undo" card the /note captures get today (PRD verdict 2; the STAGED card stays for money);
-    (d) journal research pass (three prompts + gratitude variant, Pennebaker / Lieberman / Gollwitzer / Emmons) into the
-    Alexa journal how-card and the /note frontmatter; (e) Robert's stacked habit ("after push-ups, log weight") once the
-    push-up streak holds 14 days (read hermes_nudge_log + get_health); (f) monthly scorecard inline trend photo (1st
-    08:30) through the QuickChart lane. Everything renders through W-FMT-NARROW iK3doB7LPwuethmR (width 38). Test through
-    manual hooks or a temporary GET webhook fired with n8n_test_workflow method=trigger, read the SENT text back, remove
-    temp hooks. validateOnly first; MCP patches publish immediately; connection ops use sourceIndex; sub-workflows must
-    be published before callers; static keyboards padded with noop; Data Table updates by id; callback kinds may carry
-    digits (regex [a-z0-9_]).
+    cLzZJELbHhanaioA (card only if nothing logged; a Push-ups done tap = Rule Then lane in W-HERMES Diz990QbM3cZYCKp +
+    a health-sheet row); Monday 07:00 brief (ROBERT block, full-length task and calendar lines, wrapped headlines);
+    07:30 W-ALEXA-COACH xfOR7xURSuvwMK3L proposal for week 2026-09-07 (hermes_week_targets 6dAaJE09HFUIOzFB);
+    08:00 W-HERMES-DIGEST oI2aRXFBrfGjWLlb. Lloyd's taps: _REF_Budget, _HERMES_SubRules (row 1 is a probe),
+    hermes_checklist v3J2lrXo7g3tuhCH (row 1 = Lloyd's real "assetlist done", row 2 a probe), Edit Card executions.
+    First real BIG TICKET card on a staged receipt >= 20k. Width log hermes_fmt_width QFztSrySawucMmrh every row
+    width_ok true. Sunday 04:00 (09-13) W-RAG-HYGIENE dG0dXMv6zx1Ns0m4 first scheduled run: silent when clean.
+(2) OPEN ITEMS (pick by value, ~2 h): (a) the debts without a recurring payment (BPI CC, RCBC, UB Visa, Maya Black)
+    run on interest + 2 % principal in get_forecast - if Lloyd's card payments are detectable (statement_credit /
+    credit_payment rows by account), give 180_HermesForecast a per-card median payment from the ledger instead;
+    (b) Hermes classify confidence: W-INBOX-FILE's Gemini classify has no confidence field; add {confidence} and mark
+    low-confidence cards "guessed" (PRD intake handoff); (c) LifeVault-first Change lane after the ~09-12 Drive decision;
+    (d) journal frontmatter: carry the three prompt answers as fields (what/feeling/tomorrow) when /note text has three
+    lines; (e) Robert: second habit config once the 14-day streak lands (read hermes_nudge_log + get_health first).
+    Everything renders through W-FMT-NARROW iK3doB7LPwuethmR (width 38). Test through manual hooks or a temporary GET
+    webhook fired with n8n_test_workflow method=trigger, read the SENT text back, remove temp hooks. validateOnly first;
+    MCP patches publish immediately; connection ops use sourceIndex; static keyboards padded with noop; Data Table
+    updates by id; callback kinds may carry digits.
 (3) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
     HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh; the RAG probe
     "hsbc" miss may clear once the HSBC statement is ingested.
-(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C
-    (then the Change lane must rewrite the LifeVault note instead of the Drive copy).
+(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C.
 (5) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
     s48-read-tab-c41d9e; expect 5,347 rows, G2 22 = 309,457, name-only 7), log, update docs/vault (push the vault
     yourself), kos-memory capture with --session <id> as the final Bash call, write the session-60 CONTINUE.
@@ -70,17 +66,14 @@ unescapes backslashes in heredocs - write source files with the Write tool; depl
 note (q=raw&s=<id>) before asking the owner anything.
 ```
 
-## State at hand-off (2026-09-06 15:00, real clock)
-- GAS **@79** = worktree `hermes-wave-1-trust-94a9fb` HEAD `fa3e3c3` (modules 01-180; suite 113/113). Phase 3 GAS:
-  get_forecast (180_HermesForecast). No ledger write in session 58.
+## State at hand-off (2026-09-06 15:25, real clock)
+- GAS **@81** = worktree `hermes-wave-1-trust-94a9fb` HEAD `be1146d` (modules 01-180; suite 113/113). No ledger
+  write in session 58. Live forecast: debt-free 2029-04 on the loan's contractual installment.
 - Balance gate 08:23:40 PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
-- n8n: phases 0-3 LIVE. W-HERMES 179 nodes (persona bar, menus, Wealth desk, forecast / portfolio / allocation / budget
-  chart / Q4 cards, what-if intent, big-ticket lane, rule / Alexa / Q4 / Change / Refile lanes, escalation gate, /status
-  memory line); W-DAILY-BRIEF 15; W-SCORECARD 20 (Trend · Budget); W-ROBERT cLzZJELbHhanaioA; W-ALEXA-COACH
-  xfOR7xURSuvwMK3L; W-RAG-HYGIENE dG0dXMv6zx1Ns0m4; W-Q4-CHECKLIST BZr2mYF7k8394Ubp. Data tables: hermes_week_targets
-  6dAaJE09HFUIOzFB, hermes_rag_hygiene JVqfKiOZSXZ701c2, hermes_nudge_log hNHlNZSg3Q17ROvJ, hermes_checklist
-  v3J2lrXo7g3tuhCH. VPS: QuickChart at /opt/quickchart. 32 workflows active. Temp hooks removed.
-- Verified from sent text: msgs 397-435. Structure-only (needs a real event): the big-ticket card, the robert:done tap.
+- n8n: persona PRD phases 0-3 + refine LIVE. W-HERMES 182 nodes; W-SCORECARD 26 (monthly trend photo); W-DAILY-BRIEF
+  15; W-ROBERT; W-ALEXA-COACH; W-RAG-HYGIENE; W-Q4-CHECKLIST; W-S48-READ 10. 32 workflows active. Temp hooks removed.
+- Verified from sent text: msgs 397-438. Structure-only (needs a real event): big-ticket card, robert:done tap, the
+  14-day stack line.
 - Checkpoints still ahead: 12:30 / 19:30, 18:00 x2 (+ BUDGET CHECK), 20:00, 21:00 Robert, Mon 07:00 / 07:30 / 08:00.
 - Pushes: digipaws, vault and the Hermes worktree at origin after this close. Waiting on Lloyd: the H1 budget tap, /sub
   taps, tonight's push-up tap, Monday's target tap, a first ≥ ₱20k receipt, the Drive-fallback decision (~09-12).
@@ -91,9 +84,12 @@ note (q=raw&s=<id>) before asking the owner anything.
 
 Outcome: run at 10:40 (11:06 checkpoint PASS, chip verified on a real reply, the rest ahead); gate passed; persona
 phase 1 BUILT (GAS @77/@78 + n8n, msgs 399-412); 13:45 persona bar; 13:58-14:30 phase 2 BUILT (msgs 419-427);
-14:30-15:00 phase 3 BUILT (GAS @79 get_forecast, Wealth desk, msgs 428-435). See `sessions/2026-09-06-session-58.md`.
+14:30-15:00 phase 3 BUILT (GAS @79, msgs 428-435); 15:05-15:25 refine pass (GAS @80/@81, msgs 436-438).
+See `sessions/2026-09-06-session-58.md`.
 
 ## Session-58 prompt as issued
+
+
 
 
 
