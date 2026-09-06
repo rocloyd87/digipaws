@@ -1,6 +1,98 @@
-# CONTINUE - session 60 (written 2026-09-06 17:00 by session 59) - run AFTER 2026-09-07 08:10
+# CONTINUE - session 61 (written 2026-09-06 21:30 by session 60) - run AFTER 2026-09-07 08:10
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 61 (Monday-morning checkpoint read; the persona PRD and open items
+a/b/d are built and Sunday's checkpoints all passed in session 60, so the session is verification first, then (c)/(e)
+only if their gates have opened).
+REPO PATHS (absolute): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that
+path pull origin kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex;
+Hermes worktree hermes-wave-1-trust-94a9fb, HEAD 8f40138 = live GAS @82; verify origin contains HEAD with
+git branch -r --contains); push folder C:\Users\Lloyd\gas-v35 is BEHIND live - always clasp pull into a throwaway
+folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator (origin = https://github.com/rocloyd87/Alfred.git
+branch vault; the agent pushes it itself, verify with git status -sb).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-60.md, sessions/2026-09-06-session-59.md,
+TASKLIST.md "SESSION 60 close", vault 04-HANDOFF item 43 + 01-FACTS "Session 60" + D-144, and the PRD artifact
+"Hermes Persona Menus" https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635 (v3.6; update it via
+Artifact url, never a new page). Log as session 61 in alfred_build_log (session 60 = row 175).
+Memories: alex-defer-worksheet-is-closed-do-not-reask; gas-key-rotation-leaves-n8n-config-nodes-stale ({ok:false}
+inside SUCCESS is a failure); piped-test-in-deploy-chain-hides-failure (harness BARE, quote the exit code);
+n8n-mcp-connection-ops-use-sourceindex; n8n-datatable-update-one-condition (match on id);
+telegram-inline-keyboard-needs-static-rows (pad with noop); a get_kpis SHAPE change needs a metricsFingerprint_ bump
+(v8 now); handoff-pushed-is-a-claim (check origin contains HEAD at boot); probe-writes-pre-empt-real-events (a forced
+tap writes a real row and silences the real run - do not probe Robert again today).
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep correlating;
+no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/note edits only through
+the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then refine"; authorized to use all
+MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions. Verify against the live system (D-129): executions since
+2026-09-06 21:30 INCLUDING the error list of every active workflow (32 active); for every SUCCESS run of a GAS-calling
+workflow read the reply body for {ok:false}; Gmail; the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) CHECKPOINTS (read the SENT text, not the status): 09-07 03:30 W-GUARDIAN PFS3bVKzTwyJNmxm (Telegram only if
+    something fired); 07:00 W-DAILY-BRIEF Cu6opCPfQPHJMKRJ (ROBERT block, full-length task and calendar lines, wrapped
+    headlines); 07:30 W-ALEXA-COACH xfOR7xURSuvwMK3L proposal for week 2026-09-07 (hermes_week_targets 6dAaJE09HFUIOzFB,
+    NEW rows with week_start 2026-09-07, not rows 1-2); 08:00 W-HERMES-DIGEST oI2aRXFBrfGjWLlb four-block card with 3
+    buttons; 12:30 / 19:30 W-HERMES-NUDGE vJpvLLNtSKsQ1dcL (W37 cap resets: expect the floor breach as an `act` finding
+    plus up to 4 non-act sends this week; "4 of 4" on a Sunday card was correct, act bypasses the cap); 21:00 W-ROBERT
+    cLzZJELbHhanaioA - a card IS expected tonight unless Lloyd logs push-ups earlier (Sunday's was silenced by session
+    58's probe row HM-20260906140825); a Push-ups done tap = Rule Then lane in W-HERMES Diz990QbM3cZYCKp + a
+    health-sheet row + hermes_nudge_log hNHlNZSg3Q17ROvJ row. Lloyd's taps: msg 442 BUDGET CHECK (_REF_Budget does not
+    exist until the first Accept - a W-S48-READ tab read errors on it, that is not a defect), _HERMES_SubRules (row 1 is
+    a probe), hermes_checklist v3J2lrXo7g3tuhCH (row 1 real, row 2 probe), Monday 07:30 target tap (Take both / Easier /
+    Skip), Edit Card executions. First real BIG TICKET card on a staged receipt >= 20k. Width log hermes_fmt_width
+    QFztSrySawucMmrh every row width_ok true. If Lloyd sent a three-line /note, read its frontmatter (what / feeling /
+    tomorrow) and the confidence: line; a "guessed" card (< 0.6) has not been seen on a real capture yet.
+(2) OPEN ITEMS, only when their gate has opened: (c) LifeVault-first Change lane in W-HERMES (rewrite the LifeVault
+    note's frontmatter instead of the Drive copy) after the ~09-12 Drive-fallback decision; (e) Robert's second habit
+    config once hermes_nudge_log + get_health show a 14-day push-up streak. Otherwise: nothing to build - refine only
+    what a checkpoint shows broken. Everything renders through W-FMT-NARROW iK3doB7LPwuethmR (width 38). Test through
+    manual hooks or a temporary GET webhook fired with n8n_test_workflow method=trigger, read the SENT text back, remove
+    temp hooks. validateOnly first; MCP patches publish immediately; connection ops use sourceIndex; static keyboards
+    padded with noop; Data Table updates by id; callback kinds may carry digits.
+(3) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
+    HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh; the RAG probe
+    "hsbc" miss may clear once the HSBC statement is ingested. The card medians in get_forecast (BPI 2 months, RCBC 5)
+    will move as September payments post - that is expected, not drift.
+(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C.
+(5) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e; expect 5,347 rows, G2 22 = 309,457, name-only 7), log, update docs/vault (push the vault
+    yourself), kos-memory capture with --session <id> as the final Bash call (node
+    D:\ObsidianVault\90-assets\knowledge-os\kos-memory.mjs capture --session <id> --event <json>; the event's
+    source_commit must equal the vault HEAD at capture, so commit the vault first, then capture, then commit the copied
+    event file), write the session-62 CONTINUE.
+Rules of engagement: every apply step is verified by reading the affected rows or the sent message back; GAS runs
+from the Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); a get_nudges call counts
+against the weekly nudge cap; commands handed to Lloyd are one per block, tagged powershell, no && / cd; the Bash tool
+unescapes backslashes in heredocs - write source files with the Write tool; deploy from a fresh clasp pull (clasp push
+-f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "..."); harness BARE
+(node scripts/alex/run_tests.cjs, expect 113/113, quote the exit code) and node --check before clasp push. Read a row's
+note (q=raw&s=<id>) before asking the owner anything.
+```
+
+## State at hand-off (2026-09-06 21:30, real clock)
+- GAS **@82** unchanged = worktree `hermes-wave-1-trust-94a9fb` HEAD `8f40138` (origin contains HEAD, verified at boot).
+  No GAS change, no n8n change, no ledger write in session 60.
+- Balance gate 20:31:30 PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
+- Checkpoints PASSED from the sent text: 18:00 scorecard (msgs 441-442 + mail), sentinel (0 width violations), 19:30
+  nudge (msg 443, act bypasses the cap), 20:00 API monitor (silent), 21:00 Robert (silent by rule; pre-empted by the
+  session-58 probe row). Ahead: Mon 03:30 guardian, 07:00 brief, 07:30 Alexa proposal, 08:00 digest, 12:30 / 19:30
+  W37 nudges, 21:00 Robert (first real card).
+- Pushes: digipaws and vault at origin after this close (verified with status -sb). Waiting on Lloyd: the msg 442
+  budget tap, /sub taps, Monday's target tap, Monday's push-up tap, a first ≥ ₱20k receipt, the Drive-fallback decision.
+
+---
+
+# Previous prompt (session 60, 2026-09-06 by session 59) - DONE
+
+Outcome: run at 20:58 on Sunday (before its Mon 08:10 gate): gate passed; 18:00 x2, 19:30, 20:00, 21:00 checkpoints
+all PASS from the sent text; nothing built; Monday's checkpoints moved to session 61. See
+`sessions/2026-09-06-session-60.md`.
+
+## Session-60 prompt as issued
 
 ```text
 Continue the Hermes/Alex work as desktop session 60 (read back the checkpoints and Lloyd's taps; the persona PRD and

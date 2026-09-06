@@ -1,6 +1,17 @@
-# Hermes Ecosystem — Task List (2026-09-06, session 59)
+# Hermes Ecosystem — Task List (2026-09-06, session 60)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 60 close (2026-09-06 ~21:30, GAS @82 unchanged) - Sunday-evening checkpoint read:** (`sessions/2026-09-06-session-60.md`)
+- Gate PASSED (20:31:30). Every checkpoint tonight PASSED from the sent text: 18:00 weekly card (msg 441, Trend · Budget)
+  + BUDGET CHECK (msg 442, H1 ₱22.2k -> ₱33.1k, Accept / Keep / Later) + weekly mail 18:00:56; sentinel green, 0 width
+  violations; 19:30 nudge sent (msg 443 - an `act` floor breach bypasses the weekly cap by design, so "4 of 4" is
+  right); 20:00 API monitor silent (1,147 calls / 11 d); 21:00 Robert silent because a push-up row already exists for
+  today - that row is session 58's forced probe, so tonight's real card never came. Nothing built, nothing broken.
+- No taps from you since 15:00. **Yours (1 min each, unchanged):** tap Accept / Keep / Later on msg 442; Ended / Active
+  on the /sub VERIFY rows; Monday 07:30 Take both / Easier / Skip; Monday 21:00 "Push-ups done" (first real card);
+  try `/note` + three lines.
+- Session 61 (after Mon 08:10): Monday 07:00 / 07:30 / 08:00 checkpoints, the W37 nudges, your taps; (c)/(e) only if gated open.
 
 **SESSION 59 close (2026-09-06 ~17:00, GAS @81 -> @82) - what changed, what is yours:** (`sessions/2026-09-06-session-59.md`)
 - Gate PASSED. 12:30 nudge PASS (msg 413). Sweep since 15:00 clean. No taps from you since 15:00 (no Accept on the
