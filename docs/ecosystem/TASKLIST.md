@@ -1,6 +1,20 @@
-# Hermes Ecosystem — Task List (2026-09-06, session 57)
+# Hermes Ecosystem — Task List (2026-09-06, session 58)
 
 Status words: DONE · LIVE · BLOCKED(who/what) · NEXT · LATER.
+
+**SESSION 58 close (2026-09-06 ~12:20, GAS @76 -> @78) - what changed, what is yours:** (`sessions/2026-09-06-session-58.md`)
+- Gate PASSED. Chip on a real reply VERIFIED (your "how is my runway" -> 💰 ALFRED). 11:06 no-SUCCESS-mail PASS.
+- Persona PHASE 1 BUILT and live: GAS get_fire (savings rate 27 %, FI number ₱24.4M, 16.1 y at 6 %, DTI 56 %),
+  subscription lifecycle (installment k/N, active / awaiting / unverified / ended; load ₱8.6k not ₱27k), budget
+  variance 3-of-6 rule with `_REF_Budget` overrides; n8n persona menus (/alfred /alexa /robert /undo, 3x2 buttons),
+  FIRE / Stats / Pending / Health detail cards, /sub and the Subs card with Ended / Active buttons, the Filed-as card
+  with OK / Change / Undo (Change re-files the Drive note and moves it), the BUDGET CHECK card after the weekly review.
+  Every surface verified from the SENT text (msgs 399-412). No ledger write.
+- **Yours (1 min each):** tap Accept / Keep / Later on the BUDGET CHECK card for H1 Cascade Hideaway (₱22.2k -> ₱33.1k
+  proposed; the first real `_REF_Budget` write); tap Ended or Active on the /sub VERIFY rows (mansueto aircon,
+  google workspace, mindanao, paypal jaycastil); send /alfred once to see the menu.
+- Session 59 (after Mon 08:10): read the checkpoints (12:30/19:30, 18:00 x2, 20:00, Mon 07:00/08:00), then phase 2
+  (Alexa coach, Robert streak, W-RAG-HYGIENE, QuickChart trend chart).
 
 **SESSION 57 close (2026-09-06 09:20, GAS @76 unchanged) - what changed, what is yours:** (`sessions/2026-09-06-session-57.md`)
 - Gate PASSED. Persona PHASE 0 BUILT and live in n8n: shared formatter W-FMT-NARROW (width 38, width log data table),

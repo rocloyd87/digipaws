@@ -1,6 +1,93 @@
-# CONTINUE - session 58 (written 2026-09-06 09:20 by session 57) - run AFTER 2026-09-07 08:10
+# CONTINUE - session 59 (written 2026-09-06 12:20 by session 58) - run AFTER 2026-09-07 08:10
 
 Paste into a new Claude Code chat (desktop, CoPilot repo):
+
+```text
+Continue the Hermes/Alex work as desktop session 59 (read back the checkpoints, then BUILD persona phase 2).
+REPO PATHS (absolute): digipaws docs clone = C:\Users\Lloyd\Claude\Projects\digipaws (branch kt-rewrite; git -C that
+path pull origin kt-rewrite first); CoPilot repo = C:\Users\Lloyd\Claude\Projects\CoPilot (GAS source scripts/alex;
+Hermes worktree hermes-wave-1-trust-94a9fb, HEAD e1c0226 = live GAS @78); push folder C:\Users\Lloyd\gas-v35 is
+BEHIND live - always clasp pull into a throwaway folder first. Vault = D:\ObsidianVault\20-projects\alfred-navigator
+(origin = https://github.com/rocloyd87/Alfred.git branch vault; the agent pushes it itself, verify with git status -sb).
+Boot: read docs/ecosystem/CONTINUE.md (this file), sessions/2026-09-06-session-58.md, TASKLIST.md "SESSION 58 close",
+vault 04-HANDOFF item 38 + D-140 + 01-FACTS "Phase 1 rule tabs", and the PRD artifact "Hermes Persona Menus"
+https://claude.ai/code/artifact/a92079fe-e50e-4c07-9b4a-ae8b78277635 (v3.3; update it via Artifact url, never a new page).
+Log as session 59 in alfred_build_log (session 58 = row 170). Memories: alex-defer-worksheet-is-closed-do-not-reask;
+gas-key-rotation-leaves-n8n-config-nodes-stale ({ok:false} inside SUCCESS is a failure); piped-test-in-deploy-chain-
+hides-failure (session 58 tripped it again - run the harness BARE and quote the exit code before any clasp push);
+n8n-sub-workflow-must-be-published-before-callers; telegram-inline-keyboard-needs-static-rows.
+Standing constraint unchanged: BALANCE_CONTROL anchors (2026-08-28) and every later transaction must keep correlating;
+no ledger rebuilds, merges, row deletions, or amount/date/account edits; category/counter/label/note edits only through
+the snapshot-first engines. Lloyd: "don't over-engineer - finish the main tasks, then refine"; authorized to use all
+MCPs, integrations, connectors, terminal, web.
+FIRST: run `date` and list the newest n8n executions. Verify against the live system (D-129): executions since
+2026-09-06 12:20 INCLUDING the error list of every active workflow; for every SUCCESS run of a GAS-calling workflow read
+the reply body for {ok:false}; Gmail; the sheet tabs.
+Do in order:
+(0) Balance gate via GET https://n8n.rocloyd.com/webhook/s48-read-balance-9f3c1d - any FULL var != 0.00 ->
+    restore latest snapshot and stop.
+(1) CHECKPOINTS (read the SENT text, not the status): 09-06 12:30 / 19:30 W-HERMES-NUDGE vJpvLLNtSKsQ1dcL Evaluate
+    Rules ok:true (deferred is fine, W36 cap; if sent, four-block shape via Reshape Nudge -> Render Narrow -> Send
+    Alert); Sunday 18:00 W-SCORECARD b6Qno1SMLMHG8tvj weekly card + "Your week in money" mail AND the BUDGET CHECK card
+    (Send Variance; H1 Cascade Hideaway 22,150 -> 33,095 unless Lloyd already ruled on the 11:24 test card) AND
+    W-SENTINEL lo18YAo7HdBdUF7g Run Checks ok:true + Width Check width_violations 0; 20:00 W-API-MONITOR
+    kEdUcpzRtuhlP3a8 Read Usage ok:true; Monday 09-07 07:00 brief; 08:00 W-HERMES-DIGEST oI2aRXFBrfGjWLlb four-block
+    card with 3 buttons. Then Lloyd's taps: read _REF_Budget (s48-read-tab-c41d9e?tab=_REF_Budget) and _HERMES_SubRules
+    (tab=_HERMES_SubRules; row 1 "session probe key" is a session-58 probe, ignore it) and the matching Edit Card Ruled
+    executions in W-HERMES Diz990QbM3cZYCKp; confirm get_kpis enrich.budgetOutlook shows override:true for an accepted
+    line and the muted[] entry for keep/later. Width log: data table hermes_fmt_width QFztSrySawucMmrh, every row
+    width_ok true.
+(2) BUILD PERSONA PHASE 2 per PRD v3.3 "Build order" (~4 h, no GAS deploy unless a rollup needs one): (a) Alexa coach:
+    Monday week-target card (one micro-target per _REF_Goals item, confirm by tap), Friday 18:00 check-in, one
+    blind-spot line from own data (overdue count, journal gap, late spend), escalation gate (D-138: insight, not
+    penalty; halve the target on a miss); (b) Robert: streak line in the 07:00 brief from get_health habit rows,
+    21:00 "unchecked today" nudge under the weekly cap; (c) W-RAG-HYGIENE Sunday 04:00 over the Postgres credential
+    (freshness, duplicates, stale memories card, retrieval probe, orphans) + a memory line in /status; (d) QuickChart
+    container on alfred-brain (alfred_internal network, same pattern as Miniflux) and the net-worth trend chart behind
+    the digest Trend button. Everything renders through W-FMT-NARROW iK3doB7LPwuethmR (width 38). Test through manual
+    hooks or a temporary GET webhook fired with n8n_test_workflow method=trigger, read the SENT text back, remove temp
+    hooks. validateOnly first on every patch; MCP patches publish immediately; connection ops use sourceIndex (not
+    sourceOutput) for the output number; a sub-workflow must be published before a caller can reference it; Telegram
+    inline keyboards need static rows with per-field expressions (pad with noop buttons).
+(3) Statements: when BPI (~12 Sep), HSBC (~13 Sep), UB (~17 Sep) land, check _ALEX_Correlator 06:30 decisions and
+    HERMES_STAGING merged_at for tg-00000307 / tg-328 / tg-333 (tg-351 stale); HSBC September refresh.
+(4) ~2026-09-12: decide with Lloyd whether Drive stops being the capture fallback in W-INBOX-FILE EDfBh8vqrQjthY7C
+    (then the Change lane must rewrite the LifeVault note instead of the Drive copy - today it rewrites Drive only).
+(5) Read-back with W-S48-READ (paths s48-read-balance-9f3c1d, s48-read-alex-7b2e4a?q=composition|nameonly|g2rows,
+    s48-read-tab-c41d9e; expect 5,347 rows, G2 22 = 309,457, name-only 7), log, update docs/vault (push the vault
+    yourself), kos-memory capture with --session <id> as the final Bash call, write the session-60 CONTINUE with
+    phase 3 (Alfred Wealth: get_forecast, big-ticket card, portfolio calibration, Q4 checklist) as the build item.
+Rules of engagement: every apply step is verified by reading the affected rows or the sent message back; GAS runs
+from the Apps Script editor tab (select file, pick function, CONFIRM the toolbar label, Run); a get_nudges call counts
+against the weekly nudge cap; commands handed to Lloyd are one per block, tagged powershell, no && / cd; the Bash tool
+unescapes backslashes in heredocs - write source files with the Write tool; deploy from a fresh clasp pull (clasp push
+-f; clasp deploy -i AKfycbw9t20LiJP--NLKmvI5C2PEttHV4iv3kcVjJFv-JWDz4osSPGkyM0EFhi64iy-7wsAQ -d "..."); harness BARE
+(node scripts/alex/run_tests.cjs, expect 112/112, quote the exit code) and node --check before clasp push. Read a row's
+note (q=raw&s=<id>) before asking the owner anything.
+```
+
+## State at hand-off (2026-09-06 12:20, real clock)
+- GAS **@78** = worktree `hermes-wave-1-trust-94a9fb` HEAD `e1c0226` (modules 01-179; suite 112/112). Phase 1 GAS:
+  get_fire, subscription lifecycle, budget variance + `_REF_Budget` overrides, tools budget_rule / sub_rule,
+  GOAL_CONTRACT.real_return 0.06 (D-138). No ledger write in session 58.
+- Balance gate 08:23:40 PASSED. Name-only 7. G2 open 22 (309,457). DEFER closed.
+- n8n: phase 1 LIVE - W-HERMES 152 nodes (persona menus, detail kinds fire/stats/pending/health, menu how-cards, rule
+  lane, Change / Refile lanes, Render Sub, get_fire tool), W-INBOX-FILE Filed-as card (OK / Change / Undo),
+  W-SCORECARD 20 nodes (BUDGET CHECK card after the weekly review). W-S48-READ 10. Temp hooks removed.
+- Verified from sent text: msgs 397-412 (see the session log table). Chip on a real LLM reply verified (msg 398).
+- Checkpoints still ahead: 12:30 / 19:30, 18:00 x2 (+ the BUDGET CHECK card), 20:00, Mon 07:00 + 08:00.
+- Pushes: digipaws, vault and the Hermes worktree at origin after this close. Waiting on Lloyd: the H1 budget tap, the
+  /sub Ended / Active taps, the Drive-fallback decision (~09-12), September statements.
+
+---
+
+# Previous prompt (session 58, 2026-09-06 by session 57) - DONE
+
+Outcome: run at 10:40 (11:06 checkpoint PASS, chip verified on a real reply, the rest ahead); gate passed; persona
+phase 1 BUILT (GAS @77/@78 + n8n) and verified from sent messages 399-412. See `sessions/2026-09-06-session-58.md`.
+
+## Session-58 prompt as issued
+
 
 ```text
 Continue the Hermes/Alex work as desktop session 58 (read back the checkpoints, then BUILD persona phase 1).
